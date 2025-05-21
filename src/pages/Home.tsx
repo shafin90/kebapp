@@ -212,8 +212,8 @@ const Home = () => {
               <div className="relative">
                 <div className="relative overflow-hidden rounded-2xl">
                   <img 
-                    src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe"
-                    alt="Featured Dish" 
+                    src="/IMG_0861-1536x1164.jpg"
+                    alt="Fresh Mediterranean Ingredients" 
                     className="w-full h-[600px] object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
@@ -221,11 +221,11 @@ const Home = () => {
                 <div className="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-sm">
                   <div className="flex items-center gap-4">
                     <div className="bg-primary/5 p-3 rounded-lg">
-                      <GlobeAltIcon className="w-5 h-5 text-primary" />
+                      <SparklesIcon className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="text-sm text-primary font-medium">Eco-Friendly</p>
-                      <p className="font-medium text-text">100% Sustainable</p>
+                      <p className="text-sm text-primary font-medium">Fresh Daily</p>
+                      <p className="font-medium text-text">Premium Ingredients</p>
                     </div>
                   </div>
                 </div>
@@ -233,11 +233,11 @@ const Home = () => {
                 <div className="absolute -top-6 -right-6 bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-sm">
                   <div className="flex items-center gap-4">
                     <div className="bg-primary/5 p-3 rounded-lg">
-                      <ClockIcon className="w-5 h-5 text-primary" />
+                      <BeakerIcon className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="text-sm text-primary font-medium">Open Hours</p>
-                      <p className="font-medium text-text">11:00 AM - 10:00 PM</p>
+                      <p className="text-sm text-primary font-medium">Quality First</p>
+                      <p className="font-medium text-text">Local & Organic</p>
                     </div>
                   </div>
                 </div>
@@ -269,20 +269,23 @@ const Home = () => {
               {
                 icon: <BeakerIcon className="w-7 h-7" />,
                 title: "Fresh Ingredients",
-                description: "We source the freshest local produce daily, ensuring exceptional quality in every bite.",
-                highlight: "100% Fresh"
+                description: "We source the freshest local produce daily, featuring premium feta, ripe avocados, and crisp vegetables.",
+                highlight: "100% Fresh",
+                image: "/IMG_0861-1536x1164.jpg"
               },
               {
                 icon: <HeartIcon className="w-7 h-7" />,
                 title: "Healthy Options",
-                description: "Nutritionally balanced meals designed for your wellbeing and satisfaction.",
-                highlight: "Balanced Diet"
+                description: "Nutritionally balanced meals designed with fresh Mediterranean ingredients for your wellbeing.",
+                highlight: "Balanced Diet",
+                image: "/IMG_0861-1536x1164.jpg"
               },
               {
                 icon: <SparklesIcon className="w-7 h-7" />,
                 title: "Premium Quality",
-                description: "Exceptional standards in every dish we serve, with no compromises.",
-                highlight: "Top Rated"
+                description: "From our locally sourced tomatoes to imported olives, we ensure exceptional quality in every bite.",
+                highlight: "Top Rated",
+                image: "/IMG_0861-1536x1164.jpg"
               }
             ].map((feature, index) => (
               <motion.div
@@ -291,30 +294,32 @@ const Home = () => {
                 transition={{ delay: 0.2 * index }}
                 className="group relative"
               >
-                {/* Matching card style with other sections */}
-                <div className="relative h-full p-8 rounded-2xl bg-white hover:bg-primary/[0.02] 
-                             transition-all duration-300 border-2 border-primary/10 hover:border-primary/20">
-                  {/* Matching decorative elements style */}
-                  <div className="absolute -right-8 -top-8 w-24 h-24 bg-primary/5 rounded-full"></div>
-                  <div className="absolute -left-8 -bottom-8 w-32 h-32 bg-primary/5 rounded-full"></div>
+                <div className="relative h-full rounded-2xl bg-white hover:bg-primary/[0.02] 
+                             transition-all duration-300 border-2 border-primary/10 hover:border-primary/20 overflow-hidden">
+                  {/* Image Section */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={feature.image}
+                      alt={feature.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+                  </div>
 
-                  {/* Content with consistent spacing */}
-                  <div className="relative">
-                    {/* Icon container matching other sections */}
+                  {/* Content Section */}
+                  <div className="relative p-8">
                     <div className="bg-primary/5 w-16 h-16 rounded-xl flex items-center justify-center mb-6 
                                 text-primary group-hover:bg-primary/10 transition-colors">
                       {feature.icon}
                     </div>
 
-                    {/* Feature highlight tag matching other tags in design */}
-                    <div className="absolute top-0 right-0">
+                    <div className="absolute top-4 right-4">
                       <span className="inline-block px-3 py-1 text-xs font-medium text-primary 
                                    bg-primary/10 rounded-full">
                         {feature.highlight}
                       </span>
                     </div>
 
-                    {/* Text content matching typography across sections */}
                     <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
                       {feature.title}
                     </h3>
@@ -349,21 +354,21 @@ const Home = () => {
                 description: "A vibrant bowl of quinoa, roasted sweet potatoes, fresh avocado, crispy chickpeas, and seasonal vegetables.",
                 price: "$18.99",
                 tag: "Chef's Choice",
-                image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c"
+                image: "/IMG_0861-1536x1164.jpg"
               },
               {
                 name: "Truffle Mushroom Risotto",
                 description: "Creamy Arborio rice cooked to perfection with wild mushrooms, finished with black truffle oil and fresh herbs.",
                 price: "$24.99",
                 tag: "New",
-                image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371"
+                image: "/IMG_0861-1536x1164.jpg"
               },
               {
                 name: "Mediterranean Platter",
                 description: "A delightful assortment of hummus, falafel, tabbouleh, and warm pita bread, showcasing Mediterranean flavors.",
                 price: "$21.99",
                 tag: "Popular",
-                image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd"
+                image: "/IMG_0861-1536x1164.jpg"
               }
             ].map((dish, index) => (
               <motion.div
@@ -552,28 +557,28 @@ const Home = () => {
               {
                 title: "Local Partnerships",
                 description: "Direct relationships with organic farmers within 50 miles",
-                image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854",
+                image: "/IMG_0861-1536x1164.jpg",
                 icon: <GlobeAltIcon className="w-6 h-6" />,
                 stat: "15+ Local Farms"
               },
               {
                 title: "Seasonal Produce",
                 description: "Menu changes to match the best available seasonal vegetables",
-                image: "https://images.unsplash.com/photo-1557844352-761f2565b576",
+                image: "/IMG_0861-1536x1164.jpg",
                 icon: <CalendarDaysIcon className="w-6 h-6" />,
                 stat: "4 Seasonal Menus"
               },
               {
                 title: "Zero Waste",
                 description: "Committed to sustainable practices and minimal food waste",
-                image: "https://images.unsplash.com/photo-1542838132-92c53300491e",
+                image: "/IMG_0861-1536x1164.jpg",
                 icon: <BeakerIcon className="w-6 h-6" />,
                 stat: "95% Waste Reduced"
               },
               {
                 title: "Daily Fresh",
                 description: "Ingredients delivered fresh every morning for the best quality",
-                image: "https://images.unsplash.com/photo-1470091688026-38b51162c8df",
+                image: "/IMG_0861-1536x1164.jpg",
                 icon: <ClockIcon className="w-6 h-6" />,
                 stat: "2x Daily Delivery"
               }
@@ -617,10 +622,10 @@ const Home = () => {
               <div>
                 <h3 className="text-2xl font-bold mb-4">Our Commitment to Quality</h3>
                 <p className="text-text/70 mb-6">
-                  Every ingredient we use is carefully selected to ensure the highest quality and taste. Our chefs work directly with farmers to pick the best seasonal produce for our dishes.
+                  Every ingredient we use is carefully selected to ensure the highest quality and taste. From our locally sourced vegetables to imported Mediterranean olives, our chefs work directly with farmers to pick the best seasonal produce for our dishes.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  {['Organic', 'Seasonal', 'Local', 'Fresh Daily', 'Sustainable'].map((tag, index) => (
+                  {['Organic', 'Seasonal', 'Local', 'Fresh Daily', 'Mediterranean'].map((tag, index) => (
                     <span 
                       key={index}
                       className="bg-primary/5 text-primary px-4 py-2 rounded-full text-sm font-medium"
@@ -632,8 +637,8 @@ const Home = () => {
               </div>
               <div className="relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b"
-                  alt="Fresh Ingredients"
+                  src="/IMG_0861-1536x1164.jpg"
+                  alt="Fresh Mediterranean Ingredients"
                   className="rounded-2xl"
                 />
                 <div className="absolute -bottom-4 -right-4 bg-white/90 backdrop-blur-sm p-4 rounded-xl shadow-sm">
@@ -665,27 +670,27 @@ const Home = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                image: "https://images.unsplash.com/photo-1547592180-85f173990554",
+                image: "/IMG_0861-1536x1164.jpg",
                 title: "Seasonal Specials"
               },
               {
-                image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd",
+                image: "/IMG_0861-1536x1164.jpg",
                 title: "Culinary Artistry"
               },
               {
-                image: "https://images.unsplash.com/photo-1543362906-acfc16c67564",
+                image: "/IMG_0861-1536x1164.jpg",
                 title: "Dining Experience"
               },
               {
-                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38",
+                image: "/IMG_0861-1536x1164.jpg",
                 title: "Chef's Creation"
               },
               {
-                image: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe",
+                image: "/IMG_0861-1536x1164.jpg",
                 title: "Fresh Ingredients"
               },
               {
-                image: "https://images.unsplash.com/photo-1564759224907-65b945ff0e84",
+                image: "/IMG_0861-1536x1164.jpg",
                 title: "Restaurant Ambiance"
               }
             ].map((item, index) => (
@@ -764,7 +769,7 @@ const Home = () => {
             >
               <div className="relative overflow-hidden rounded-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0"
+                  src="/IMG_0861-1536x1164.jpg"
                   alt="Event Catering" 
                   className="w-full h-[500px] object-cover"
                 />
@@ -968,7 +973,7 @@ const Home = () => {
             >
               <div className="relative overflow-hidden rounded-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"
+                  src="/IMG_0861-1536x1164.jpg"
                   alt="Restaurant Interior" 
                   className="w-full h-[500px] object-cover"
                 />
@@ -1011,42 +1016,42 @@ const Home = () => {
                 name: "Buddha Bowl",
                 category: "main",
                 price: "$16.99",
-                image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c",
+                image: "/IMG_0861-1536x1164.jpg",
                 description: "Quinoa, roasted vegetables, avocado, chickpeas with tahini dressing"
               },
               {
                 name: "Spring Rolls",
                 category: "starters",
                 price: "$8.99",
-                image: "https://images.unsplash.com/photo-1544025162-d76694265947",
+                image: "/IMG_0861-1536x1164.jpg",
                 description: "Fresh vegetables wrapped in rice paper with peanut sauce"
               },
               {
                 name: "Mushroom Risotto",
                 category: "main",
                 price: "$18.99",
-                image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371",
+                image: "/IMG_0861-1536x1164.jpg",
                 description: "Creamy arborio rice with wild mushrooms and truffle oil"
               },
               {
                 name: "Green Smoothie",
                 category: "drinks",
                 price: "$7.99",
-                image: "https://images.unsplash.com/photo-1556881286-fc6915169721",
+                image: "/IMG_0861-1536x1164.jpg",
                 description: "Spinach, banana, mango, and coconut water"
               },
               {
                 name: "Vegan Cheesecake",
                 category: "desserts",
                 price: "$9.99",
-                image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad",
+                image: "/IMG_0861-1536x1164.jpg",
                 description: "Cashew-based cheesecake with berry compote"
               },
               {
                 name: "Mediterranean Platter",
                 category: "starters",
                 price: "$14.99",
-                image: "https://images.unsplash.com/photo-1544510806-06d3606cf3d4",
+                image: "/IMG_0861-1536x1164.jpg",
                 description: "Hummus, falafel, tabbouleh, and pita bread"
               }
             ].filter(item => selectedCategory === 'all' || item.category === selectedCategory)
