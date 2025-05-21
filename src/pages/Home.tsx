@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { motion, useScroll, useSpring } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { 
   BeakerIcon, 
@@ -12,7 +11,8 @@ import {
   CalendarDaysIcon,
   ArrowRightIcon,
   ChevronRightIcon,
-  ShoppingBagIcon
+  ShoppingBagIcon,
+  StarIcon
 } from '@heroicons/react/24/outline'
 
 // Add social media icons
@@ -23,33 +23,11 @@ import {
   YoutubeIcon
 } from '../icons/SocialIcons'
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.5 }
-}
-
-const stagger = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { staggerChildren: 0.2 }
-}
-
 const Home = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = React.useState(0);
   const [isQuickOrderOpen, setIsQuickOrderOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('all');
   
-  // Scroll Progress
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   const reviews = [
     {
       name: "Sarah Johnson",
@@ -117,12 +95,6 @@ const Home = () => {
 
   return (
     <div className="pt-16 relative">
-      {/* Scroll Progress Indicator */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-primary z-50 origin-left"
-        style={{ scaleX }}
-      />
-
       {/* Quick Order Button */}
       <button
         onClick={() => setIsQuickOrderOpen(true)}
@@ -143,22 +115,12 @@ const Home = () => {
 
         <div className="container relative z-10 px-6 py-16 mx-auto">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-2xl space-y-12"
-            >
+            <div className="max-w-2xl space-y-12">
               <div className="space-y-6">
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full"
-                >
+                <div className="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full">
                   <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
                   <span className="text-primary text-sm font-medium">Open for Dining</span>
-                </motion.div>
+                </div>
 
                 <h1 className="text-5xl lg:text-6xl font-bold text-text leading-[1.2]">
                   <span className="block mb-3">Fresh & Healthy</span>
@@ -187,11 +149,8 @@ const Home = () => {
                   { value: "15+", label: "Years of Service" },
                   { value: "50+", label: "Unique Dishes" }
                 ].map((stat, index) => (
-                  <motion.div 
+                  <div 
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
                     className="relative group"
                   >
                     <div className="absolute inset-0 bg-primary/[0.02] rounded-xl transition-colors group-hover:bg-primary/[0.05]"></div>
@@ -199,17 +158,12 @@ const Home = () => {
                       <h3 className="text-3xl font-bold text-primary mb-2">{stat.value}</h3>
                       <p className="text-sm text-text/70">{stat.label}</p>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="relative hidden lg:block"
-            >
+            <div className="relative hidden lg:block">
               <div className="relative">
                 <div className="relative overflow-hidden rounded-2xl">
                   <img 
@@ -243,7 +197,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -254,16 +208,13 @@ const Home = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         
         <div className="container px-6 mx-auto relative">
-          <motion.div 
-            {...stagger}
-            className="text-center max-w-3xl mx-auto mb-24"
-          >
+          <div className="text-center max-w-3xl mx-auto mb-24">
             <span className="text-primary font-medium mb-4 inline-block">Why Choose Us</span>
             <h2 className="text-4xl font-bold text-text mb-6">Experience the Difference</h2>
             <p className="text-xl text-text/70">
               We bring you the perfect blend of taste, health, and sustainability in every dish we serve.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
@@ -289,10 +240,8 @@ const Home = () => {
                 image: "/IMG_0861-1536x1164.jpg"
               }
             ].map((feature, index) => (
-              <motion.div
+              <div
                 key={index}
-                {...fadeInUp}
-                transition={{ delay: 0.2 * index }}
                 className="group relative"
               >
                 <div className="relative h-full rounded-2xl bg-white hover:bg-primary/[0.02] 
@@ -329,7 +278,7 @@ const Home = () => {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -338,15 +287,12 @@ const Home = () => {
       {/* Special Menu & Chef's Note Section */}
       <section className="py-24 bg-gradient-to-b from-white to-green-50/30">
         <div className="container px-6 mx-auto">
-          <motion.div 
-            {...stagger}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
+          <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-4xl font-bold text-text mb-6">Special Menu</h2>
             <p className="text-xl text-text/70">
               Discover our chef's handcrafted selection, featuring seasonal ingredients and innovative recipes.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {[
@@ -372,10 +318,8 @@ const Home = () => {
                 image: "/IMG_0861-1536x1164.jpg"
               }
             ].map((dish, index) => (
-              <motion.div
+              <div
                 key={index}
-                {...fadeInUp}
-                transition={{ delay: 0.2 * index }}
                 className="group bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="relative h-64 overflow-hidden">
@@ -399,15 +343,12 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* Chef's Note */}
-          <motion.div 
-            {...fadeInUp}
-            className="bg-white rounded-2xl p-12 max-w-4xl mx-auto text-center relative overflow-hidden"
-          >
+          <div className="bg-white rounded-2xl p-12 max-w-4xl mx-auto text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20"></div>
             <div className="absolute -right-8 -top-8 w-24 h-24 bg-primary/5 rounded-full"></div>
             <div className="absolute -left-8 -bottom-8 w-32 h-32 bg-primary/5 rounded-full"></div>
@@ -434,7 +375,7 @@ const Home = () => {
                 <p className="text-text/70 text-sm">Supporting local farmers</p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -442,24 +383,19 @@ const Home = () => {
       <section className="py-40 bg-white relative">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto">
-          <motion.div 
-            {...stagger}
-            className="text-center max-w-3xl mx-auto mb-24"
-          >
+          <div className="text-center max-w-3xl mx-auto mb-24">
             <span className="text-primary font-medium mb-4 inline-block">Testimonials</span>
             <h2 className="text-4xl font-bold text-text mb-6">What Our Guests Say</h2>
             <p className="text-xl text-text/70">
               Real experiences shared by our valued customers who have enjoyed our cuisine and hospitality.
             </p>
-          </motion.div>
+          </div>
 
           <div className="relative">
             <div className="grid md:grid-cols-3 gap-8">
               {visibleReviews.map((review, index) => (
-                <motion.div
+                <div
                   key={index}
-                  {...fadeInUp}
-                  transition={{ delay: 0.2 * index }}
                   className="bg-white p-8 rounded-2xl relative group hover:bg-primary/[0.02] transition-all duration-300 border-2 border-primary/10 hover:border-primary/20"
                 >
                   <div className="absolute -top-3 -right-3">
@@ -504,7 +440,7 @@ const Home = () => {
                       </span>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
@@ -543,25 +479,17 @@ const Home = () => {
       <section className="py-32 bg-gradient-to-b from-white to-green-50/30 relative">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto">
-          <motion.div 
-            {...stagger}
-            className="text-center max-w-3xl mx-auto mb-12 sm:mb-24 px-4"
-          >
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-24 px-4">
             <span className="text-primary font-medium mb-3 text-sm sm:text-base inline-block">Our Process</span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-text mb-4 sm:mb-6">Farm to Table Fresh</h2>
             <p className="text-base sm:text-lg md:text-xl text-text/70 max-w-2xl mx-auto">
               Experience the journey of our ingredients from local farms to your plate.
             </p>
-          </motion.div>
+          </div>
 
           {/* Main Image and Stats Section */}
           <div className="relative mb-12 sm:mb-24 px-4 sm:px-0">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="relative rounded-xl sm:rounded-3xl overflow-hidden"
-            >
+            <div className="relative rounded-xl sm:rounded-3xl overflow-hidden">
               <img 
                 src="/IMG_0861-1536x1164.jpg"
                 alt="Fresh Farm Ingredients"
@@ -578,12 +506,8 @@ const Home = () => {
                     { value: "95%", label: "Waste Reduced", icon: <BeakerIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> },
                     { value: "2x", label: "Daily Delivery", icon: <ClockIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> }
                   ].map((stat, index) => (
-                    <motion.div
+                    <div
                       key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.2 * index }}
                       className="text-white text-center"
                     >
                       <div className="bg-white/10 backdrop-blur-sm w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-4">
@@ -591,21 +515,16 @@ const Home = () => {
                       </div>
                       <p className="text-lg sm:text-2xl md:text-3xl font-bold mb-0.5 sm:mb-1">{stat.value}</p>
                       <p className="text-white/80 text-xs sm:text-sm">{stat.label}</p>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Process Steps */}
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-16 px-4 sm:px-0">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-6 sm:space-y-12"
-            >
+            <div className="space-y-6 sm:space-y-12">
               {[
                 {
                   title: "Local Partnership",
@@ -628,12 +547,8 @@ const Home = () => {
                   icon: <ClockIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                 }
               ].map((step, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 * index }}
                   className="flex items-start gap-4 sm:gap-6 group"
                 >
                   <div className="bg-primary/5 p-3 sm:p-4 rounded-lg sm:rounded-xl shrink-0 group-hover:bg-primary/10 transition-colors">
@@ -647,17 +562,12 @@ const Home = () => {
                       {step.description}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Quality Tags Section */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
+            <div className="relative">
               <div className="relative rounded-xl sm:rounded-2xl overflow-hidden">
                 <img 
                   src="/IMG_0861-1536x1164.jpg"
@@ -673,29 +583,20 @@ const Home = () => {
                       "100% Organic", "Seasonal", "Local", 
                       "Zero Waste", "Fresh", "Premium"
                     ].map((tag, index) => (
-                      <motion.span
+                      <span
                         key={index}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 * index }}
                         className="bg-white/90 backdrop-blur-sm text-primary px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 rounded-full 
                                  text-xs sm:text-sm font-medium hover:bg-white transition-colors"
                       >
                         {tag}
-                      </motion.span>
+                      </span>
                     ))}
                   </div>
                 </div>
               </div>
 
               {/* Info Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="absolute -bottom-4 sm:-bottom-6 right-4 sm:right-6 bg-white/90 backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl shadow-lg max-w-[calc(100%-2rem)] sm:max-w-sm"
-              >
+              <div className="absolute -bottom-4 sm:-bottom-6 right-4 sm:right-6 bg-white/90 backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl shadow-lg max-w-[calc(100%-2rem)] sm:max-w-sm">
                 <div className="flex items-start gap-3 sm:gap-4">
                   <div className="bg-primary/5 p-2 sm:p-3 rounded-lg shrink-0">
                     <SparklesIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-primary" />
@@ -707,8 +608,8 @@ const Home = () => {
                     </p>
                   </div>
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -717,15 +618,12 @@ const Home = () => {
       <section className="py-32 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto">
-          <motion.div 
-            {...stagger}
-            className="text-center max-w-3xl mx-auto mb-24"
-          >
+          <div className="text-center max-w-3xl mx-auto mb-24">
             <h2 className="text-4xl font-bold text-text mb-6">Our Gallery</h2>
             <p className="text-xl text-text/70">
               A visual journey through our culinary creations and dining atmosphere.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
@@ -754,10 +652,8 @@ const Home = () => {
                 title: "Restaurant Ambiance"
               }
             ].map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                {...fadeInUp}
-                transition={{ delay: 0.2 * index }}
                 className="group relative overflow-hidden rounded-2xl"
               >
                 <div className="aspect-square overflow-hidden">
@@ -770,7 +666,7 @@ const Home = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                   <p className="text-white font-medium">{item.title}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -781,10 +677,7 @@ const Home = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div 
-              {...fadeInUp}
-              className="space-y-8"
-            >
+            <div className="space-y-8">
               <h2 className="text-4xl font-bold text-text">Events & Catering</h2>
               <p className="text-xl text-text/70">
                 From intimate gatherings to grand celebrations, we offer customized catering solutions for all your special occasions.
@@ -821,12 +714,9 @@ const Home = () => {
                 Inquire Now
                 <ChevronRightIcon className="w-5 h-5" />
               </button>
-            </motion.div>
+            </div>
 
-            <motion.div 
-              {...fadeInUp}
-              className="relative"
-            >
+            <div className="relative">
               <div className="relative overflow-hidden rounded-2xl">
                 <img 
                   src="/IMG_0861-1536x1164.jpg"
@@ -846,7 +736,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -861,117 +751,85 @@ const Home = () => {
         </div>
 
         <div className="container mx-auto px-6 relative">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="bg-white rounded-[2.5rem] p-12 shadow-xl relative overflow-hidden">
-              {/* Decorative Elements */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20"></div>
-              <div className="absolute -right-16 -top-16 w-32 h-32 bg-primary/5 rounded-full"></div>
-              <div className="absolute -left-16 -bottom-16 w-48 h-48 bg-primary/5 rounded-full"></div>
+          <div className="bg-white rounded-[2.5rem] p-12 shadow-xl relative overflow-hidden">
+            {/* Decorative Elements */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20"></div>
+            <div className="absolute -right-16 -top-16 w-32 h-32 bg-primary/5 rounded-full"></div>
+            <div className="absolute -left-16 -bottom-16 w-48 h-48 bg-primary/5 rounded-full"></div>
 
-              <div className="text-center space-y-6 relative">
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700">
-                    Stay Connected
-                  </h2>
-                  <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Subscribe to our newsletter for exclusive offers, recipes, and culinary inspiration delivered to your inbox.
-                  </p>
-                </motion.div>
+            <div className="text-center space-y-6 relative">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700">
+                  Stay Connected
+                </h2>
+                <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                  Subscribe to our newsletter for exclusive offers, recipes, and culinary inspiration delivered to your inbox.
+                </p>
+              </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                  className="max-w-xl mx-auto mt-8"
-                >
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <div className="flex-1 relative">
-                      <input 
-                        type="email" 
-                        placeholder="Enter your email"
-                        className="w-full px-6 py-4 rounded-full border-2 border-gray-100 focus:border-primary focus:outline-none pr-12 bg-white/50 backdrop-blur-sm transition-all duration-300"
-                      />
-                      <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                      </div>
+              <div className="max-w-xl mx-auto mt-8">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex-1 relative">
+                    <input 
+                      type="email" 
+                      placeholder="Enter your email"
+                      className="w-full px-6 py-4 rounded-full border-2 border-gray-100 focus:border-primary focus:outline-none pr-12 bg-white/50 backdrop-blur-sm transition-all duration-300"
+                    />
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
                     </div>
-                    <button className="bg-primary text-white px-8 py-4 rounded-full hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg whitespace-nowrap font-medium">
-                      Subscribe Now
-                    </button>
                   </div>
-                </motion.div>
+                  <button className="bg-primary text-white px-8 py-4 rounded-full hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg whitespace-nowrap font-medium">
+                    Subscribe Now
+                  </button>
+                </div>
+              </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 }}
-                  className="pt-12 mt-12 border-t border-gray-100"
-                >
-                  <p className="text-gray-600 mb-6">Follow us on social media</p>
-                  <div className="flex justify-center gap-6">
-                    {[
-                      { icon: <FacebookIcon className="w-6 h-6" />, name: 'Facebook', link: 'https://facebook.com', color: 'hover:text-blue-600' },
-                      { icon: <InstagramIcon className="w-6 h-6" />, name: 'Instagram', link: 'https://instagram.com', color: 'hover:text-pink-600' },
-                      { icon: <TwitterIcon className="w-6 h-6" />, name: 'Twitter', link: 'https://twitter.com', color: 'hover:text-blue-400' },
-                      { icon: <YoutubeIcon className="w-6 h-6" />, name: 'YouTube', link: 'https://youtube.com', color: 'hover:text-red-600' }
-                    ].map((social, index) => (
-                      <motion.a
-                        key={index}
-                        href={social.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`bg-white/80 backdrop-blur-sm p-4 rounded-full hover:bg-white transition-all duration-300 group shadow-sm hover:shadow-md ${social.color}`}
-                        whileHover={{ y: -3 }}
-                        aria-label={`Follow us on ${social.name}`}
-                      >
-                        <div className="text-gray-600 group-hover:scale-110 transition-transform duration-300">
-                          {social.icon}
-                        </div>
-                      </motion.a>
-                    ))}
-                  </div>
-                </motion.div>
-
-                {/* Trust Badges */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 }}
-                  className="pt-12 mt-12 border-t border-gray-100"
-                >
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                    {[
-                      { text: "Weekly Updates", icon: <CalendarDaysIcon className="w-6 h-6" /> },
-                      { text: "Exclusive Offers", icon: <SparklesIcon className="w-6 h-6" /> },
-                      { text: "Recipe Collection", icon: <BeakerIcon className="w-6 h-6" /> },
-                      { text: "Community Access", icon: <UserGroupIcon className="w-6 h-6" /> }
-                    ].map((badge, index) => (
-                      <div key={index} className="flex items-center justify-center gap-3 text-gray-600">
-                        <div className="text-primary">{badge.icon}</div>
-                        <span className="text-sm font-medium">{badge.text}</span>
+              <div className="pt-12 mt-12 border-t border-gray-100">
+                <p className="text-gray-600 mb-6">Follow us on social media</p>
+                <div className="flex justify-center gap-6">
+                  {[
+                    { icon: <FacebookIcon className="w-6 h-6" />, name: 'Facebook', link: 'https://facebook.com', color: 'hover:text-blue-600' },
+                    { icon: <InstagramIcon className="w-6 h-6" />, name: 'Instagram', link: 'https://instagram.com', color: 'hover:text-pink-600' },
+                    { icon: <TwitterIcon className="w-6 h-6" />, name: 'Twitter', link: 'https://twitter.com', color: 'hover:text-blue-400' },
+                    { icon: <YoutubeIcon className="w-6 h-6" />, name: 'YouTube', link: 'https://youtube.com', color: 'hover:text-red-600' }
+                  ].map((social, index) => (
+                    <a
+                      key={index}
+                      href={social.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`bg-white/80 backdrop-blur-sm p-4 rounded-full hover:bg-white transition-all duration-300 group shadow-sm hover:shadow-md ${social.color}`}
+                      aria-label={`Follow us on ${social.name}`}
+                    >
+                      <div className="text-gray-600 group-hover:scale-110 transition-transform duration-300">
+                        {social.icon}
                       </div>
-                    ))}
-                  </div>
-                </motion.div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Trust Badges */}
+              <div className="pt-12 mt-12 border-t border-gray-100">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                  {[
+                    { text: "Weekly Updates", icon: <CalendarDaysIcon className="w-6 h-6" /> },
+                    { text: "Exclusive Offers", icon: <SparklesIcon className="w-6 h-6" /> },
+                    { text: "Recipe Collection", icon: <BeakerIcon className="w-6 h-6" /> },
+                    { text: "Community Access", icon: <UserGroupIcon className="w-6 h-6" /> }
+                  ].map((badge, index) => (
+                    <div key={index} className="flex items-center justify-center gap-3 text-gray-600">
+                      <div className="text-primary">{badge.icon}</div>
+                      <span className="text-sm font-medium">{badge.text}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -980,10 +838,7 @@ const Home = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div 
-              {...fadeInUp}
-              className="space-y-8"
-            >
+            <div className="space-y-8">
               <h2 className="text-4xl font-bold text-text">Visit Us Today</h2>
               <p className="text-xl text-text/70">
                 Experience our warm hospitality and exceptional cuisine in a welcoming atmosphere.
@@ -1025,12 +880,9 @@ const Home = () => {
                 Make a Reservation
                 <ChevronRightIcon className="w-5 h-5" />
               </button>
-            </motion.div>
+            </div>
 
-            <motion.div 
-              {...fadeInUp}
-              className="relative"
-            >
+            <div className="relative">
               <div className="relative overflow-hidden rounded-2xl">
                 <img 
                   src="/IMG_0861-1536x1164.jpg"
@@ -1043,7 +895,7 @@ const Home = () => {
                 <p className="font-medium text-lg mb-2">Sebastian's Gemüse Kebap</p>
                 <p className="text-text/70">123 Culinary Street, Foodie City, FC 12345</p>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -1051,7 +903,7 @@ const Home = () => {
       {/* Menu Section with Categories */}
       <section className="py-32 bg-white relative">
         <div className="container px-6 mx-auto">
-          <motion.div {...stagger} className="text-center max-w-3xl mx-auto mb-12">
+          <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-4xl font-bold text-text mb-6">Our Menu</h2>
             <div className="flex justify-center gap-4 mb-12">
               {categories.map((category) => (
@@ -1068,7 +920,7 @@ const Home = () => {
                 </button>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
@@ -1116,12 +968,8 @@ const Home = () => {
               }
             ].filter(item => selectedCategory === 'all' || item.category === selectedCategory)
               .map((item, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300 group"
                 >
                   <div className="relative h-48 overflow-hidden">
@@ -1142,17 +990,12 @@ const Home = () => {
                       <ChevronRightIcon className="w-5 h-5" />
                     </button>
                   </div>
-                </motion.div>
+                </div>
               ))}
           </div>
 
           {/* See Full Menu Link */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="mt-16 text-center"
-          >
+          <div className="mt-16 text-center">
             <Link 
               to="/menu" 
               className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-xl 
@@ -1164,25 +1007,19 @@ const Home = () => {
             <p className="mt-4 text-text/70">
               Discover our complete selection of dishes and beverages
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Food Preparation Timeline */}
       <section className="py-32 bg-gradient-to-b from-white to-green-50/30 relative">
         <div className="container px-6 mx-auto">
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-24"
-          >
+          <div className="text-center max-w-3xl mx-auto mb-24">
             <h2 className="text-4xl font-bold text-text mb-6">Our Process</h2>
             <p className="text-xl text-text/70">
               From farm to table, see how we prepare your food with care
             </p>
-          </motion.div>
+          </div>
 
           <div className="relative max-w-4xl mx-auto">
             {/* Vertical line */}
@@ -1268,12 +1105,12 @@ const Home = () => {
       {/* Interactive Map */}
       <section className="py-32 bg-white relative">
         <div className="container px-6 mx-auto">
-          <motion.div {...stagger} className="text-center max-w-3xl mx-auto mb-24">
+          <div className="text-center max-w-3xl mx-auto mb-24">
             <h2 className="text-4xl font-bold text-text mb-6">Find Us</h2>
             <p className="text-xl text-text/70">
               Visit us today and experience our warm hospitality
             </p>
-          </motion.div>
+          </div>
 
           <div className="relative h-[500px] rounded-2xl overflow-hidden">
             <iframe
@@ -1291,11 +1128,7 @@ const Home = () => {
       {/* Quick Order Modal */}
       {isQuickOrderOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-white rounded-2xl p-8 max-w-lg w-full mx-4"
-          >
+          <div className="bg-white rounded-2xl p-8 max-w-lg w-full mx-4">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-2xl font-bold">Quick Order</h3>
               <button 
@@ -1313,7 +1146,7 @@ const Home = () => {
               </p>
               {/* Add form elements */}
             </div>
-          </motion.div>
+          </div>
         </div>
       )}
     </div>
