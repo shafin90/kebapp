@@ -255,7 +255,7 @@ const Home = () => {
             {...stagger}
             className="text-center max-w-3xl mx-auto mb-24"
           >
-            <h2 className="text-4xl font-bold text-text mb-6">Why Choose Sebastian‘s Gemüse Kebap?</h2>
+            <h2 className="text-4xl font-bold text-text mb-6">Why Choose Sebastian's Gemüse Kebap?</h2>
             <p className="text-xl text-text/70">
               We bring you the perfect blend of taste, health, and sustainability in every dish we serve.
             </p>
@@ -754,53 +754,123 @@ const Home = () => {
       </section>
 
       {/* Newsletter & Social Media Section */}
-      <section className="py-32 bg-white relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_theme(colors.primary/0.05),_transparent_70%)]"></div>
-        <div className="container px-6 mx-auto">
-          <motion.div 
-            {...fadeInUp}
-            className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-2xl p-12 relative overflow-hidden"
-          >
-            <div className="absolute -right-8 -top-8 w-32 h-32 bg-primary/5 rounded-full"></div>
-            <div className="absolute -left-8 -bottom-8 w-40 h-40 bg-primary/5 rounded-full"></div>
-            
-            <div className="relative text-center max-w-3xl mx-auto">
-              <h2 className="text-4xl font-bold text-text mb-6">Stay Connected</h2>
-              <p className="text-xl text-text/70 mb-12">
-                Subscribe to our newsletter for exclusive offers, recipes, and updates.
-              </p>
-              
-              <div className="flex gap-4 max-w-xl mx-auto mb-12">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email"
-                  className="flex-1 px-6 py-4 rounded-xl border-2 border-text/5 focus:border-primary focus:outline-none"
-                />
-                <button className="bg-primary text-white px-8 py-4 rounded-xl hover:bg-primary/90 transition-all whitespace-nowrap">
-                  Subscribe
-                </button>
-              </div>
+      <section className="py-24 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-white"></div>
+          <div className="absolute w-[500px] h-[500px] -right-48 -bottom-48 bg-primary/5 rounded-full blur-3xl"></div>
+          <div className="absolute w-[300px] h-[300px] -left-20 -top-20 bg-green-100/40 rounded-full blur-3xl"></div>
+        </div>
 
-              <div className="flex justify-center gap-6">
-                {[
-                  { icon: <FacebookIcon className="w-6 h-6" />, name: 'Facebook', link: 'https://facebook.com' },
-                  { icon: <InstagramIcon className="w-6 h-6" />, name: 'Instagram', link: 'https://instagram.com' },
-                  { icon: <TwitterIcon className="w-6 h-6" />, name: 'Twitter', link: 'https://twitter.com' },
-                  { icon: <YoutubeIcon className="w-6 h-6" />, name: 'YouTube', link: 'https://youtube.com' }
-                ].map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white p-4 rounded-xl hover:bg-primary/5 transition-colors group"
-                    aria-label={`Follow us on ${social.name}`}
-                  >
-                    <div className="text-text/70 group-hover:text-primary transition-colors">
-                      {social.icon}
+        <div className="container mx-auto px-6 relative">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="bg-white rounded-[2.5rem] p-12 shadow-xl relative overflow-hidden">
+              {/* Decorative Elements */}
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20"></div>
+              <div className="absolute -right-16 -top-16 w-32 h-32 bg-primary/5 rounded-full"></div>
+              <div className="absolute -left-16 -bottom-16 w-48 h-48 bg-primary/5 rounded-full"></div>
+
+              <div className="text-center space-y-6 relative">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700">
+                    Stay Connected
+                  </h2>
+                  <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Subscribe to our newsletter for exclusive offers, recipes, and culinary inspiration delivered to your inbox.
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                  className="max-w-xl mx-auto mt-8"
+                >
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex-1 relative">
+                      <input 
+                        type="email" 
+                        placeholder="Enter your email"
+                        className="w-full px-6 py-4 rounded-full border-2 border-gray-100 focus:border-primary focus:outline-none pr-12 bg-white/50 backdrop-blur-sm transition-all duration-300"
+                      />
+                      <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                      </div>
                     </div>
-                  </a>
-                ))}
+                    <button className="bg-primary text-white px-8 py-4 rounded-full hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg whitespace-nowrap font-medium">
+                      Subscribe Now
+                    </button>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                  className="pt-12 mt-12 border-t border-gray-100"
+                >
+                  <p className="text-gray-600 mb-6">Follow us on social media</p>
+                  <div className="flex justify-center gap-6">
+                    {[
+                      { icon: <FacebookIcon className="w-6 h-6" />, name: 'Facebook', link: 'https://facebook.com', color: 'hover:text-blue-600' },
+                      { icon: <InstagramIcon className="w-6 h-6" />, name: 'Instagram', link: 'https://instagram.com', color: 'hover:text-pink-600' },
+                      { icon: <TwitterIcon className="w-6 h-6" />, name: 'Twitter', link: 'https://twitter.com', color: 'hover:text-blue-400' },
+                      { icon: <YoutubeIcon className="w-6 h-6" />, name: 'YouTube', link: 'https://youtube.com', color: 'hover:text-red-600' }
+                    ].map((social, index) => (
+                      <motion.a
+                        key={index}
+                        href={social.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`bg-white/80 backdrop-blur-sm p-4 rounded-full hover:bg-white transition-all duration-300 group shadow-sm hover:shadow-md ${social.color}`}
+                        whileHover={{ y: -3 }}
+                        aria-label={`Follow us on ${social.name}`}
+                      >
+                        <div className="text-gray-600 group-hover:scale-110 transition-transform duration-300">
+                          {social.icon}
+                        </div>
+                      </motion.a>
+                    ))}
+                  </div>
+                </motion.div>
+
+                {/* Trust Badges */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                  className="pt-12 mt-12 border-t border-gray-100"
+                >
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    {[
+                      { text: "Weekly Updates", icon: <CalendarDaysIcon className="w-6 h-6" /> },
+                      { text: "Exclusive Offers", icon: <SparklesIcon className="w-6 h-6" /> },
+                      { text: "Recipe Collection", icon: <BeakerIcon className="w-6 h-6" /> },
+                      { text: "Community Access", icon: <UserGroupIcon className="w-6 h-6" /> }
+                    ].map((badge, index) => (
+                      <div key={index} className="flex items-center justify-center gap-3 text-gray-600">
+                        <div className="text-primary">{badge.icon}</div>
+                        <span className="text-sm font-medium">{badge.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
@@ -872,7 +942,7 @@ const Home = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
               <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm p-6 rounded-xl">
-                <p className="font-medium text-lg mb-2">Sebastian‘s Gemüse Kebap</p>
+                <p className="font-medium text-lg mb-2">Sebastian's Gemüse Kebap</p>
                 <p className="text-text/70">123 Culinary Street, Foodie City, FC 12345</p>
               </div>
             </motion.div>
