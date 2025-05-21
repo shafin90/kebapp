@@ -545,85 +545,87 @@ const Home = () => {
         <div className="container px-6 mx-auto">
           <motion.div 
             {...stagger}
-            className="text-center max-w-3xl mx-auto mb-24"
+            className="text-center max-w-3xl mx-auto mb-12 sm:mb-24 px-4"
           >
-            <span className="text-primary font-medium mb-4 inline-block">Our Process</span>
-            <h2 className="text-4xl font-bold text-text mb-6">Farm to Table Fresh</h2>
-            <p className="text-xl text-text/70">
+            <span className="text-primary font-medium mb-3 text-sm sm:text-base inline-block">Our Process</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-text mb-4 sm:mb-6">Farm to Table Fresh</h2>
+            <p className="text-base sm:text-lg md:text-xl text-text/70 max-w-2xl mx-auto">
               Experience the journey of our ingredients from local farms to your plate.
             </p>
           </motion.div>
 
           {/* Main Image and Stats Section */}
-          <div className="relative mb-24">
+          <div className="relative mb-12 sm:mb-24 px-4 sm:px-0">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative rounded-3xl overflow-hidden"
+              className="relative rounded-xl sm:rounded-3xl overflow-hidden"
             >
               <img 
                 src="/IMG_0861-1536x1164.jpg"
                 alt="Fresh Farm Ingredients"
-                className="w-full h-[500px] object-cover"
+                className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
               
               {/* Stats Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-12 grid md:grid-cols-4 gap-8">
-                {[
-                  { value: "15+", label: "Local Farms", icon: <GlobeAltIcon className="w-6 h-6" /> },
-                  { value: "4", label: "Seasonal Menus", icon: <CalendarDaysIcon className="w-6 h-6" /> },
-                  { value: "95%", label: "Waste Reduced", icon: <BeakerIcon className="w-6 h-6" /> },
-                  { value: "2x", label: "Daily Delivery", icon: <ClockIcon className="w-6 h-6" /> }
-                ].map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 * index }}
-                    className="text-white text-center"
-                  >
-                    <div className="bg-white/10 backdrop-blur-sm w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4">
-                      {stat.icon}
-                    </div>
-                    <p className="text-3xl font-bold mb-1">{stat.value}</p>
-                    <p className="text-white/80">{stat.label}</p>
-                  </motion.div>
-                ))}
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 md:p-12">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+                  {[
+                    { value: "15+", label: "Local Farms", icon: <GlobeAltIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> },
+                    { value: "4", label: "Seasonal Menus", icon: <CalendarDaysIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> },
+                    { value: "95%", label: "Waste Reduced", icon: <BeakerIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> },
+                    { value: "2x", label: "Daily Delivery", icon: <ClockIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> }
+                  ].map((stat, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 * index }}
+                      className="text-white text-center"
+                    >
+                      <div className="bg-white/10 backdrop-blur-sm w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-4">
+                        {stat.icon}
+                      </div>
+                      <p className="text-lg sm:text-2xl md:text-3xl font-bold mb-0.5 sm:mb-1">{stat.value}</p>
+                      <p className="text-white/80 text-xs sm:text-sm">{stat.label}</p>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>
 
           {/* Process Steps */}
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-16 px-4 sm:px-0">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="space-y-12"
+              className="space-y-6 sm:space-y-12"
             >
               {[
                 {
                   title: "Local Partnership",
                   description: "We work directly with organic farmers within 50 miles to ensure the freshest ingredients.",
-                  icon: <GlobeAltIcon className="w-6 h-6" />
+                  icon: <GlobeAltIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                 },
                 {
                   title: "Seasonal Selection",
                   description: "Our menu evolves with the seasons, featuring the best produce nature has to offer.",
-                  icon: <CalendarDaysIcon className="w-6 h-6" />
+                  icon: <CalendarDaysIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                 },
                 {
                   title: "Zero Waste Initiative",
                   description: "We're committed to sustainable practices and minimal food waste in our operations.",
-                  icon: <BeakerIcon className="w-6 h-6" />
+                  icon: <BeakerIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                 },
                 {
                   title: "Fresh Delivery",
                   description: "Ingredients are delivered fresh every morning for the best quality and taste.",
-                  icon: <ClockIcon className="w-6 h-6" />
+                  icon: <ClockIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                 }
               ].map((step, index) => (
                 <motion.div
@@ -632,16 +634,16 @@ const Home = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 * index }}
-                  className="flex items-start gap-6 group"
+                  className="flex items-start gap-4 sm:gap-6 group"
                 >
-                  <div className="bg-primary/5 p-4 rounded-xl group-hover:bg-primary/10 transition-colors">
+                  <div className="bg-primary/5 p-3 sm:p-4 rounded-lg sm:rounded-xl shrink-0 group-hover:bg-primary/10 transition-colors">
                     {step.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2 group-hover:text-primary transition-colors">
                       {step.title}
                     </h3>
-                    <p className="text-text/70 leading-relaxed">
+                    <p className="text-sm sm:text-base text-text/70 leading-relaxed">
                       {step.description}
                     </p>
                   </div>
@@ -656,21 +658,20 @@ const Home = () => {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative rounded-2xl overflow-hidden">
+              <div className="relative rounded-xl sm:rounded-2xl overflow-hidden">
                 <img 
                   src="/IMG_0861-1536x1164.jpg"
                   alt="Fresh Ingredients Quality"
-                  className="w-full h-[600px] object-cover"
+                  className="w-full h-[300px] sm:h-[400px] md:h-[600px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 
                 {/* Floating Tags */}
-                <div className="absolute inset-0 p-8">
-                  <div className="h-full flex flex-wrap items-center justify-center gap-4 content-center">
+                <div className="absolute inset-0 p-4 sm:p-6 md:p-8">
+                  <div className="h-full flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 content-center">
                     {[
-                      "100% Organic", "Seasonal Fresh", "Local Produce", 
-                      "Zero Waste", "Sustainable", "Farm Fresh", 
-                      "Daily Delivery", "Premium Quality"
+                      "100% Organic", "Seasonal", "Local", 
+                      "Zero Waste", "Fresh", "Premium"
                     ].map((tag, index) => (
                       <motion.span
                         key={index}
@@ -678,8 +679,8 @@ const Home = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 * index }}
-                        className="bg-white/90 backdrop-blur-sm text-primary px-6 py-3 rounded-full 
-                                 text-sm font-medium hover:bg-white transition-colors"
+                        className="bg-white/90 backdrop-blur-sm text-primary px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 rounded-full 
+                                 text-xs sm:text-sm font-medium hover:bg-white transition-colors"
                       >
                         {tag}
                       </motion.span>
@@ -693,15 +694,15 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="absolute -bottom-6 -right-6 bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg max-w-sm"
+                className="absolute -bottom-4 sm:-bottom-6 right-4 sm:right-6 bg-white/90 backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl shadow-lg max-w-[calc(100%-2rem)] sm:max-w-sm"
               >
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary/5 p-3 rounded-lg shrink-0">
-                    <SparklesIcon className="w-6 h-6 text-primary" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="bg-primary/5 p-2 sm:p-3 rounded-lg shrink-0">
+                    <SparklesIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-lg mb-2">Quality Assurance</h4>
-                    <p className="text-text/70 text-sm">
+                    <h4 className="font-bold text-sm sm:text-base md:text-lg mb-1 sm:mb-2">Quality Assurance</h4>
+                    <p className="text-text/70 text-xs sm:text-sm">
                       Every ingredient is carefully selected and quality-checked to ensure the best dining experience.
                     </p>
                   </div>
@@ -1185,7 +1186,7 @@ const Home = () => {
 
           <div className="relative max-w-4xl mx-auto">
             {/* Vertical line */}
-            <div className="absolute left-1/2 -translate-x-[0.5px] top-0 bottom-0 w-[1px] bg-[#E5E7EB]" />
+            <div className="absolute left-1/2 -translate-x-[0.5px] top-0 bottom-0 w-[1px] bg-[#E5E7EB] md:block hidden" />
             
             {[
               {
@@ -1209,33 +1210,52 @@ const Home = () => {
                 description: "Doors open for lunch service"
               }
             ].map((step, index) => (
-              <div key={index} className="relative flex items-center py-8">
+              <div key={index} className="relative flex items-start md:items-center py-8 flex-col md:flex-row">
                 {/* Left Content */}
-                <div className="w-[42%] pr-12">
+                <div className="md:w-[42%] w-full md:pr-12 mb-4 md:mb-0">
                   {index % 2 === 0 && (
-                    <div className="text-right">
+                    <div className="md:text-right text-left">
                       <h3 className="font-semibold text-gray-900 mb-1">{step.title}</h3>
-                      <p className="text-sm text-gray-600">{step.description}</p>
+                      <p className="text-sm text-gray-600 mb-2">{step.description}</p>
+                      <div className="md:hidden">
+                        <div className="inline-block bg-white shadow-sm rounded-full py-1 px-3 border border-gray-100">
+                          <span className="text-xs font-medium text-primary">{step.time}</span>
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>
 
                 {/* Center Column */}
-                <div className="w-[16%] flex justify-center relative">
-                  <div className="w-3 h-3 bg-primary rounded-full" />
-                  <div className={`absolute ${index % 2 === 0 ? 'right-1/2 mr-6' : 'left-1/2 ml-6'} -translate-y-1/2 top-1/2 whitespace-nowrap`}>
-                    <div className="bg-white shadow-sm rounded-full py-1 px-3 border border-gray-100">
-                      <span className="text-xs font-medium text-primary">{step.time}</span>
-                    </div>
+                <div className="md:w-[16%] w-full flex justify-center relative md:static">
+                  <div className="w-3 h-3 bg-primary rounded-full hidden md:block" />
+                  <div className="hidden md:block absolute right-1/2 mr-6 -translate-y-1/2 top-1/2 whitespace-nowrap">
+                    {index % 2 === 0 && (
+                      <div className="bg-white shadow-sm rounded-full py-1 px-3 border border-gray-100">
+                        <span className="text-xs font-medium text-primary">{step.time}</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="hidden md:block absolute left-1/2 ml-6 -translate-y-1/2 top-1/2 whitespace-nowrap">
+                    {index % 2 === 1 && (
+                      <div className="bg-white shadow-sm rounded-full py-1 px-3 border border-gray-100">
+                        <span className="text-xs font-medium text-primary">{step.time}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
                 {/* Right Content */}
-                <div className="w-[42%] pl-12">
+                <div className="md:w-[42%] w-full md:pl-12">
                   {index % 2 === 1 && (
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">{step.title}</h3>
-                      <p className="text-sm text-gray-600">{step.description}</p>
+                      <p className="text-sm text-gray-600 mb-2">{step.description}</p>
+                      <div className="md:hidden">
+                        <div className="inline-block bg-white shadow-sm rounded-full py-1 px-3 border border-gray-100">
+                          <span className="text-xs font-medium text-primary">{step.time}</span>
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>
