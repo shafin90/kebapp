@@ -248,48 +248,81 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-32 bg-white relative">
+      <section className="py-32 bg-white relative overflow-hidden">
+        {/* Matching gradient style with other sections */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_theme(colors.primary/0.05),_transparent_70%)]"></div>
-        <div className="container px-6 mx-auto">
+        
+        <div className="container px-6 mx-auto relative">
           <motion.div 
             {...stagger}
             className="text-center max-w-3xl mx-auto mb-24"
           >
-            <h2 className="text-4xl font-bold text-text mb-6">Why Choose Sebastian's Gemüse Kebap?</h2>
+            <span className="text-primary font-medium mb-4 inline-block">Why Choose Us</span>
+            <h2 className="text-4xl font-bold text-text mb-6">Experience the Difference</h2>
             <p className="text-xl text-text/70">
               We bring you the perfect blend of taste, health, and sustainability in every dish we serve.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
               {
-                icon: <BeakerIcon className="w-8 h-8" />,
+                icon: <BeakerIcon className="w-7 h-7" />,
                 title: "Fresh Ingredients",
-                description: "We source the freshest local produce for our dishes, ensuring quality in every bite."
+                description: "We source the freshest local produce daily, ensuring exceptional quality in every bite.",
+                highlight: "100% Fresh"
               },
               {
-                icon: <HeartIcon className="w-8 h-8" />,
+                icon: <HeartIcon className="w-7 h-7" />,
                 title: "Healthy Options",
-                description: "Nutritionally balanced meals designed for your wellbeing and satisfaction."
+                description: "Nutritionally balanced meals designed for your wellbeing and satisfaction.",
+                highlight: "Balanced Diet"
               },
               {
-                icon: <SparklesIcon className="w-8 h-8" />,
+                icon: <SparklesIcon className="w-7 h-7" />,
                 title: "Premium Quality",
-                description: "Exceptional standards in every dish we serve, no compromises."
+                description: "Exceptional standards in every dish we serve, with no compromises.",
+                highlight: "Top Rated"
               }
             ].map((feature, index) => (
               <motion.div
                 key={index}
                 {...fadeInUp}
                 transition={{ delay: 0.2 * index }}
-                className="group relative bg-white p-8 rounded-2xl hover:bg-primary/[0.02] transition-colors duration-300 border-2 border-primary/10 hover:border-primary/20"
+                className="group relative"
               >
-                <div className="bg-primary/5 w-16 h-16 rounded-xl flex items-center justify-center mb-6 text-primary group-hover:bg-primary/10 transition-colors">
-                  {feature.icon}
+                {/* Matching card style with other sections */}
+                <div className="relative h-full p-8 rounded-2xl bg-white hover:bg-primary/[0.02] 
+                             transition-all duration-300 border-2 border-primary/10 hover:border-primary/20">
+                  {/* Matching decorative elements style */}
+                  <div className="absolute -right-8 -top-8 w-24 h-24 bg-primary/5 rounded-full"></div>
+                  <div className="absolute -left-8 -bottom-8 w-32 h-32 bg-primary/5 rounded-full"></div>
+
+                  {/* Content with consistent spacing */}
+                  <div className="relative">
+                    {/* Icon container matching other sections */}
+                    <div className="bg-primary/5 w-16 h-16 rounded-xl flex items-center justify-center mb-6 
+                                text-primary group-hover:bg-primary/10 transition-colors">
+                      {feature.icon}
+                    </div>
+
+                    {/* Feature highlight tag matching other tags in design */}
+                    <div className="absolute top-0 right-0">
+                      <span className="inline-block px-3 py-1 text-xs font-medium text-primary 
+                                   bg-primary/10 rounded-full">
+                        {feature.highlight}
+                      </span>
+                    </div>
+
+                    {/* Text content matching typography across sections */}
+                    <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
+                      {feature.title}
+                    </h3>
+                    <p className="text-text/70 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
-                <p className="text-text/70">{feature.description}</p>
               </motion.div>
             ))}
           </div>
