@@ -106,7 +106,7 @@ const Home = () => {
         </span>
       </button>
 
-      {/* Hero Section - Restored Previous Design */}
+      {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center bg-gradient-to-b from-green-50 via-white to-white">
         <div className="absolute inset-0 z-0">
           <div className="absolute right-0 top-0 w-1/3 h-1/3 bg-primary/[0.02] rounded-bl-[100px]"></div>
@@ -117,11 +117,7 @@ const Home = () => {
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className="max-w-2xl space-y-12">
               <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full">
-                  <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                  <span className="text-primary text-sm font-medium">Open for Dining</span>
-                </div>
-
+                <span className="text-primary font-medium">Welcome to Veg</span>
                 <h1 className="text-5xl lg:text-6xl font-bold text-text leading-[1.2]">
                   <span className="block mb-3">Fresh & Healthy</span>
                   <span className="block text-primary mb-3">Vegetarian</span>
@@ -204,13 +200,11 @@ const Home = () => {
 
       {/* Features Section */}
       <section className="py-32 bg-white relative overflow-hidden">
-        {/* Matching gradient style with other sections */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_theme(colors.primary/0.05),_transparent_70%)]"></div>
-        
         <div className="container px-6 mx-auto relative">
           <div className="text-center max-w-3xl mx-auto mb-24">
-            <span className="text-primary font-medium mb-4 inline-block">Why Choose Us</span>
-            <h2 className="text-4xl font-bold text-text mb-6">Experience the Difference</h2>
+            <span className="text-primary font-medium">Why Choose Us</span>
+            <h2 className="text-4xl font-bold text-text mt-2 mb-6">Experience the Difference</h2>
             <p className="text-xl text-text/70">
               We bring you the perfect blend of taste, health, and sustainability in every dish we serve.
             </p>
@@ -288,7 +282,8 @@ const Home = () => {
       <section className="py-24 bg-gradient-to-b from-white to-green-50/30">
         <div className="container px-6 mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl font-bold text-text mb-6">Special Menu</h2>
+            <span className="text-primary font-medium">Our Menu</span>
+            <h2 className="text-4xl font-bold text-text mt-2 mb-6">Special Menu</h2>
             <p className="text-xl text-text/70">
               Discover our chef's handcrafted selection, featuring seasonal ingredients and innovative recipes.
             </p>
@@ -381,11 +376,10 @@ const Home = () => {
 
       {/* Testimonials Section */}
       <section className="py-40 bg-white relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-24">
-            <span className="text-primary font-medium mb-4 inline-block">Testimonials</span>
-            <h2 className="text-4xl font-bold text-text mb-6">What Our Guests Say</h2>
+            <span className="text-primary font-medium">What People Say</span>
+            <h2 className="text-4xl font-bold text-text mt-2 mb-6">Our Happy Customers</h2>
             <p className="text-xl text-text/70">
               Real experiences shared by our valued customers who have enjoyed our cuisine and hospitality.
             </p>
@@ -477,11 +471,10 @@ const Home = () => {
 
       {/* Farm to Table Section */}
       <section className="py-32 bg-gradient-to-b from-white to-green-50/30 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-24 px-4">
-            <span className="text-primary font-medium mb-3 text-sm sm:text-base inline-block">Our Process</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-text mb-4 sm:mb-6">Farm to Table Fresh</h2>
+            <span className="text-primary font-medium">Our Process</span>
+            <h2 className="text-4xl font-bold text-text mt-2 mb-6">Farm to Table Fresh</h2>
             <p className="text-base sm:text-lg md:text-xl text-text/70 max-w-2xl mx-auto">
               Experience the journey of our ingredients from local farms to your plate.
             </p>
@@ -618,55 +611,133 @@ const Home = () => {
       <section className="py-32 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-24">
-            <h2 className="text-4xl font-bold text-text mb-6">Our Gallery</h2>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-primary font-medium">Visual Experience</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-text mt-2 mb-6">Our Food Gallery</h2>
             <p className="text-xl text-text/70">
-              A visual journey through our culinary creations and dining atmosphere.
+              Take a visual journey through our culinary masterpieces
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                image: "/IMG_0861-1536x1164.jpg",
-                title: "Seasonal Specials"
-              },
-              {
-                image: "/IMG_0861-1536x1164.jpg",
-                title: "Culinary Artistry"
-              },
-              {
-                image: "/IMG_0861-1536x1164.jpg",
-                title: "Dining Experience"
-              },
-              {
-                image: "/IMG_0861-1536x1164.jpg",
-                title: "Chef's Creation"
-              },
-              {
-                image: "/IMG_0861-1536x1164.jpg",
-                title: "Fresh Ingredients"
-              },
-              {
-                image: "/IMG_0861-1536x1164.jpg",
-                title: "Restaurant Ambiance"
-              }
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="group relative overflow-hidden rounded-2xl"
-              >
-                <div className="aspect-square overflow-hidden">
-                  <img 
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                  <p className="text-white font-medium">{item.title}</p>
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Featured Large Image */}
+            <div className="relative group">
+              <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5]">
+                <img 
+                  src="/IMG_0861-1536x1164.jpg"
+                  alt="Featured Dish"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60"></div>
+                
+                {/* Content Overlay */}
+                <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                  <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <span className="bg-white/90 backdrop-blur-sm text-primary px-4 py-1 rounded-full text-sm font-medium">
+                      Featured Dish
+                    </span>
+                    <h3 className="text-white text-2xl font-bold mt-4">Signature Mediterranean Bowl</h3>
+                    <p className="text-white/90 mt-2 max-w-md">
+                      A perfect blend of fresh vegetables, quinoa, and our house-made dressing
+                    </p>
+                  </div>
                 </div>
               </div>
+
+              {/* Decorative Elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl"></div>
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/5 rounded-full blur-2xl"></div>
+            </div>
+
+            {/* Gallery Grid */}
+            <div className="space-y-8">
+              {/* Gallery Navigation */}
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl font-bold">Latest Captures</h3>
+                <div className="flex gap-2">
+                  <button className="p-2 rounded-full bg-primary/5 hover:bg-primary/10 transition-colors">
+                    <ChevronRightIcon className="w-5 h-5 text-primary rotate-180" />
+                  </button>
+                  <button className="p-2 rounded-full bg-primary/5 hover:bg-primary/10 transition-colors">
+                    <ChevronRightIcon className="w-5 h-5 text-primary" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Gallery Grid */}
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  {
+                    image: "/IMG_0861-1536x1164.jpg",
+                    title: "Fresh Salads",
+                    category: "Starters"
+                  },
+                  {
+                    image: "/IMG_0861-1536x1164.jpg",
+                    title: "Dessert Special",
+                    category: "Desserts"
+                  },
+                  {
+                    image: "/IMG_0861-1536x1164.jpg",
+                    title: "Main Course",
+                    category: "Main Dishes"
+                  },
+                  {
+                    image: "/IMG_0861-1536x1164.jpg",
+                    title: "Beverages",
+                    category: "Drinks"
+                  }
+                ].map((item, index) => (
+                  <div 
+                    key={index}
+                    className="group relative rounded-2xl overflow-hidden aspect-square cursor-pointer"
+                  >
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300"></div>
+                    <img 
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 p-4 flex flex-col justify-end">
+                      <div className="bg-white/95 backdrop-blur-sm rounded-xl p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                        <p className="text-xs text-primary font-medium">{item.category}</p>
+                        <p className="text-gray-900 font-bold">{item.title}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* View All Link */}
+              <div className="text-center">
+                <Link 
+                  to="/gallery" 
+                  className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium"
+                >
+                  View All Photos
+                  <ArrowRightIcon className="w-5 h-5" />
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Category Pills */}
+          <div className="mt-16 flex flex-wrap justify-center gap-3">
+            {[
+              "All Photos",
+              "Main Dishes",
+              "Appetizers",
+              "Desserts",
+              "Drinks",
+              "Restaurant",
+              "Events"
+            ].map((category, index) => (
+              <button
+                key={index}
+                className="px-6 py-2 rounded-full bg-primary/5 hover:bg-primary/10 text-primary text-sm font-medium transition-colors"
+              >
+                {category}
+              </button>
             ))}
           </div>
         </div>
@@ -674,11 +745,11 @@ const Home = () => {
 
       {/* Events & Catering Section */}
       <section className="py-32 bg-gradient-to-b from-white to-green-50/30 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
-              <h2 className="text-4xl font-bold text-text">Events & Catering</h2>
+              <span className="text-primary font-medium">Special Events</span>
+              <h2 className="text-4xl font-bold text-text mt-2 mb-6">Events & Catering</h2>
               <p className="text-xl text-text/70">
                 From intimate gatherings to grand celebrations, we offer customized catering solutions for all your special occasions.
               </p>
@@ -759,7 +830,8 @@ const Home = () => {
 
             <div className="text-center space-y-6 relative">
               <div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700">
+                <span className="text-primary font-medium">Newsletter</span>
+                <h2 className="text-4xl md:text-5xl font-bold mt-2 mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700">
                   Stay Connected
                 </h2>
                 <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -835,11 +907,11 @@ const Home = () => {
 
       {/* Contact & Location Section */}
       <section className="py-32 bg-gradient-to-b from-white to-green-50/30 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
-              <h2 className="text-4xl font-bold text-text">Visit Us Today</h2>
+              <span className="text-primary font-medium">Visit Us</span>
+              <h2 className="text-4xl font-bold text-text mt-2 mb-6">Find Us Today</h2>
               <p className="text-xl text-text/70">
                 Experience our warm hospitality and exceptional cuisine in a welcoming atmosphere.
               </p>
