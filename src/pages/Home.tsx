@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { 
-  BeakerIcon, 
-  HeartIcon, 
+import { Link, useNavigate } from 'react-router-dom'
+import {
+  BeakerIcon,
+  HeartIcon,
   SparklesIcon,
   ClockIcon,
   UserGroupIcon,
@@ -27,7 +27,8 @@ const Home = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = React.useState(0);
   const [isQuickOrderOpen, setIsQuickOrderOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('all');
-  
+  const navigate = useNavigate();
+
   const reviews = [
     {
       name: "Sarah Johnson",
@@ -77,13 +78,13 @@ const Home = () => {
   ];
 
   const nextReview = () => {
-    setCurrentReviewIndex((prev) => 
+    setCurrentReviewIndex((prev) =>
       prev + 3 >= reviews.length ? 0 : prev + 3
     );
   };
 
   const prevReview = () => {
-    setCurrentReviewIndex((prev) => 
+    setCurrentReviewIndex((prev) =>
       prev - 3 < 0 ? Math.max(0, reviews.length - 3) : prev - 3
     );
   };
@@ -129,23 +130,27 @@ const Home = () => {
               </div>
 
               <div className="flex flex-wrap gap-6">
-                <button className="group bg-primary text-white flex items-center gap-2 text-lg px-8 py-4 rounded-xl hover:bg-primary/90 transition-all">
+                <button
+                  onClick={() => navigate('/menu')}
+                  className="group bg-primary text-white flex items-center gap-2 text-lg px-8 py-4 rounded-xl hover:bg-primary/90 transition-all">
                   View Menu
                   <ChevronRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
-                <button className="group border-2 border-text/5 text-text flex items-center gap-2 text-lg px-8 py-4 rounded-xl hover:bg-primary/5 transition-all">
+                <button
+                  onClick={() => navigate('/reservation')}
+                  className="group border-2 border-text/5 text-text flex items-center gap-2 text-lg px-8 py-4 rounded-xl hover:bg-primary/5 transition-all">
                   Book a Table
                   <ChevronRightIcon className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-all" />
                 </button>
               </div>
-              
+
               <div className="grid grid-cols-3 gap-12">
                 {[
                   { value: "4.9", label: "Customer Rating" },
                   { value: "15+", label: "Years of Service" },
                   { value: "50+", label: "Unique Dishes" }
                 ].map((stat, index) => (
-                  <div 
+                  <div
                     key={index}
                     className="relative group"
                   >
@@ -162,13 +167,13 @@ const Home = () => {
             <div className="relative hidden lg:block">
               <div className="relative">
                 <div className="relative overflow-hidden rounded-2xl">
-                  <img 
+                  <img
                     src="/IMG_0861-1536x1164.jpg"
-                    alt="Fresh Mediterranean Ingredients" 
+                    alt="Fresh Mediterranean Ingredients"
                     className="w-full h-[600px] object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
-                
+
                 <div className="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-sm">
                   <div className="flex items-center gap-4">
                     <div className="bg-primary/5 p-3 rounded-lg">
@@ -242,7 +247,7 @@ const Home = () => {
                              transition-all duration-300 border-2 border-primary/10 hover:border-primary/20 overflow-hidden">
                   {/* Image Section */}
                   <div className="relative h-48 overflow-hidden">
-                    <img 
+                    <img
                       src={feature.image}
                       alt={feature.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
@@ -318,7 +323,7 @@ const Home = () => {
                 className="group bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <img 
+                  <img
                     src={dish.image}
                     alt={dish.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -347,7 +352,7 @@ const Home = () => {
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20"></div>
             <div className="absolute -right-8 -top-8 w-24 h-24 bg-primary/5 rounded-full"></div>
             <div className="absolute -left-8 -bottom-8 w-32 h-32 bg-primary/5 rounded-full"></div>
-            
+
             <SparklesIcon className="w-12 h-12 text-primary mx-auto mb-8" />
             <h3 className="text-3xl font-bold mb-6">A Note from Our Chef</h3>
             <p className="text-xl text-text/70 italic mb-12 leading-relaxed max-w-2xl mx-auto">
@@ -400,8 +405,8 @@ const Home = () => {
 
                   <div className="flex items-start gap-4 mb-6">
                     <div className="relative">
-                      <img 
-                        src={review.image} 
+                      <img
+                        src={review.image}
                         alt={review.name}
                         className="w-16 h-16 rounded-full object-cover border-2 border-primary/20"
                       />
@@ -440,7 +445,7 @@ const Home = () => {
 
             {/* Navigation Buttons */}
             <div className="flex justify-center items-center gap-4 mt-12">
-              <button 
+              <button
                 onClick={prevReview}
                 className="group bg-white border-2 border-primary/10 text-primary hover:bg-primary/5 transition-all duration-300 p-4 rounded-full"
               >
@@ -448,17 +453,16 @@ const Home = () => {
               </button>
               <div className="flex gap-2">
                 {Array.from({ length: Math.ceil(reviews.length / 3) }).map((_, idx) => (
-                  <div 
+                  <div
                     key={idx}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      Math.floor(currentReviewIndex / 3) === idx 
-                        ? 'bg-primary scale-125' 
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${Math.floor(currentReviewIndex / 3) === idx
+                        ? 'bg-primary scale-125'
                         : 'bg-primary/20'
-                    }`}
+                      }`}
                   />
                 ))}
               </div>
-              <button 
+              <button
                 onClick={nextReview}
                 className="group bg-white border-2 border-primary/10 text-primary hover:bg-primary/5 transition-all duration-300 p-4 rounded-full"
               >
@@ -483,13 +487,13 @@ const Home = () => {
           {/* Main Image and Stats Section */}
           <div className="relative mb-12 sm:mb-24 px-4 sm:px-0">
             <div className="relative rounded-xl sm:rounded-3xl overflow-hidden">
-              <img 
+              <img
                 src="/IMG_0861-1536x1164.jpg"
                 alt="Fresh Farm Ingredients"
                 className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-              
+
               {/* Stats Overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 md:p-12">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
@@ -562,18 +566,18 @@ const Home = () => {
             {/* Quality Tags Section */}
             <div className="relative">
               <div className="relative rounded-xl sm:rounded-2xl overflow-hidden">
-                <img 
+                <img
                   src="/IMG_0861-1536x1164.jpg"
                   alt="Fresh Ingredients Quality"
                   className="w-full h-[300px] sm:h-[400px] md:h-[600px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                
+
                 {/* Floating Tags */}
                 <div className="absolute inset-0 p-4 sm:p-6 md:p-8">
                   <div className="h-full flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 content-center">
                     {[
-                      "100% Organic", "Seasonal", "Local", 
+                      "100% Organic", "Seasonal", "Local",
                       "Zero Waste", "Fresh", "Premium"
                     ].map((tag, index) => (
                       <span
@@ -623,13 +627,13 @@ const Home = () => {
             {/* Featured Large Image */}
             <div className="relative group">
               <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5]">
-                <img 
+                <img
                   src="/IMG_0861-1536x1164.jpg"
                   alt="Featured Dish"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60"></div>
-                
+
                 {/* Content Overlay */}
                 <div className="absolute inset-0 p-8 flex flex-col justify-end">
                   <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
@@ -688,12 +692,12 @@ const Home = () => {
                     category: "Drinks"
                   }
                 ].map((item, index) => (
-                  <div 
+                  <div
                     key={index}
                     className="group relative rounded-2xl overflow-hidden aspect-square cursor-pointer"
                   >
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300"></div>
-                    <img 
+                    <img
                       src={item.image}
                       alt={item.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -710,8 +714,8 @@ const Home = () => {
 
               {/* View All Link */}
               <div className="text-center">
-                <Link 
-                  to="/gallery" 
+                <Link
+                  to="/gallery"
                   className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium"
                 >
                   View All Photos
@@ -753,7 +757,7 @@ const Home = () => {
               <p className="text-xl text-text/70">
                 From intimate gatherings to grand celebrations, we offer customized catering solutions for all your special occasions.
               </p>
-              
+
               <div className="space-y-6">
                 {[
                   {
@@ -789,9 +793,9 @@ const Home = () => {
 
             <div className="relative">
               <div className="relative overflow-hidden rounded-2xl">
-                <img 
+                <img
                   src="/IMG_0861-1536x1164.jpg"
-                  alt="Event Catering" 
+                  alt="Event Catering"
                   className="w-full h-[500px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -842,8 +846,8 @@ const Home = () => {
               <div className="max-w-xl mx-auto mt-8">
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex-1 relative">
-                    <input 
-                      type="email" 
+                    <input
+                      type="email"
                       placeholder="Enter your email"
                       className="w-full px-6 py-4 rounded-full border-2 border-gray-100 focus:border-primary focus:outline-none pr-12 bg-white/50 backdrop-blur-sm transition-all duration-300"
                     />
@@ -915,7 +919,7 @@ const Home = () => {
               <p className="text-xl text-text/70">
                 Experience our warm hospitality and exceptional cuisine in a welcoming atmosphere.
               </p>
-              
+
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <div className="bg-primary/5 p-3 rounded-xl">
@@ -926,7 +930,7 @@ const Home = () => {
                     <p className="font-medium">+1 (555) 123-4567</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-4">
                   <div className="bg-primary/5 p-3 rounded-xl">
                     <ClockIcon className="w-6 h-6 text-primary" />
@@ -956,9 +960,9 @@ const Home = () => {
 
             <div className="relative">
               <div className="relative overflow-hidden rounded-2xl">
-                <img 
+                <img
                   src="/IMG_0861-1536x1164.jpg"
-                  alt="Restaurant Interior" 
+                  alt="Restaurant Interior"
                   className="w-full h-[500px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -982,11 +986,10 @@ const Home = () => {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-6 py-3 rounded-full capitalize transition-all ${
-                    selectedCategory === category
+                  className={`px-6 py-3 rounded-full capitalize transition-all ${selectedCategory === category
                       ? 'bg-primary text-white'
                       : 'bg-primary/5 text-primary hover:bg-primary/10'
-                  }`}
+                    }`}
                 >
                   {category}
                 </button>
@@ -1045,7 +1048,7 @@ const Home = () => {
                   className="bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300 group"
                 >
                   <div className="relative h-48 overflow-hidden">
-                    <img 
+                    <img
                       src={item.image}
                       alt={item.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
@@ -1068,8 +1071,8 @@ const Home = () => {
 
           {/* See Full Menu Link */}
           <div className="mt-16 text-center">
-            <Link 
-              to="/menu" 
+            <Link
+              to="/menu"
               className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-xl 
                          hover:bg-primary/90 transition-all group text-lg font-medium"
             >
@@ -1096,7 +1099,7 @@ const Home = () => {
           <div className="relative max-w-4xl mx-auto">
             {/* Vertical line */}
             <div className="absolute left-1/2 -translate-x-[0.5px] top-0 bottom-0 w-[1px] bg-[#E5E7EB] md:block hidden" />
-            
+
             {[
               {
                 title: "Ingredient Selection",
@@ -1203,14 +1206,14 @@ const Home = () => {
           <div className="bg-white rounded-2xl p-8 max-w-lg w-full mx-4">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-2xl font-bold">Quick Order</h3>
-              <button 
+              <button
                 onClick={() => setIsQuickOrderOpen(false)}
                 className="text-text/50 hover:text-text"
               >
                 ✕
               </button>
             </div>
-            
+
             <div className="space-y-4">
               {/* Add your quick order form here */}
               <p className="text-text/70">
@@ -1225,7 +1228,7 @@ const Home = () => {
   )
 }
 
-const FeatureCard = ({ title, description, icon }: { 
+const FeatureCard = ({ title, description, icon }: {
   title: string
   description: string
   icon: React.ReactNode
