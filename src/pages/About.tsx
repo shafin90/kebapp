@@ -59,7 +59,7 @@ const About: React.FC = () => {
                   Founded in 2020, our restaurant began with a simple mission: to share the authentic flavors of Turkish street food while embracing modern culinary innovations.
                 </p>
                 <p>
-                  What started as a small family venture has grown into a beloved establishment, known for our signature Gemüse Kebap and commitment to quality ingredients.
+                  What started as a small family venture has grown into a beloved establishment, known for our signature kebaps and commitment to quality ingredients.
                 </p>
                 <p>
                   Today, we continue to honor traditional recipes while exploring new, exciting flavors that reflect our evolving culinary landscape.

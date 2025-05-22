@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { 
-  PhoneIcon, 
-  EnvelopeIcon, 
+import {
+  PhoneIcon,
+  EnvelopeIcon,
   MapPinIcon,
   ClockIcon,
   HeartIcon,
   SparklesIcon
 } from '@heroicons/react/24/outline'
-import { 
+import {
   FacebookIcon,
   InstagramIcon,
   TwitterIcon,
@@ -34,14 +34,16 @@ const Footer = () => {
                 </div>
               </Link>
               <p className="text-text/70 leading-relaxed">
-                Discover the perfect blend of traditional kebap and fresh vegetables. 
-                Our commitment to quality ingredients and authentic flavors makes every bite special. 
+                Discover the perfect blend of traditional kebap and fresh vegetables.
+                Our commitment to quality ingredients and authentic flavors makes every bite special.
                 🌿 Fresh • Colorful • Flavorful 🥙
               </p>
               <div className="flex gap-4">
                 {[
                   { icon: <FacebookIcon className="w-5 h-5" />, link: "https://facebook.com", label: "Facebook" },
-                  { icon: <InstagramIcon className="w-5 h-5" />, link: "https://instagram.com", label: "Instagram" }
+                  { icon: <InstagramIcon className="w-5 h-5" />, link: "https://instagram.com", label: "Instagram" },
+                  { icon: <TwitterIcon className="w-5 h-5" />, link: "https://twitter.com", label: "Twitter" },
+                  { icon: <YoutubeIcon className="w-5 h-5" />, link: "https://youtube.com", label: "YouTube" }
                 ].map((social, index) => (
                   <a
                     key={index}
@@ -61,14 +63,14 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div className="lg:col-span-2 space-y-6">
-              <h4 className="text-lg font-bold">Menu</h4>
-              <ul className="space-y-3">
-                <FooterLink to="/menu/veg">Gemüse Kebap</FooterLink>
-                <FooterLink to="/menu/chicken">Chicken Kebap</FooterLink>
-                <FooterLink to="/menu/falafel">Falafel</FooterLink>
-                <FooterLink to="/menu/salads">Fresh Salads</FooterLink>
-                <FooterLink to="/menu/sides">Sides & Drinks</FooterLink>
-              </ul>
+              <h4 className="text-lg font-bold">Navigation</h4>
+              <div className="space-y-4">
+                <FooterLink to="/">Home</FooterLink>
+                <FooterLink to="/menu">Menu</FooterLink>
+                <FooterLink to="/about">About</FooterLink>
+                <FooterLink to="/contact">Contact</FooterLink>
+                <FooterLink to="/reservation" className="text-primary hover:text-primary/80">Reserve a Table</FooterLink>
+              </div>
             </div>
 
             {/* Contact Info */}
@@ -82,8 +84,8 @@ const Footer = () => {
                   <span>Hörgensweg 4, 22523 Hamburg</span>
                 </li>
                 <li>
-                  <a 
-                    href="tel:+4940123456789" 
+                  <a
+                    href="tel:+4940123456789"
                     className="flex items-center gap-3 text-text/70 hover:text-primary transition-colors group"
                   >
                     <div className="bg-primary/5 p-1.5 rounded-lg group-hover:bg-primary/10 transition-colors">
@@ -93,7 +95,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a 
+                  <a
                     href="mailto:info@sebastians-kebap.de"
                     className="flex items-center gap-3 text-text/70 hover:text-primary transition-colors group"
                   >
@@ -146,7 +148,9 @@ const Footer = () => {
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="flex items-center gap-2 text-sm text-text/60">
                 <HeartIcon className="w-4 h-4 text-primary" />
-                <p>&copy; {new Date().getFullYear()} Sebastian's Gemüse Kebap. Made with love in Hamburg.</p>
+                <div className="text-center text-text/60 text-sm">
+                  <p>&copy; {new Date().getFullYear()} Sebastian's Kebap. Made with love in Hamburg.</p>
+                </div>
               </div>
               <div className="flex gap-6 text-sm">
                 <Link to="/privacy" className="text-text/60 hover:text-primary transition-colors">Privacy Policy</Link>
@@ -161,16 +165,20 @@ const Footer = () => {
   )
 }
 
-const FooterLink = ({ to, children }: { to: string; children: React.ReactNode }) => (
-  <li>
-    <Link 
-      to={to} 
-      className="text-text/70 hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
-    >
-      <div className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover:bg-primary transition-colors"></div>
-      {children}
-    </Link>
-  </li>
+const FooterLink = ({ to, children, className = "" }: {
+  to: string;
+  children: React.ReactNode;
+  className?: string;
+}) => (
+
+  <Link
+    to={to}
+    className={`text-text/70 hover:text-primary transition-colors duration-300 flex items-center gap-2 group ${className}`}
+  >
+    <div className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover:bg-primary transition-colors"></div>
+    {children}
+  </Link>
+
 )
 
 export default Footer 

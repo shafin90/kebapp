@@ -24,22 +24,22 @@ const Menu: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [selectedDietaryFilter, setSelectedDietaryFilter] = useState<string>('all')
 
-  const categories = ['all', 'gemüse kebap', 'chicken kebap', 'falafel', 'salads', 'sides', 'drinks']
+  const categories = ['all', 'kebap', 'chicken', 'falafel', 'salads', 'sides', 'drinks']
   const dietaryFilters = ['all', 'vegan', 'vegetarian', 'gluten-free']
 
   const menuItems: MenuItem[] = [
     {
-      name: "Classic Gemüse Kebap",
-      category: "gemüse kebap",
-      price: "€7.50",
-      description: "Fresh vegetables, homemade sauces, served in Turkish bread",
+      name: "Classic Kebap",
+      category: "kebap",
+      price: "$12.99",
+      description: "Fresh vegetables and herbs wrapped in warm flatbread",
       dietary: ["vegetarian"],
       image: "/IMG_0861-1536x1164.jpg",
       popular: true
     },
     {
       name: "Spicy Chicken Kebap",
-      category: "chicken kebap",
+      category: "chicken",
       price: "€8.50",
       description: "Grilled chicken, spicy sauce, fresh vegetables",
       dietary: [],
@@ -88,7 +88,7 @@ const Menu: React.FC = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center bg-gradient-to-br from-green-50 via-white to-primary/5">
+      <section className="relative min-h-[60vh] flex items-center bg-gradient-to-br from-green-50 via-white to-primary/5">
         <div className="absolute inset-0 z-0">
           <div className="absolute right-0 top-0 w-1/3 h-1/3 bg-primary/[0.02] rounded-bl-[100px] backdrop-blur-3xl"></div>
           <div className="absolute left-0 bottom-0 w-1/2 h-1/2 bg-primary/[0.02] rounded-tr-[100px] backdrop-blur-3xl"></div>
@@ -112,7 +112,7 @@ const Menu: React.FC = () => {
             </h1>
             
             <p className="text-xl text-text/70 leading-relaxed max-w-2xl mx-auto">
-              From our signature Gemüse Kebap to fresh salads and sides, explore our full menu of authentic Turkish-inspired dishes.
+              From our signature kebaps to fresh salads and sides, explore our full menu of authentic Turkish-inspired dishes.
             </p>
           </div>
         </div>
@@ -231,7 +231,7 @@ const Menu: React.FC = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 bg-gradient-to-b from-white to-green-50/30 relative overflow-hidden">
+      {/* <section className="py-24 bg-gradient-to-b from-white to-green-50/30 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto relative">
           <div className="grid md:grid-cols-3 gap-8">
@@ -265,7 +265,7 @@ const Menu: React.FC = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }
