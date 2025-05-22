@@ -12,7 +12,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="text-2xl font-bold text-primary">
-              Sebastian‘s Gemüse Kebap
+              Sebastian's Gemüse Kebap
             </Link>
           </div>
 
@@ -34,9 +34,13 @@ const Navbar = () => {
             <NavLink to="/menu" isActive={location.pathname === "/menu"}>Menu</NavLink>
             <NavLink to="/about" isActive={location.pathname === "/about"}>About</NavLink>
             <NavLink to="/contact" isActive={location.pathname === "/contact"}>Contact</NavLink>
-            <button className="btn-primary">
+            <NavLink 
+              to="/reservation" 
+              isActive={location.pathname === "/reservation"}
+              className="btn-primary"
+            >
               Reserve a Table
-            </button>
+            </NavLink>
           </div>
         </div>
 
@@ -48,9 +52,13 @@ const Navbar = () => {
               <NavLink to="/menu" isActive={location.pathname === "/menu"}>Menu</NavLink>
               <NavLink to="/about" isActive={location.pathname === "/about"}>About</NavLink>
               <NavLink to="/contact" isActive={location.pathname === "/contact"}>Contact</NavLink>
-              <button className="btn-primary w-full">
+              <NavLink 
+                to="/reservation" 
+                isActive={location.pathname === "/reservation"}
+                className="btn-primary w-full text-center"
+              >
                 Reserve a Table
-              </button>
+              </NavLink>
             </div>
           </div>
         )}
@@ -59,17 +67,19 @@ const Navbar = () => {
   )
 }
 
-const NavLink = ({ to, children, isActive }: {
+const NavLink = ({ to, children, isActive, className = "" }: {
   to: string
   children: React.ReactNode
   isActive: boolean
+  className?: string
 }) => (
   <Link
     to={to}
-    className={`transition-colors duration-300 ${isActive
+    className={`transition-colors duration-300 ${
+      className || (isActive
         ? "text-primary font-medium"
-        : "text-text hover:text-primary"
-      }`}
+        : "text-text hover:text-primary")
+    }`}
   >
     {children}
   </Link>
