@@ -19,20 +19,20 @@ const LocomotiveScrollWrapper: React.FC<Props> = ({ children }) => {
     locomotiveScrollRef.current = new LocomotiveScroll({
       el: scrollRef.current,
       smooth: true,
-      multiplier: 1,
-      lerp: 0.05,
+      multiplier: 0.7,
+      lerp: 0.1,
       class: 'is-revealed',
       reloadOnContextChange: true,
-      touchMultiplier: 2,
+      touchMultiplier: 2.5,
       smoothMobile: true,
       smartphone: {
         smooth: true,
-        multiplier: 1,
+        multiplier: 0.7,
         breakpoint: 767
       },
       tablet: {
         smooth: true,
-        multiplier: 1,
+        multiplier: 0.7,
         breakpoint: 1024
       }
     });

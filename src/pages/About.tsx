@@ -100,7 +100,7 @@ const About = () => {
                   ].map((stat, index) => (
                     <motion.div
                       key={index}
-                      className="backdrop-blur-md bg-white/10 rounded-2xl p-6"
+                      className="backdrop-blur-sm bg-white/10 rounded-2xl p-6"
                       whileHover={{ y: -4, transition: { duration: 0.2 } }}
                     >
                       <div className="flex items-center gap-3 mb-2">
@@ -144,6 +144,8 @@ const About = () => {
                   src="/IMG_0861-1536x1164.jpg" 
                   alt="Our restaurant story" 
                   className="w-full h-full object-cover"
+                  data-scroll
+                  data-scroll-speed="-2"
                 />
               </div>
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>

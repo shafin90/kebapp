@@ -25,12 +25,12 @@ const Navbar = () => {
           : 'bg-transparent border-transparent'
       }`}
     >
-      <div className="container mx-auto py-4 px-4">
-        <div className="flex items-center justify-between">
+      <div className="container mx-auto px-6">
+        <div className="flex items-center justify-between h-20 md:h-24">
           <div className="flex items-center">
             <Link 
               to="/" 
-              className={`text-2xl font-bold transition-colors duration-500 ${
+              className={`text-xl md:text-2xl font-bold transition-colors duration-500 ${
                 isScrolled || isMenuOpen ? 'text-primary' : 'text-white'
               }`}
             >
@@ -118,14 +118,7 @@ const Navbar = () => {
               >
                 Contact
               </NavLink>
-              <NavLink 
-                to="/reservation" 
-                isActive={location.pathname === "/reservation"}
-                isScrolled={true}
-                className="btn-primary w-full text-center"
-              >
-                Reserve a Table
-              </NavLink>
+              
             </div>
           </div>
         )}

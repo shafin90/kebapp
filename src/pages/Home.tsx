@@ -25,6 +25,8 @@ import {
   YoutubeIcon
 } from '../icons/SocialIcons'
 
+import AnimatedTimeline from '../components/AnimatedTimeline'
+
 const Home = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = React.useState(0);
   const [isQuickOrderOpen, setIsQuickOrderOpen] = useState(false);
@@ -104,16 +106,7 @@ const Home = () => {
 
   return (
     <div className="relative">
-      {/* Quick Order Button */}
-      <button
-        onClick={() => setIsQuickOrderOpen(true)}
-        className="fixed bottom-8 right-8 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-green-600 hover:scale-110 transition-all z-40 group"
-      >
-        <ShoppingBagIcon className="w-6 h-6" />
-        <span className="absolute right-full mr-2 bg-white text-primary px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-          Quick Order
-        </span>
-      </button>
+      
 
       {/* Hero Section */}
       <section className="relative min-h-screen overflow-hidden">
@@ -121,7 +114,7 @@ const Home = () => {
         <div 
           className="absolute inset-0 w-full h-full"
           data-scroll
-          data-scroll-speed="-4"
+          data-scroll-speed="-6"
           style={{
             backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
             backgroundSize: 'cover',
@@ -137,13 +130,13 @@ const Home = () => {
         <div 
           className="relative z-10 min-h-screen flex items-center"
           data-scroll
-          data-scroll-speed="2"
+          data-scroll-speed="4"
         >
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto px-6 pt-24 md:pt-0">
             <div className="max-w-4xl relative">
               {/* Animated Accent Line */}
               <motion.div 
-                className="w-24 h-1 bg-primary mb-0"
+                className="w-24 h-1 bg-primary mb-6 md:mb-0"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 1, ease: "easeOut" }}
@@ -151,8 +144,8 @@ const Home = () => {
               />
               
               {/* Main Content */}
-              <div className="space-y-8">
-                <h1 className="text-7xl font-bold text-white leading-tight">
+              <div className="space-y-6 md:space-y-8">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] md:leading-tight">
                   <motion.span 
                     className="block"
                     initial={{ x: -50, opacity: 0 }}
@@ -180,7 +173,7 @@ const Home = () => {
                 </h1>
                 
                 <motion.p 
-                  className="text-xl text-white/90 max-w-2xl leading-relaxed"
+                  className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
@@ -191,28 +184,28 @@ const Home = () => {
 
                 {/* Stats */}
                 <motion.div 
-                  className="grid grid-cols-3 gap-8 mt-16"
+                  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-8 md:mt-16"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
                   {[
-                    { value: "4.9", label: "Customer Rating", icon: <StarIcon className="w-5 h-5" /> },
-                    { value: "15+", label: "Years of Service", icon: <ClockIcon className="w-5 h-5" /> },
-                    { value: "50+", label: "Unique Dishes", icon: <SparklesIcon className="w-5 h-5" /> }
+                    { value: "4.9", label: "Customer Rating", icon: <StarIcon className="w-4 h-4 sm:w-5 sm:h-5" /> },
+                    { value: "15+", label: "Years of Service", icon: <ClockIcon className="w-4 h-4 sm:w-5 sm:h-5" /> },
+                    { value: "50+", label: "Unique Dishes", icon: <SparklesIcon className="w-4 h-4 sm:w-5 sm:h-5" /> }
                   ].map((stat, index) => (
                     <motion.div
                       key={index}
-                      className="backdrop-blur-md bg-white/10 rounded-2xl p-6 hover:bg-green-50/10 transition-all duration-300"
+                      className="backdrop-blur-sm bg-white/10 rounded-xl md:rounded-2xl p-4 md:p-6 hover:bg-green-50/10 transition-all duration-300"
                       whileHover={{ y: -4, transition: { duration: 0.2 } }}
                     >
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
                         <div className="text-primary">
                           {stat.icon}
                         </div>
-                        <h3 className="text-3xl font-bold text-white">{stat.value}</h3>
+                        <h3 className="text-2xl md:text-3xl font-bold text-white">{stat.value}</h3>
                       </div>
-                      <p className="text-sm text-white/80">{stat.label}</p>
+                      <p className="text-xs md:text-sm text-white/80">{stat.label}</p>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -311,28 +304,34 @@ const Home = () => {
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <img
-                      src={feature.image}
-                      alt={feature.title}
-                      className="w-full h-[400px] object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/40" />
-                    
-                    {/* Stats Overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-8">
-                      <div className="flex gap-4">
-                        {feature.stats.map((stat, idx) => (
-                          <motion.div
-                            key={idx}
-                            className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
-                          >
-                            <span className="text-black text-sm font-medium">{stat}</span>
-                          </motion.div>
-                        ))}
+                    <div className="relative">
+                      <div className="aspect-square rounded-2xl overflow-hidden">
+                        <img 
+                          src={feature.image}
+                          alt={feature.title}
+                          className="w-full h-full object-cover"
+                          data-scroll
+                          data-scroll-speed="-2"
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-black/40" />
+                      
+                      {/* Stats Overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 p-8">
+                        <div className="flex gap-4">
+                          {feature.stats.map((stat, idx) => (
+                            <motion.div
+                              key={idx}
+                              className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full"
+                              initial={{ opacity: 0, y: 20 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
+                            >
+                              <span className="text-black text-sm font-medium">{stat}</span>
+                            </motion.div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </motion.div>
@@ -641,6 +640,8 @@ const Home = () => {
                   src="/IMG_0861-1536x1164.jpg"
                   alt="Featured Dish"
                   className="w-full h-full object-cover"
+                  data-scroll
+                  data-scroll-speed="-2"
                   initial={{ scale: 1.1 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
@@ -757,6 +758,8 @@ const Home = () => {
                       src={item.image}
                       alt={item.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      data-scroll
+                      data-scroll-speed="-1.5"
                     />
                     <motion.div 
                       className="absolute inset-0 p-4 flex flex-col justify-end transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
@@ -857,6 +860,8 @@ const Home = () => {
                   src="/IMG_0861-1536x1164.jpg"
                   alt="Event Catering"
                   className="w-full h-[500px] object-cover"
+                  data-scroll
+                  data-scroll-speed="-2"
                 />
                 <div className="absolute inset-0 bg-black/20"></div>
               </div>
@@ -879,18 +884,21 @@ const Home = () => {
       {/* Food Preparation Timeline */}
       <section className="py-32 bg-white relative">
         <div className="container px-6 mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-24">
+          <motion.div 
+            className="text-center max-w-3xl mx-auto mb-24"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
             <h2 className="text-4xl font-bold text-text mb-6">Our Process</h2>
             <p className="text-xl text-text/70">
               From farm to table, see how we prepare your food with care
             </p>
-          </div>
+          </motion.div>
 
-          <div className="relative max-w-4xl mx-auto">
-            {/* Vertical line */}
-            <div className="absolute left-1/2 -translate-x-[0.5px] top-0 bottom-0 w-[1px] bg-[#E5E7EB] md:block hidden" />
-
-            {[
+          <AnimatedTimeline
+            items={[
               {
                 title: "Ingredient Selection",
                 time: "5:00 AM",
@@ -911,59 +919,8 @@ const Home = () => {
                 time: "11:00 AM",
                 description: "Doors open for lunch service"
               }
-            ].map((step, index) => (
-              <div key={index} className="relative flex items-start md:items-center py-8 flex-col md:flex-row">
-                {/* Left Content */}
-                <div className="md:w-[42%] w-full md:pr-12 mb-4 md:mb-0">
-                  {index % 2 === 0 && (
-                    <div className="md:text-right text-left">
-                      <h3 className="font-semibold text-gray-900 mb-1">{step.title}</h3>
-                      <p className="text-sm text-gray-600 mb-2">{step.description}</p>
-                      <div className="md:hidden">
-                        <div className="inline-block bg-white shadow-sm rounded-full py-1 px-3 border border-gray-100">
-                          <span className="text-xs font-medium text-primary">{step.time}</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Center Column */}
-                <div className="md:w-[16%] w-full flex justify-center relative md:static">
-                  <div className="w-3 h-3 bg-primary rounded-full hidden md:block" />
-                  <div className="hidden md:block absolute right-1/2 mr-6 -translate-y-1/2 top-1/2 whitespace-nowrap">
-                    {index % 2 === 0 && (
-                      <div className="bg-white shadow-sm rounded-full py-1 px-3 border border-gray-100">
-                        <span className="text-xs font-medium text-primary">{step.time}</span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="hidden md:block absolute left-1/2 ml-6 -translate-y-1/2 top-1/2 whitespace-nowrap">
-                    {index % 2 === 1 && (
-                      <div className="bg-white shadow-sm rounded-full py-1 px-3 border border-gray-100">
-                        <span className="text-xs font-medium text-primary">{step.time}</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Right Content */}
-                <div className="md:w-[42%] w-full md:pl-12">
-                  {index % 2 === 1 && (
-                    <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">{step.title}</h3>
-                      <p className="text-sm text-gray-600 mb-2">{step.description}</p>
-                      <div className="md:hidden">
-                        <div className="inline-block bg-white shadow-sm rounded-full py-1 px-3 border border-gray-100">
-                          <span className="text-xs font-medium text-primary">{step.time}</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+            ]}
+          />
         </div>
       </section>
 
@@ -990,30 +947,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Quick Order Modal */}
-      {isQuickOrderOpen && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-          <div className="bg-white rounded-2xl p-8 max-w-lg w-full mx-4">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-2xl font-bold">Quick Order</h3>
-              <button
-                onClick={() => setIsQuickOrderOpen(false)}
-                className="text-text/50 hover:text-text"
-              >
-                ✕
-              </button>
-            </div>
 
-            <div className="space-y-4">
-              {/* Add your quick order form here */}
-              <p className="text-text/70">
-                Choose your favorite dishes for quick ordering
-              </p>
-              {/* Add form elements */}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

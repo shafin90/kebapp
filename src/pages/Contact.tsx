@@ -121,7 +121,7 @@ const Contact = () => {
                   ].map((info, index) => (
                     <motion.div
                       key={index}
-                      className="backdrop-blur-md bg-white/10 rounded-2xl p-6"
+                      className="backdrop-blur-sm bg-white/10 rounded-2xl p-6"
                       whileHover={{ y: -4, transition: { duration: 0.2 } }}
                     >
                       <div className="flex items-center gap-3 mb-2">

@@ -96,7 +96,7 @@ const Menu: React.FC = () => {
         <div 
           className="absolute inset-0 w-full h-full"
           data-scroll
-          data-scroll-speed="-4"
+          data-scroll-speed="-6"
           style={{
             backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
             backgroundSize: 'cover',
@@ -112,7 +112,7 @@ const Menu: React.FC = () => {
         <div 
           className="relative z-10 min-h-screen flex items-center"
           data-scroll
-          data-scroll-speed="2"
+          data-scroll-speed="4"
         >
           <div className="container mx-auto px-6">
             <div className="max-w-4xl relative">
@@ -177,7 +177,7 @@ const Menu: React.FC = () => {
                   ].map((category, index) => (
                     <motion.div
                       key={index}
-                      className="backdrop-blur-md bg-white/10 rounded-2xl p-6"
+                      className="backdrop-blur-sm bg-white/10 rounded-2xl p-6"
                       whileHover={{ y: -4, transition: { duration: 0.2 } }}
                     >
                       <div className="flex items-center gap-3 mb-2">
@@ -198,7 +198,11 @@ const Menu: React.FC = () => {
 
       {/* Menu Section */}
       <section className="py-24 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_theme(colors.primary/0.05),_transparent_70%)]"></div>
+        <div 
+          className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_theme(colors.primary/0.05),_transparent_70%)]"
+          data-scroll
+          data-scroll-speed="-2"
+        ></div>
         <div className="container px-6 mx-auto relative">
           {/* Filters */}
           <div className="mb-16 space-y-8">
