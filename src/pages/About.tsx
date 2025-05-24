@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import {
   HeartIcon,
   SparklesIcon,
@@ -6,44 +7,115 @@ import {
   UserGroupIcon,
 } from '@heroicons/react/24/outline'
 
-const About: React.FC = () => {
+const About = () => {
+  const { scrollY } = useScroll();
+  const contentY = useTransform(scrollY, [0, 500], [0, -100]);
+
   return (
-    <div className="pt-16">
+    <div className="relative">
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center bg-gradient-to-br from-green-50 via-white to-primary/5">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute right-0 top-0 w-1/3 h-1/3 bg-primary/[0.02] rounded-bl-[100px] backdrop-blur-3xl"></div>
-          <div className="absolute left-0 bottom-0 w-1/2 h-1/2 bg-primary/[0.02] rounded-tr-[100px] backdrop-blur-3xl"></div>
-          <div className="absolute left-1/4 top-1/4 w-32 h-32 rounded-full bg-gradient-to-br from-primary/10 to-transparent blur-2xl"></div>
-          <div className="absolute right-1/4 bottom-1/4 w-40 h-40 rounded-full bg-gradient-to-bl from-primary/10 to-transparent blur-2xl"></div>
-        </div>
+      <section className="relative min-h-screen overflow-hidden">
+        {/* Fixed Background Image */}
+        <div 
+          className="absolute inset-0 w-full h-full"
+          data-scroll
+          data-scroll-speed="-4"
+          style={{
+            backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+          }}
+        />
 
-        <div className="container relative z-10 px-6 mx-auto">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-xl px-4 py-2 rounded-full shadow-md">
-              <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-              <span className="text-primary text-sm font-medium">Our Story</span>
+        {/* Fixed Dark Overlay */}
+        <div className="absolute inset-0 bg-black/70" />
+
+        {/* Content Container */}
+        <div 
+          className="relative z-10 min-h-screen flex items-center"
+          data-scroll
+          data-scroll-speed="2"
+        >
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl relative">
+              {/* Animated Accent Line */}
+              <motion.div 
+                className="w-24 h-1 bg-primary mb-0"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                style={{ originX: 0 }}
+              />
+              
+              {/* Main Content */}
+              <div className="space-y-8">
+                <h1 className="text-7xl font-bold text-white leading-tight">
+                  <motion.span 
+                    className="block"
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    Our Story
+                  </motion.span>
+                  <motion.span 
+                    className="block text-primary"
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                  >
+                    Our Passion
+                  </motion.span>
+                  <motion.span 
+                    className="block"
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                  >
+                    Our Journey
+                  </motion.span>
+                </h1>
+                
+                <motion.p 
+                  className="text-xl text-white/90 max-w-2xl leading-relaxed"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                >
+                  Discover the story behind our commitment to exceptional vegetarian cuisine and sustainable dining experiences.
+                </motion.p>
+
+                {/* Stats */}
+                <motion.div 
+                  className="grid grid-cols-3 gap-8 mt-16"
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+                >
+                  {[
+                    { value: "2008", label: "Founded", icon: <SparklesIcon className="w-5 h-5" /> },
+                    { value: "100%", label: "Plant Based", icon: <HeartIcon className="w-5 h-5" /> },
+                    { value: "Local", label: "Ingredients", icon: <GlobeAltIcon className="w-5 h-5" /> }
+                  ].map((stat, index) => (
+                    <motion.div
+                      key={index}
+                      className="backdrop-blur-md bg-white/10 rounded-2xl p-6"
+                      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="text-primary">
+                          {stat.icon}
+                        </div>
+                        <h3 className="text-3xl font-bold text-white">{stat.value}</h3>
+                      </div>
+                      <p className="text-sm text-white/80">{stat.label}</p>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
             </div>
-
-            <h1 className="text-5xl lg:text-7xl font-bold text-text leading-[1.2] tracking-tight">
-              Bringing 
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/70">
-                Turkish Flavors to You
-              </span>
-            </h1>
-            
-            <p className="text-xl text-text/70 leading-relaxed max-w-2xl mx-auto">
-              We're more than just a restaurant - we're a family bringing authentic Turkish cuisine with a modern twist to your neighborhood.
-            </p>
           </div>
-        </div>
-
-        {/* Decorative floating elements */}
-        <div className="absolute left-10 top-1/4">
-          <div className="w-20 h-20 rounded-full bg-primary/5 backdrop-blur-xl"></div>
-        </div>
-        <div className="absolute right-10 bottom-1/4">
-          <div className="w-16 h-16 rounded-full bg-primary/5 backdrop-blur-xl"></div>
         </div>
       </section>
 
@@ -82,8 +154,7 @@ const About: React.FC = () => {
       </section>
 
       {/* Values Section */}
-      <section className="py-24 bg-gradient-to-b from-white to-green-50/30 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_theme(colors.primary/0.05),_transparent_70%)]"></div>
+      <section className="py-24 bg-white relative overflow-hidden">
         <div className="container px-6 mx-auto relative">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-4xl font-bold mb-6">Our Values</h2>
@@ -117,9 +188,9 @@ const About: React.FC = () => {
             ].map((value, index) => (
               <div 
                 key={index}
-                className="bg-white p-8 rounded-2xl border border-gray-100 hover:shadow-xl transition-all group"
+                className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all"
               >
-                <div className="bg-gradient-to-br from-primary/10 to-primary/5 w-14 h-14 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                <div className="bg-primary/5 w-12 h-12 rounded-xl flex items-center justify-center text-primary mb-6">
                   {value.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-3">{value.title}</h3>
