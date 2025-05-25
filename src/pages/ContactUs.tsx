@@ -129,7 +129,7 @@ const ContactUs: React.FC = () => {
                         <div className="text-primary">
                           {stat.icon}
                         </div>
-                        <h3 className="text-3xl font-bold text-white">{stat.value}</h3>
+                        <h3 className="text-2xl md:text-3xl font-bold text-white">{stat.value}</h3>
                       </div>
                       <p className="text-sm text-white/80">{stat.label}</p>
                     </motion.div>

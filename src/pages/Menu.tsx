@@ -184,7 +184,7 @@ const Menu: React.FC = () => {
                         <div className="text-primary">
                           {category.icon}
                         </div>
-                        <h3 className="text-3xl font-bold text-white">{category.value}</h3>
+                        <h3 className="text-2xl md:text-3xl font-bold text-white">{category.value}</h3>
                       </div>
                       <p className="text-sm text-white/80">{category.label}</p>
                     </motion.div>

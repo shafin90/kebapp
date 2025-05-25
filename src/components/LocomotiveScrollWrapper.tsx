@@ -8,43 +8,58 @@ interface Props {
 }
 
 const LocomotiveScrollWrapper: React.FC<Props> = ({ children }) => {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const locomotiveScrollRef = useRef<LocomotiveScroll | null>(null);
   const location = useLocation();
 
   useEffect(() => {
-    if (!scrollRef.current) return;
+    if (!containerRef.current) return;
 
-    // Initialize Locomotive Scroll
+    // Check if device is mobile
+    const isMobile = window.innerWidth <= 768;
+
     locomotiveScrollRef.current = new LocomotiveScroll({
-      el: scrollRef.current,
-      smooth: true,
-      multiplier: 0.7,
-      lerp: 0.1,
-      class: 'is-revealed',
-      reloadOnContextChange: true,
-      touchMultiplier: 2.5,
-      smoothMobile: true,
+      el: containerRef.current,
+      smooth: !isMobile, // Disable smooth scrolling on mobile
+      multiplier: 1.5,
+      lerp: 0.08,
       smartphone: {
-        smooth: true,
-        multiplier: 0.7,
-        breakpoint: 767
+        smooth: false,
       },
       tablet: {
-        smooth: true,
-        multiplier: 0.7,
-        breakpoint: 1024
-      }
+        smooth: false,
+        breakpoint: 768,
+      },
     });
 
-    // Cleanup function
-    return () => {
+    // Update on window resize
+    const handleResize = () => {
+      const isMobileNow = window.innerWidth <= 768;
       if (locomotiveScrollRef.current) {
-        locomotiveScrollRef.current.destroy();
-        locomotiveScrollRef.current = null;
+        if (isMobileNow) {
+          locomotiveScrollRef.current.destroy();
+          locomotiveScrollRef.current = null;
+          if (containerRef.current) {
+            containerRef.current.style.transform = '';
+          }
+        } else if (!locomotiveScrollRef.current) {
+          locomotiveScrollRef.current = new LocomotiveScroll({
+            el: containerRef.current!,
+            smooth: true,
+            multiplier: 1.5,
+            lerp: 0.08,
+          });
+        }
       }
     };
-  }, []); // Initialize only once
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      locomotiveScrollRef.current?.destroy();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   // Handle route changes
   useEffect(() => {
@@ -59,20 +74,8 @@ const LocomotiveScrollWrapper: React.FC<Props> = ({ children }) => {
     }
   }, [location.pathname]);
 
-  // Update on window resize
-  useEffect(() => {
-    const handleResize = () => {
-      if (locomotiveScrollRef.current) {
-        locomotiveScrollRef.current.update();
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   return (
-    <div ref={scrollRef} data-scroll-container>
+    <div ref={containerRef} data-scroll-container>
       {children}
     </div>
   );
