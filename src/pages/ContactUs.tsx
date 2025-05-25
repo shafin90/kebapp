@@ -37,7 +37,7 @@ const ContactUs: React.FC = () => {
       {/* Hero Section */}
       <section className="relative min-h-screen overflow-hidden">
         {/* Fixed Background Image */}
-        <div 
+        <div
           className="absolute inset-0 w-full h-full"
           data-scroll
           data-scroll-speed="-4"
@@ -53,7 +53,7 @@ const ContactUs: React.FC = () => {
         <div className="absolute inset-0 bg-black/70" />
 
         {/* Content Container */}
-        <div 
+        <div
           className="relative z-10 min-h-screen flex items-center"
           data-scroll
           data-scroll-speed="2"
@@ -110,7 +110,7 @@ const ContactUs: React.FC = () => {
 
                 {/* Stats */}
                 <motion.div
-                  className="grid grid-cols-3 gap-8 mt-16"
+                  className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
@@ -135,6 +135,7 @@ const ContactUs: React.FC = () => {
                     </motion.div>
                   ))}
                 </motion.div>
+
               </div>
             </div>
           </div>
