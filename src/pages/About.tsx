@@ -18,8 +18,6 @@ const About = () => {
         {/* Fixed Background Image */}
         <div 
           className="absolute inset-0 w-full h-full"
-          data-scroll
-          data-scroll-speed="-4"
           style={{
             backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
             backgroundSize: 'cover',
@@ -32,11 +30,7 @@ const About = () => {
         <div className="absolute inset-0 bg-black/70" />
 
         {/* Content Container */}
-        <div 
-          className="relative z-10 min-h-screen flex items-center"
-          data-scroll
-          data-scroll-speed="2"
-        >
+        <div className="relative z-10 min-h-screen flex items-center">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl relative pt-24 md:pt-0">
               {/* Animated Accent Line */}
@@ -121,6 +115,17 @@ const About = () => {
 
       {/* Story Section */}
       <section className="py-24 bg-white relative overflow-hidden">
+        {/* Background Image with Parallax */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-5"
+          style={{
+            backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+          }}
+        />
+        
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto relative">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -144,8 +149,6 @@ const About = () => {
                   src="/IMG_0861-1536x1164.jpg" 
                   alt="Our restaurant story" 
                   className="w-full h-full object-cover"
-                  data-scroll
-                  data-scroll-speed="-2"
                 />
               </div>
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
@@ -157,6 +160,17 @@ const About = () => {
 
       {/* Values Section */}
       <section className="py-24 bg-white relative overflow-hidden">
+        {/* Background Image with Parallax */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-5"
+          style={{
+            backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+          }}
+        />
+        
         <div className="container px-6 mx-auto relative">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-4xl font-bold mb-6">Our Values</h2>
@@ -205,6 +219,17 @@ const About = () => {
 
       {/* Team Section */}
       <section className="py-24 bg-white relative overflow-hidden">
+        {/* Background Image with Parallax */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-5"
+          style={{
+            backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+          }}
+        />
+        
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto relative">
           <div className="text-center max-w-2xl mx-auto mb-16">

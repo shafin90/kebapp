@@ -9,27 +9,24 @@ import ContactUs from './pages/ContactUs'
 import Reservation from './pages/Reservation'
 import Footer from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
-import LocomotiveScrollWrapper from './components/LocomotiveScrollWrapper'
 
 const App: React.FC = () => {
   return (
     <Router>
       <ScrollProgress />
-      <LocomotiveScrollWrapper>
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/menu" element={<Menu />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<ContactUs />} />
-              <Route path="/reservation" element={<Reservation />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </LocomotiveScrollWrapper>
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/reservation" element={<Reservation />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </Router>
   )
 }

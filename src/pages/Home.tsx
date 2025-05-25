@@ -26,6 +26,7 @@ import {
 } from '../icons/SocialIcons'
 
 import AnimatedTimeline from '../components/AnimatedTimeline'
+import FoodCard from '../components/FoodCard'
 
 const Home = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = React.useState(0);
@@ -104,6 +105,31 @@ const Home = () => {
   // Categories for menu
   const categories = ['all', 'starters', 'main', 'desserts', 'drinks'];
 
+  const menuItems = [
+    {
+      name: "Rainbow Buddha Bowl",
+      description: "A vibrant bowl of quinoa, roasted sweet potatoes, fresh avocado, crispy chickpeas, and seasonal vegetables.",
+      price: "$18.99",
+      image: "/IMG_0861-1536x1164.jpg",
+      isPopular: true,
+      tags: ["Vegetarian", "Gluten-Free"]
+    },
+    {
+      name: "Mediterranean Platter",
+      description: "A delightful assortment of hummus, falafel, tabbouleh, and warm pita bread, showcasing Mediterranean flavors.",
+      price: "$21.99",
+      image: "/IMG_0861-1536x1164.jpg",
+      tags: ["Vegan", "Vegetarian"]
+    },
+    {
+      name: "Truffle Mushroom Risotto",
+      description: "Creamy Arborio rice cooked to perfection with wild mushrooms, finished with black truffle oil and fresh herbs.",
+      price: "$24.99",
+      image: "/IMG_0861-1536x1164.jpg",
+      tags: ["Vegetarian"]
+    }
+  ];
+
   return (
     <div className="relative">
       
@@ -113,8 +139,6 @@ const Home = () => {
         {/* Fixed Background Image */}
         <div 
           className="absolute inset-0 w-full h-full"
-          data-scroll
-          data-scroll-speed="-6"
           style={{
             backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
             backgroundSize: 'cover',
@@ -127,11 +151,7 @@ const Home = () => {
         <div className="absolute inset-0 bg-black/70" />
 
         {/* Content Container */}
-        <div 
-          className="relative z-10 min-h-screen flex items-center"
-          data-scroll
-          data-scroll-speed="4"
-        >
+        <div className="relative z-10 min-h-screen flex items-center">
           <div className="container mx-auto px-6 pt-24 md:pt-0">
             <div className="max-w-4xl relative">
               {/* Animated Accent Line */}
@@ -216,11 +236,20 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-32 bg-white relative overflow-hidden">
+      <section className="py-32 bg-transparent relative overflow-hidden">
+        {/* Background Image with Parallax */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-5"
+          style={{
+            backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+          }}
+        />
+        
         <div 
           className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_theme(colors.primary/0.05),_transparent_70%)]"
-          data-scroll
-          data-scroll-speed="-2"
         ></div>
         <div className="container px-6 mx-auto relative">
           <motion.div 
@@ -306,13 +335,31 @@ const Home = () => {
                   >
                     <div className="relative">
                       <div className="aspect-square rounded-2xl overflow-hidden">
-                        <img 
-                          src={feature.image}
-                          alt={feature.title}
-                          className="w-full h-full object-cover"
-                          data-scroll
-                          data-scroll-speed="-2"
-                        />
+                        <motion.div
+                          className="w-full h-full"
+                          style={{
+                            position: 'relative',
+                            height: '100%',
+                            width: '100%',
+                            overflow: 'hidden'
+                          }}
+                        >
+                          <motion.img 
+                            src={feature.image}
+                            alt={feature.title}
+                            className="w-full h-[120%] object-cover absolute top-0 left-0"
+                            style={{
+                              y: useTransform(
+                                useScroll({
+                                  target: "element",
+                                  offset: ["start end", "end start"]
+                                }).scrollYProgress,
+                                [0, 1],
+                                ["0%", "-20%"]
+                              )
+                            }}
+                          />
+                        </motion.div>
                       </div>
                       <div className="absolute inset-0 bg-black/40" />
                       
@@ -394,117 +441,33 @@ const Home = () => {
       </section>
 
       {/* Special Menu & Chef's Note Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-transparent">
         <div className="container px-6 mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-primary font-medium">Our Menu</span>
-            <h2 className="text-4xl font-bold text-text mt-2 mb-6">Special Menu</h2>
-            <p className="text-xl text-text/70">
-              Discover our chef's handcrafted selection, featuring seasonal ingredients and innovative recipes.
+            <span className="text-primary font-medium">Featured Menu</span>
+            <h2 className="text-4xl font-bold text-gray-900 mt-2 mb-4">Our Signature Dishes</h2>
+            <p className="text-gray-600 text-lg">
+              Experience our most loved dishes, crafted with fresh ingredients and served with care.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {[
-              {
-                name: "Rainbow Buddha Bowl",
-                description: "A vibrant bowl of quinoa, roasted sweet potatoes, fresh avocado, crispy chickpeas, and seasonal vegetables.",
-                price: "$18.99",
-                popular: true,
-                dietary: ["vegetarian", "gluten-free"],
-                image: "/IMG_0861-1536x1164.jpg"
-              },
-              {
-                name: "Truffle Mushroom Risotto",
-                description: "Creamy Arborio rice cooked to perfection with wild mushrooms, finished with black truffle oil and fresh herbs.",
-                price: "$24.99",
-                spicy: true,
-                dietary: ["vegetarian"],
-                image: "/IMG_0861-1536x1164.jpg"
-              },
-              {
-                name: "Mediterranean Platter",
-                description: "A delightful assortment of hummus, falafel, tabbouleh, and warm pita bread, showcasing Mediterranean flavors.",
-                price: "$21.99",
-                dietary: ["vegan", "vegetarian"],
-                image: "/IMG_0861-1536x1164.jpg"
-              }
-            ].map((item, index) => (
-              <div
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {menuItems.map((item, index) => (
+              <FoodCard
                 key={index}
-                className="group"
-              >
-                <div className="bg-white rounded-2xl overflow-hidden hover:shadow-xl hover:border-green-200 transition-all duration-300 border border-gray-100 h-full">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-xl px-4 py-2 rounded-full shadow-lg">
-                      <span className="text-primary font-medium">{item.price}</span>
-                    </div>
-                    {item.popular && (
-                      <div className="absolute top-4 left-4 bg-gradient-to-r from-primary to-primary/90 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 shadow-lg">
-                        <StarIcon className="w-4 h-4" />
-                        Popular
-                      </div>
-                    )}
-                    {item.spicy && (
-                      <div className="absolute bottom-4 left-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 shadow-lg">
-                        <FireIcon className="w-4 h-4" />
-                        Spicy
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6 space-y-4">
-                    <h3 className="text-xl font-bold">{item.name}</h3>
-                    <p className="text-text/70">{item.description}</p>
-                    
-                    {/* Dietary Tags */}
-                    {item.dietary && item.dietary.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {item.dietary.map((diet) => (
-                          <span 
-                            key={diet}
-                            className="text-xs px-2 py-1 rounded-full bg-primary/5 text-primary capitalize border border-primary/10"
-                          >
-                            {diet}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
+                {...item}
+              />
             ))}
           </div>
 
-          {/* Chef's Note */}
-          <div className="bg-white rounded-2xl p-12 max-w-4xl mx-auto text-center relative">
-            <SparklesIcon className="w-12 h-12 text-primary mx-auto mb-8" />
-            <h3 className="text-3xl font-bold mb-6">A Note from Our Chef</h3>
-            <p className="text-xl text-text/70 italic mb-12 leading-relaxed max-w-2xl mx-auto">
-              "Each dish in our menu is crafted with passion and precision, using the finest seasonal ingredients. We believe in creating not just meals, but memorable dining experiences that celebrate the beauty of vegetarian cuisine."
-            </p>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <ClockIcon className="w-8 h-8 text-primary mx-auto mb-3" />
-                <p className="font-medium text-lg">Fresh Daily</p>
-                <p className="text-text/70 text-sm">Made fresh every morning</p>
-              </div>
-              <div className="text-center">
-                <HeartIcon className="w-8 h-8 text-primary mx-auto mb-3" />
-                <p className="font-medium text-lg">Made with Love</p>
-                <p className="text-text/70 text-sm">Passion in every dish</p>
-              </div>
-              <div className="text-center">
-                <GlobeAltIcon className="w-8 h-8 text-primary mx-auto mb-3" />
-                <p className="font-medium text-lg">Locally Sourced</p>
-                <p className="text-text/70 text-sm">Supporting local farmers</p>
-              </div>
-            </div>
+          <div className="text-center mt-12">
+            <Link 
+              to="/menu"
+              className="inline-flex items-center gap-2 text-primary font-medium hover:text-green-700 transition-colors"
+            >
+              View Full Menu 
+              <ChevronRightIcon className="w-5 h-5" />
+            </Link>
           </div>
         </div>
       </section>
@@ -640,8 +603,6 @@ const Home = () => {
                   src="/IMG_0861-1536x1164.jpg"
                   alt="Featured Dish"
                   className="w-full h-full object-cover"
-                  data-scroll
-                  data-scroll-speed="-2"
                   initial={{ scale: 1.1 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
@@ -758,8 +719,6 @@ const Home = () => {
                       src={item.image}
                       alt={item.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      data-scroll
-                      data-scroll-speed="-1.5"
                     />
                     <motion.div 
                       className="absolute inset-0 p-4 flex flex-col justify-end transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
@@ -860,8 +819,6 @@ const Home = () => {
                   src="/IMG_0861-1536x1164.jpg"
                   alt="Event Catering"
                   className="w-full h-[500px] object-cover"
-                  data-scroll
-                  data-scroll-speed="-2"
                 />
                 <div className="absolute inset-0 bg-black/20"></div>
               </div>

@@ -9,84 +9,87 @@ import {
   GlobeAltIcon
 } from '@heroicons/react/24/outline'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import FoodCard from '../components/FoodCard'
 
 interface MenuItem {
   name: string
-  category: string
-  price: string
   description: string
-  dietary: string[]
+  price: string
   image: string
-  popular?: boolean
-  spicy?: boolean
+  category: string
+  isPopular?: boolean
+  tags: string[]
 }
 
 const Menu: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all')
-  const [selectedDietaryFilter, setSelectedDietaryFilter] = useState<string>('all')
+  const [activeCategory, setActiveCategory] = useState('all')
   const { scrollY } = useScroll();
   const contentY = useTransform(scrollY, [0, 500], [0, -100]);
 
-  const categories = ['all', 'kebap', 'chicken', 'falafel', 'salads', 'sides', 'drinks']
-  const dietaryFilters = ['all', 'vegan', 'vegetarian', 'gluten-free']
+  const categories = [
+    { id: 'all', name: 'All' },
+    { id: 'starters', name: 'Starters' },
+    { id: 'mains', name: 'Main Course' },
+    { id: 'desserts', name: 'Desserts' },
+    { id: 'drinks', name: 'Drinks' }
+  ];
 
   const menuItems: MenuItem[] = [
     {
-      name: "Classic Kebap",
-      category: "kebap",
+      name: "Rainbow Buddha Bowl",
+      description: "A vibrant bowl of quinoa, roasted sweet potatoes, fresh avocado, crispy chickpeas, and seasonal vegetables.",
+      price: "$18.99",
+      image: "/IMG_0861-1536x1164.jpg",
+      isPopular: true,
+      category: "mains",
+      tags: ["Vegetarian", "Gluten-Free"]
+    },
+    {
+      name: "Mediterranean Platter",
+      description: "A delightful assortment of hummus, falafel, tabbouleh, and warm pita bread.",
+      price: "$21.99",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "starters",
+      tags: ["Vegan", "Vegetarian"]
+    },
+    {
+      name: "Truffle Mushroom Risotto",
+      description: "Creamy Arborio rice with wild mushrooms, finished with black truffle oil and fresh herbs.",
+      price: "$24.99",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "mains",
+      tags: ["Vegetarian"]
+    },
+    {
+      name: "Green Goddess Salad",
+      description: "Fresh mixed greens, avocado, cucumber, and our signature green goddess dressing.",
+      price: "$16.99",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "starters",
+      tags: ["Vegan", "Gluten-Free"]
+    },
+    {
+      name: "Chocolate Lava Cake",
+      description: "Warm chocolate cake with a molten center, served with vanilla ice cream.",
       price: "$12.99",
-      description: "Fresh vegetables and herbs wrapped in warm flatbread",
-      dietary: ["vegetarian"],
       image: "/IMG_0861-1536x1164.jpg",
-      popular: true
-    },
-    {
-      name: "Spicy Chicken Kebap",
-      category: "chicken",
-      price: "€8.50",
-      description: "Grilled chicken, spicy sauce, fresh vegetables",
-      dietary: [],
-      image: "/IMG_0861-1536x1164.jpg",
-      spicy: true
-    },
-    {
-      name: "Falafel Wrap",
-      category: "falafel",
-      price: "€7.00",
-      description: "Crispy falafel, hummus, tahini sauce, fresh vegetables",
-      dietary: ["vegan", "vegetarian"],
-      image: "/IMG_0861-1536x1164.jpg"
-    },
-    {
-      name: "Mediterranean Salad",
-      category: "salads",
-      price: "€8.00",
-      description: "Mixed greens, feta cheese, olives, cherry tomatoes",
-      dietary: ["vegetarian", "gluten-free"],
-      image: "/IMG_0861-1536x1164.jpg"
-    },
-    {
-      name: "Sweet Potato Fries",
-      category: "sides",
-      price: "€4.50",
-      description: "Crispy sweet potato fries with special seasoning",
-      dietary: ["vegan", "vegetarian", "gluten-free"],
-      image: "/IMG_0861-1536x1164.jpg"
+      category: "desserts",
+      isPopular: true,
+      tags: ["Vegetarian"]
     },
     {
       name: "Fresh Mint Lemonade",
+      description: "Freshly squeezed lemons with mint leaves and natural sweetener.",
+      price: "$6.99",
+      image: "/IMG_0861-1536x1164.jpg",
       category: "drinks",
-      price: "€3.50",
-      description: "Homemade lemonade with fresh mint leaves",
-      dietary: ["vegan", "vegetarian", "gluten-free"],
-      image: "/IMG_0861-1536x1164.jpg"
+      tags: ["Vegan"]
     }
   ]
 
-  const filteredItems = menuItems.filter(item => 
-    (selectedCategory === 'all' || item.category === selectedCategory) &&
-    (selectedDietaryFilter === 'all' || item.dietary.includes(selectedDietaryFilter))
-  )
+  const filteredItems = activeCategory === 'all' 
+    ? menuItems 
+    : menuItems.filter(item => item.category === activeCategory);
 
   return (
     <div className="relative">
@@ -95,8 +98,6 @@ const Menu: React.FC = () => {
         {/* Fixed Background Image */}
         <div 
           className="absolute inset-0 w-full h-full"
-          data-scroll
-          data-scroll-speed="-6"
           style={{
             backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
             backgroundSize: 'cover',
@@ -109,11 +110,7 @@ const Menu: React.FC = () => {
         <div className="absolute inset-0 bg-black/70" />
 
         {/* Content Container */}
-        <div 
-          className="relative z-10 min-h-screen flex items-center"
-          data-scroll
-          data-scroll-speed="4"
-        >
+        <div className="relative z-10 min-h-screen flex items-center">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl relative pt-24 md:pt-0">
               {/* Animated Accent Line */}
@@ -197,142 +194,53 @@ const Menu: React.FC = () => {
       </section>
 
       {/* Menu Section */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_theme(colors.primary/0.05),_transparent_70%)]"
-          data-scroll
-          data-scroll-speed="-2"
-        ></div>
-        <div className="container px-6 mx-auto relative">
-          {/* Filters */}
-          <div className="mb-16 space-y-8">
-            {/* Category Filter */}
-            <div className="flex flex-wrap justify-center gap-4">
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          {/* Header */}
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Menu</h2>
+            <p className="text-gray-600 text-lg mb-8">
+              Discover our wide selection of plant-based dishes, crafted with fresh ingredients and love.
+            </p>
+
+            {/* Category Tabs */}
+            <div className="flex flex-wrap justify-center gap-3">
               {categories.map((category) => (
                 <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-6 py-3 rounded-full capitalize transition-all shadow-sm ${
-                    selectedCategory === category
-                      ? 'bg-gradient-to-r from-primary to-primary/90 text-white shadow-primary/20'
-                      : 'bg-white text-primary hover:bg-primary/5 border border-primary/10'
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+                    activeCategory === category.id
+                      ? 'bg-green-500 text-white'
+                      : 'bg-white text-gray-600 hover:bg-green-50 hover:text-green-600'
                   }`}
                 >
-                  {category}
-                </button>
-              ))}
-            </div>
-
-            {/* Dietary Filter */}
-            <div className="flex flex-wrap justify-center gap-4">
-              {dietaryFilters.map((filter) => (
-                <button
-                  key={filter}
-                  onClick={() => setSelectedDietaryFilter(filter)}
-                  className={`px-4 py-2 rounded-full capitalize text-sm transition-all border shadow-sm ${
-                    selectedDietaryFilter === filter
-                      ? 'border-primary bg-primary/5 text-primary shadow-primary/20'
-                      : 'border-gray-200 hover:border-primary/30 hover:bg-primary/5'
-                  }`}
-                >
-                  {filter}
+                  {category.name}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Menu Items Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Menu Grid */}
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            layout
+          >
             {filteredItems.map((item, index) => (
-              <div
-                key={index}
-                className="group"
+              <motion.div
+                key={item.name}
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
               >
-                <div className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 h-full">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-xl px-4 py-2 rounded-full shadow-lg">
-                      <span className="text-primary font-medium">{item.price}</span>
-                    </div>
-                    {item.popular && (
-                      <div className="absolute top-4 left-4 bg-gradient-to-r from-primary to-primary/90 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 shadow-lg">
-                        <StarIcon className="w-4 h-4" />
-                        Popular
-                      </div>
-                    )}
-                    {item.spicy && (
-                      <div className="absolute bottom-4 left-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 shadow-lg">
-                        <FireIcon className="w-4 h-4" />
-                        Spicy
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6 space-y-4">
-                    <h3 className="text-xl font-bold">{item.name}</h3>
-                    <p className="text-text/70">{item.description}</p>
-                    
-                    {/* Dietary Tags */}
-                    {item.dietary.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {item.dietary.map((diet) => (
-                          <span 
-                            key={diet}
-                            className="text-xs px-2 py-1 rounded-full bg-primary/5 text-primary capitalize border border-primary/10"
-                          >
-                            {diet}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
+                <FoodCard {...item} />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
-
-      {/* Features Section */}
-      {/* <section className="py-24 bg-gradient-to-b from-white to-green-50/30 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_theme(colors.primary/0.05),_transparent_70%)]"></div>
-        <div className="container px-6 mx-auto relative">
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <BeakerIcon className="w-6 h-6" />,
-                title: "Fresh Ingredients",
-                description: "We source the freshest ingredients daily from local suppliers"
-              },
-              {
-                icon: <HeartIcon className="w-6 h-6" />,
-                title: "Made with Love",
-                description: "Each dish is prepared with care and attention to detail"
-              },
-              {
-                icon: <GlobeAltIcon className="w-6 h-6" />,
-                title: "Sustainable Practices",
-                description: "We maintain eco-friendly practices in all our operations"
-              }
-            ].map((feature, index) => (
-              <div 
-                key={index}
-                className="bg-white p-8 rounded-2xl border border-gray-100 hover:shadow-xl transition-all group"
-              >
-                <div className="bg-gradient-to-br from-primary/10 to-primary/5 w-14 h-14 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                <p className="text-text/70">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
     </div>
   )
 }

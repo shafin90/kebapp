@@ -39,8 +39,6 @@ const ContactUs: React.FC = () => {
         {/* Fixed Background Image */}
         <div
           className="absolute inset-0 w-full h-full"
-          data-scroll
-          data-scroll-speed="-4"
           style={{
             backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
             backgroundSize: 'cover',
@@ -53,11 +51,7 @@ const ContactUs: React.FC = () => {
         <div className="absolute inset-0 bg-black/70" />
 
         {/* Content Container */}
-        <div
-          className="relative z-10 min-h-screen flex items-center"
-          data-scroll
-          data-scroll-speed="2"
-        >
+        <div className="relative z-10 min-h-screen flex items-center">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl relative pt-24 md:pt-0">
               {/* Animated Accent Line */}
