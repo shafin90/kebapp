@@ -38,10 +38,10 @@ const About = () => {
           data-scroll-speed="2"
         >
           <div className="container mx-auto px-6">
-            <div className="max-w-4xl relative">
+            <div className="max-w-4xl relative pt-24 md:pt-0">
               {/* Animated Accent Line */}
               <motion.div 
-                className="w-24 h-1 bg-primary mb-0"
+                className="w-24 h-1 bg-primary mb-6 md:mb-0"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 1, ease: "easeOut" }}
@@ -49,8 +49,8 @@ const About = () => {
               />
               
               {/* Main Content */}
-              <div className="space-y-8">
-                <h1 className="text-7xl font-bold text-white leading-tight">
+              <div className="space-y-6 md:space-y-8">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] md:leading-tight">
                   <motion.span 
                     className="block"
                     initial={{ x: -50, opacity: 0 }}
@@ -78,7 +78,7 @@ const About = () => {
                 </h1>
                 
                 <motion.p 
-                  className="text-xl text-white/90 max-w-2xl leading-relaxed"
+                  className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
