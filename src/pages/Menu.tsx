@@ -194,8 +194,20 @@ const Menu: React.FC = () => {
       </section>
 
       {/* Menu Section */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Background Image with Parallax */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-5"
+          style={{
+            backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+          }}
+        />
+        
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_theme(colors.primary/0.05),_transparent_70%)]"></div>
+        <div className="container mx-auto px-6 relative">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Menu</h2>

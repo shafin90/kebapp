@@ -236,7 +236,7 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-32 bg-transparent relative overflow-hidden">
+      <section className="py-32 bg-white relative overflow-hidden">
         {/* Background Image with Parallax */}
         <div 
           className="absolute inset-0 w-full h-full opacity-5"
@@ -248,9 +248,7 @@ const Home = () => {
           }}
         />
         
-        <div 
-          className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_theme(colors.primary/0.05),_transparent_70%)]"
-        ></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto relative">
           <motion.div 
             className="text-center max-w-3xl mx-auto mb-24"
@@ -441,8 +439,20 @@ const Home = () => {
       </section>
 
       {/* Special Menu & Chef's Note Section */}
-      <section className="py-24 bg-transparent">
-        <div className="container px-6 mx-auto">
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Background Image with Parallax */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-5"
+          style={{
+            backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+          }}
+        />
+        
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_theme(colors.primary/0.05),_transparent_70%)]"></div>
+        <div className="container px-6 mx-auto relative">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-primary font-medium">Featured Menu</span>
             <h2 className="text-4xl font-bold text-gray-900 mt-2 mb-4">Our Signature Dishes</h2>
@@ -473,8 +483,20 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-40 bg-white relative">
-        <div className="container px-6 mx-auto">
+      <section className="py-40 bg-white relative overflow-hidden">
+        {/* Background Image with Parallax */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-5"
+          style={{
+            backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+          }}
+        />
+        
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_theme(colors.primary/0.05),_transparent_70%)]"></div>
+        <div className="container px-6 mx-auto relative">
           <div className="text-center max-w-3xl mx-auto mb-24">
             <span className="text-primary font-medium">What People Say</span>
             <h2 className="text-4xl font-bold text-text mt-2 mb-6">Our Happy Customers</h2>
@@ -567,8 +589,20 @@ const Home = () => {
       </section>
 
       {/* Photo Gallery Section */}
-      <section className="py-32 bg-white relative">
-        <div className="container px-6 mx-auto">
+      <section className="py-32 bg-white relative overflow-hidden">
+        {/* Background Image with Parallax */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-5"
+          style={{
+            backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+          }}
+        />
+        
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_theme(colors.primary/0.05),_transparent_70%)]"></div>
+        <div className="container px-6 mx-auto relative">
           <motion.div 
             className="text-center max-w-3xl mx-auto mb-16"
             initial={{ opacity: 0, y: 20 }}
@@ -775,72 +809,64 @@ const Home = () => {
       </section>
 
       {/* Events & Catering Section */}
-      <section className="py-32 bg-white relative">
-        <div className="container px-6 mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <span className="text-primary font-medium">Special Events</span>
-              <h2 className="text-4xl font-bold text-text mt-2 mb-6">Events & Catering</h2>
-              <p className="text-xl text-text/70">
-                From intimate gatherings to grand celebrations, we offer customized catering solutions for all your special occasions.
-              </p>
+      <section className="py-32 bg-white relative overflow-hidden">
+        {/* Background Image with Parallax */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-5"
+          style={{
+            backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+          }}
+        />
+        
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_theme(colors.primary/0.05),_transparent_70%)]"></div>
+        <div className="container px-6 mx-auto relative">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-primary font-medium">Special Events</span>
+            <h2 className="text-4xl font-bold text-gray-900 mt-2 mb-4">Events & Catering</h2>
+            <p className="text-gray-600 text-lg">
+              From intimate gatherings to grand celebrations, we offer customized catering solutions for all your special occasions.
+            </p>
+          </div>
 
-              <div className="space-y-6">
-                {[
-                  {
-                    title: "Corporate Events",
-                    description: "Impress your clients and team with our professional catering service"
-                  },
-                  {
-                    title: "Private Parties",
-                    description: "Celebrate your special moments with customized menu options"
-                  },
-                  {
-                    title: "Wedding Receptions",
-                    description: "Make your big day memorable with our elegant catering solutions"
-                  }
-                ].map((service, index) => (
-                  <div key={index} className="flex items-start gap-4">
-                    <div className="bg-primary/5 p-3 rounded-xl hover:bg-green-100 transition-colors">
-                      <SparklesIcon className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-lg">{service.title}</p>
-                      <p className="text-text/70">{service.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {menuItems.map((item, index) => (
+              <FoodCard
+                key={index}
+                {...item}
+              />
+            ))}
+          </div>
 
-            <div className="relative">
-              <div className="relative overflow-hidden rounded-2xl">
-                <img
-                  src="/IMG_0861-1536x1164.jpg"
-                  alt="Event Catering"
-                  className="w-full h-[500px] object-cover"
-                />
-                <div className="absolute inset-0 bg-black/20"></div>
-              </div>
-              <div className="absolute -bottom-6 -right-6 bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:bg-green-50 transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="bg-primary/5 p-3 rounded-lg hover:bg-green-100 transition-colors">
-                    <CalendarDaysIcon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-primary font-medium">Book Early</p>
-                    <p className="font-medium text-text">Special Packages Available</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="text-center mt-12">
+            <Link 
+              to="/catering"
+              className="inline-flex items-center gap-2 text-primary font-medium hover:text-green-700 transition-colors"
+            >
+              View Full Menu 
+              <ChevronRightIcon className="w-5 h-5" />
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Food Preparation Timeline */}
-      <section className="py-32 bg-white relative">
-        <div className="container px-6 mx-auto">
+      <section className="py-32 bg-white relative overflow-hidden">
+        {/* Background Image with Parallax */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-5"
+          style={{
+            backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+          }}
+        />
+        
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_theme(colors.primary/0.05),_transparent_70%)]"></div>
+        <div className="container px-6 mx-auto relative">
           <motion.div 
             className="text-center max-w-3xl mx-auto mb-24"
             initial={{ opacity: 0, y: 20 }}
@@ -882,8 +908,20 @@ const Home = () => {
       </section>
 
       {/* Interactive Map */}
-      <section className="py-32 bg-white relative">
-        <div className="container px-6 mx-auto">
+      <section className="py-32 bg-white relative overflow-hidden">
+        {/* Background Image with Parallax */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-5"
+          style={{
+            backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+          }}
+        />
+        
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_theme(colors.primary/0.05),_transparent_70%)]"></div>
+        <div className="container px-6 mx-auto relative">
           <div className="text-center max-w-3xl mx-auto mb-24">
             <h2 className="text-4xl font-bold text-text mb-6">Find Us</h2>
             <p className="text-xl text-text/70">

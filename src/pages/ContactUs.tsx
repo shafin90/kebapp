@@ -138,6 +138,18 @@ const ContactUs: React.FC = () => {
 
       {/* Contact Form & Info Section */}
       <section className="py-24 bg-white relative overflow-hidden">
+        {/* Background Image with Parallax */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-5"
+          style={{
+            backgroundImage: 'url("/IMG_0861-1536x1164.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+          }}
+        />
+        
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto relative">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Form */}
