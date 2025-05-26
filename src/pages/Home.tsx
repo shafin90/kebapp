@@ -14,8 +14,10 @@ import {
   ChevronRightIcon,
   ShoppingBagIcon,
   StarIcon,
-  FireIcon
+  FireIcon,
+  XMarkIcon
 } from '@heroicons/react/24/outline'
+import { Dialog } from '@headlessui/react'
 
 // Add social media icons
 import {
@@ -28,10 +30,70 @@ import {
 import AnimatedTimeline from '../components/AnimatedTimeline'
 import FoodCard from '../components/FoodCard'
 
+interface GalleryImage {
+  id: number
+  src: string
+  title: string
+  category: string
+}
+
+const galleryImages: GalleryImage[] = [
+  {
+    id: 1,
+    src: "/IMG_0861-1536x1164.jpg",
+    title: "Mediterranean Bowl",
+    category: "main"
+  },
+  {
+    id: 2,
+    src: "/IMG_0861-1536x1164.jpg",
+    title: "Fresh Salad",
+    category: "appetizers"
+  },
+  {
+    id: 3,
+    src: "/IMG_0861-1536x1164.jpg",
+    title: "Chocolate Cake",
+    category: "desserts"
+  },
+  {
+    id: 4,
+    src: "/IMG_0861-1536x1164.jpg",
+    title: "Fresh Juice",
+    category: "drinks"
+  },
+  {
+    id: 5,
+    src: "/IMG_0861-1536x1164.jpg",
+    title: "Veggie Pasta",
+    category: "main"
+  },
+  {
+    id: 6,
+    src: "/IMG_0861-1536x1164.jpg",
+    title: "Bruschetta",
+    category: "appetizers"
+  },
+  {
+    id: 7,
+    src: "/IMG_0861-1536x1164.jpg",
+    title: "Tiramisu",
+    category: "desserts"
+  },
+  {
+    id: 8,
+    src: "/IMG_0861-1536x1164.jpg",
+    title: "Smoothie",
+    category: "drinks"
+  }
+]
+
 const Home = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = React.useState(0);
   const [isQuickOrderOpen, setIsQuickOrderOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [currentGalleryPage, setCurrentGalleryPage] = useState(0);
   
   const { scrollY } = useScroll();
   
@@ -129,6 +191,25 @@ const Home = () => {
       tags: ["Vegetarian"]
     }
   ];
+
+  const filteredImages = selectedCategory === 'all' 
+    ? galleryImages 
+    : galleryImages.filter(img => img.category === selectedCategory)
+
+  const currentImages = filteredImages.slice(currentGalleryPage * 4, (currentGalleryPage * 4) + 4)
+  const totalPages = Math.ceil(filteredImages.length / 4)
+
+  const nextGalleryPage = () => {
+    if (currentGalleryPage < totalPages - 1) {
+      setCurrentGalleryPage(prev => prev + 1)
+    }
+  }
+
+  const prevGalleryPage = () => {
+    if (currentGalleryPage > 0) {
+      setCurrentGalleryPage(prev => prev - 1)
+    }
+  }
 
   return (
     <div className="relative">
@@ -611,191 +692,116 @@ const Home = () => {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Featured Large Image */}
-            <motion.div 
-              className="relative group"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5]">
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                />
-                <motion.img
-                  src="/IMG_0861-1536x1164.jpg"
-                  alt="Featured Dish"
-                  className="w-full h-full object-cover"
-                  initial={{ scale: 1.1 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1.5, ease: "easeOut" }}
-                />
-
-                {/* Content Overlay */}
-                <motion.div 
-                  className="absolute inset-0 p-8 flex flex-col justify-end z-20"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <motion.span 
-                    className="bg-white/90 backdrop-blur-sm text-primary px-4 py-1 rounded-full text-sm font-medium inline-block w-fit"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    Featured Dish
-                  </motion.span>
-                  <motion.h3 
-                    className="text-white text-2xl font-bold mt-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                  >
-                    Signature Mediterranean Bowl
-                  </motion.h3>
-                  <motion.p 
-                    className="text-white/90 mt-2 max-w-md"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
-                  >
-                    A perfect blend of fresh vegetables, quinoa, and our house-made dressing
-                  </motion.p>
-                </motion.div>
-              </div>
-            </motion.div>
-
-            {/* Gallery Grid */}
-            <div className="space-y-8">
-              {/* Gallery Navigation */}
-              <motion.div 
-                className="flex items-center justify-between"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+          {/* Category Pills - Moved to top */}
+          <motion.div 
+            className="flex flex-wrap justify-center gap-3 mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+          >
+            {[
+              { id: "all", name: "All Photos" },
+              { id: "main", name: "Main Dishes" },
+              { id: "appetizers", name: "Appetizers" },
+              { id: "desserts", name: "Desserts" },
+              { id: "drinks", name: "Drinks" }
+            ].map((category) => (
+              <motion.button
+                key={category.id}
+                onClick={() => {
+                  setSelectedCategory(category.id)
+                  setCurrentGalleryPage(0)
+                }}
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+                  selectedCategory === category.id
+                    ? 'bg-primary text-white'
+                    : 'bg-black/5 hover:bg-green-100 hover:text-green-700 text-text'
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <h3 className="text-xl font-bold">Latest Captures</h3>
-                <div className="flex gap-2">
-                  <motion.button 
-                    className="p-2 rounded-full bg-black/5 hover:bg-black/10 transition-colors"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <ChevronRightIcon className="w-5 h-5 text-primary rotate-180" />
-                  </motion.button>
-                  <motion.button 
-                    className="p-2 rounded-full bg-black/5 hover:bg-black/10 transition-colors"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <ChevronRightIcon className="w-5 h-5 text-primary" />
-                  </motion.button>
-                </div>
-              </motion.div>
+                {category.name}
+              </motion.button>
+            ))}
+          </motion.div>
 
-              {/* Gallery Grid */}
+          <div className="grid lg:grid-cols-12 gap-3 md:gap-4 lg:gap-6 items-start">
+            {/* Left Column - Video */}
+            <div className="lg:col-span-6 h-full w-full">
+              <div className="relative h-[400px] md:h-[500px] lg:h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                <iframe
+                  src="https://www.youtube.com/embed/UMqMhWc6dEs?autoplay=1&mute=1&controls=0&loop=1&playlist=UMqMhWc6dEs&playsinline=1&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&enablejsapi=1"
+                  title="Restaurant Ambiance Video"
+                  className="absolute w-full h-full object-cover"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{ border: 'none', pointerEvents: 'none' }}
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            {/* Right Column - Gallery Grid */}
+            <div className="lg:col-span-6 h-full">
               <motion.div 
-                className="grid grid-cols-2 gap-4"
+                className="grid grid-cols-2 gap-2 sm:gap-3 h-full"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, staggerChildren: 0.1 }}
               >
-                {[
-                  {
-                    image: "/IMG_0861-1536x1164.jpg",
-                    title: "Fresh Salads",
-                    category: "Starters"
-                  },
-                  {
-                    image: "/IMG_0861-1536x1164.jpg",
-                    title: "Dessert Special",
-                    category: "Desserts"
-                  },
-                  {
-                    image: "/IMG_0861-1536x1164.jpg",
-                    title: "Main Course",
-                    category: "Main Dishes"
-                  },
-                  {
-                    image: "/IMG_0861-1536x1164.jpg",
-                    title: "Beverages",
-                    category: "Drinks"
-                  }
-                ].map((item, index) => (
+                {currentImages.map((item, index) => (
                   <motion.div
-                    key={index}
-                    className="group relative rounded-2xl overflow-hidden aspect-square cursor-pointer"
+                    key={item.id}
+                    className="group relative rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden aspect-square cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ scale: 1.02 }}
+                    onClick={() => setSelectedImage(item)}
                   >
                     <motion.div 
-                      className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     />
-                    <motion.img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
+                    <motion.div
+                      className="relative w-full h-full overflow-hidden"
+                    >
+                      <motion.div
+                        className="absolute inset-0 h-[150%] w-full"
+                        animate={{
+                          y: ["0%", "-20%"]
+                        }}
+                        transition={{
+                          repeat: Infinity,
+                          repeatType: "reverse",
+                          duration: 20,
+                          ease: "linear"
+                        }}
+                      >
+                        <img
+                          src={item.src}
+                          alt={item.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </motion.div>
+                    </motion.div>
                     <motion.div 
-                      className="absolute inset-0 p-4 flex flex-col justify-end transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                      className="absolute inset-0 p-3 sm:p-4 md:p-6 flex flex-col justify-end transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
                     >
                       <motion.div 
-                        className="bg-white/95 backdrop-blur-sm rounded-xl p-3"
+                        className="bg-white/95 backdrop-blur-sm rounded-lg sm:rounded-xl md:rounded-2xl p-2 sm:p-3 md:p-4"
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
                       >
-                        <p className="text-xs text-primary font-medium">{item.category}</p>
-                        <p className="text-gray-900 font-bold">{item.title}</p>
+                        <p className="text-xs sm:text-sm text-primary font-medium capitalize mb-0.5 sm:mb-1">{item.category}</p>
+                        <p className="text-sm sm:text-base md:text-lg text-gray-900 font-bold">{item.title}</p>
                       </motion.div>
                     </motion.div>
                   </motion.div>
-                ))}
-              </motion.div>
-
-              {/* Category Pills */}
-              <motion.div 
-                className="mt-16 flex flex-wrap justify-center gap-3"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-              >
-                {[
-                  "All Photos",
-                  "Main Dishes",
-                  "Appetizers",
-                  "Desserts",
-                  "Drinks",
-                  "Restaurant",
-                  "Events"
-                ].map((category, index) => (
-                  <motion.button
-                    key={index}
-                    className="px-6 py-2 rounded-full bg-black/5 hover:bg-green-100 hover:text-green-700 text-text text-sm font-medium transition-colors"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    {category}
-                  </motion.button>
                 ))}
               </motion.div>
             </div>
@@ -937,6 +943,95 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Fullscreen Image Modal */}
+      <Dialog 
+        open={selectedImage !== null} 
+        onClose={() => setSelectedImage(null)}
+        className="relative z-50"
+      >
+        <div className="fixed inset-0 bg-black/90" aria-hidden="true" />
+        
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <Dialog.Panel className="relative max-w-5xl w-full">
+            {/* Close button */}
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute -top-12 right-0 text-white/80 hover:text-white transition-colors"
+            >
+              <XMarkIcon className="w-8 h-8" />
+            </button>
+            
+            {selectedImage && (
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden group">
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.title}
+                  className="w-full h-full object-cover"
+                />
+                
+                {/* Navigation Buttons */}
+                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between items-center px-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const currentIndex = currentImages.findIndex(img => img.id === selectedImage.id);
+                      const prevImage = currentImages[currentIndex - 1];
+                      if (prevImage) {
+                        setSelectedImage(prevImage);
+                      } else if (currentGalleryPage > 0) {
+                        setCurrentGalleryPage(prev => prev - 1);
+                        setSelectedImage(currentImages[currentImages.length - 1]);
+                      }
+                    }}
+                    className="p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={currentImages.findIndex(img => img.id === selectedImage.id) === 0 && currentGalleryPage === 0}
+                  >
+                    <ChevronRightIcon className="w-6 h-6 text-white rotate-180" />
+                  </button>
+                  
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const currentIndex = currentImages.findIndex(img => img.id === selectedImage.id);
+                      const nextImage = currentImages[currentIndex + 1];
+                      if (nextImage) {
+                        setSelectedImage(nextImage);
+                      } else if (currentGalleryPage < totalPages - 1) {
+                        setCurrentGalleryPage(prev => prev + 1);
+                        setSelectedImage(currentImages[0]);
+                      }
+                    }}
+                    className="p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={currentImages.findIndex(img => img.id === selectedImage.id) === currentImages.length - 1 && currentGalleryPage === totalPages - 1}
+                  >
+                    <ChevronRightIcon className="w-6 h-6 text-white" />
+                  </button>
+                </div>
+
+                {/* Image Info Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                  <h3 className="text-white text-xl font-bold">{selectedImage.title}</h3>
+                  <p className="text-white/80 capitalize">{selectedImage.category}</p>
+                </div>
+
+                {/* Current Image Indicator */}
+                <div className="absolute top-6 left-0 right-0 flex justify-center gap-1.5">
+                  {currentImages.map((img, idx) => (
+                    <div
+                      key={img.id}
+                      className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                        img.id === selectedImage.id
+                          ? 'bg-white scale-125'
+                          : 'bg-white/40'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </Dialog.Panel>
+        </div>
+      </Dialog>
 
     </div>
   )
