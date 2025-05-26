@@ -19,7 +19,7 @@ const Footer = () => {
   return (
     <footer className="relative">
       {/* Main Footer */}
-      <div className="bg-gradient-to-b from-primary/5 to-white border-t border-primary/10 py-16 relative">
+      <div className="bg-[#e5f5ee] from-primary/5 to-white border-t border-primary/10 py-16 relative">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,_theme(colors.primary/0.1),_transparent_70%)]"></div>
         <div className="container relative">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
@@ -63,7 +63,7 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div className="lg:col-span-2 space-y-6">
-              <h4 className="text-lg font-bold">Navigation</h4>
+              <h4 className="text-lg text-[#22c55e] font-bold">Navigation</h4>
               <div className="space-y-4">
                 <FooterLink to="/">Home</FooterLink>
                 <FooterLink to="/menu">Menu</FooterLink>
@@ -75,7 +75,7 @@ const Footer = () => {
 
             {/* Contact Info */}
             <div className="lg:col-span-3 space-y-6">
-              <h4 className="text-lg font-bold">Visit Us</h4>
+              <h4 className="text-lg text-[#22c55e] font-bold">Visit Us</h4>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3 text-text/70 hover:text-primary transition-colors group">
                   <div className="bg-primary/5 p-1.5 rounded-lg group-hover:bg-primary/10 transition-colors mt-1">
@@ -110,7 +110,7 @@ const Footer = () => {
 
             {/* Opening Hours */}
             <div className="lg:col-span-3 space-y-6">
-              <h4 className="text-lg font-bold">Opening Hours</h4>
+              <h4 className="text-lg text-[#22c55e] font-bold">Opening Hours</h4>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-text/70 group">
                   <div className="bg-primary/5 p-1.5 rounded-lg group-hover:bg-primary/10 transition-colors">

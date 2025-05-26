@@ -333,49 +333,44 @@ const Home = () => {
                   >
                     <div className="relative">
                       <div className="aspect-square rounded-2xl overflow-hidden">
-                        <motion.div
-                          className="w-full h-full"
-                          style={{
-                            position: 'relative',
-                            height: '100%',
-                            width: '100%',
-                            overflow: 'hidden'
-                          }}
-                        >
-                          <motion.img 
-                            src={feature.image}
-                            alt={feature.title}
-                            className="w-full h-[120%] object-cover absolute top-0 left-0"
-                            style={{
-                              y: useTransform(
-                                useScroll({
-                                  target: "element",
-                                  offset: ["start end", "end start"]
-                                }).scrollYProgress,
-                                [0, 1],
-                                ["0%", "-20%"]
-                              )
+                        <div className="relative w-full h-full overflow-hidden">
+                          <motion.div
+                            className="absolute inset-0 h-[140%] w-full"
+                            animate={{
+                              y: ["0%", "-20%"]
                             }}
-                          />
-                        </motion.div>
-                      </div>
-                      <div className="absolute inset-0 bg-black/40" />
-                      
-                      {/* Stats Overlay */}
-                      <div className="absolute bottom-0 left-0 right-0 p-8">
-                        <div className="flex gap-4">
-                          {feature.stats.map((stat, idx) => (
-                            <motion.div
-                              key={idx}
-                              className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full"
-                              initial={{ opacity: 0, y: 20 }}
-                              whileInView={{ opacity: 1, y: 0 }}
-                              viewport={{ once: true }}
-                              transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
-                            >
-                              <span className="text-black text-sm font-medium">{stat}</span>
-                            </motion.div>
-                          ))}
+                            transition={{
+                              repeat: Infinity,
+                              repeatType: "reverse",
+                              duration: 20,
+                              ease: "linear"
+                            }}
+                          >
+                            <img 
+                              src={feature.image}
+                              alt={feature.title}
+                              className="w-full h-full object-cover"
+                            />
+                          </motion.div>
+                          <div className="absolute inset-0 bg-black/40" />
+                          
+                          {/* Stats Overlay */}
+                          <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
+                            <div className="flex gap-4">
+                              {feature.stats.map((stat, idx) => (
+                                <motion.div
+                                  key={idx}
+                                  className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full"
+                                  initial={{ opacity: 0, y: 20 }}
+                                  whileInView={{ opacity: 1, y: 0 }}
+                                  viewport={{ once: true }}
+                                  transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
+                                >
+                                  <span className="text-black text-sm font-medium">{stat}</span>
+                                </motion.div>
+                              ))}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
