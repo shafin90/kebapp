@@ -729,16 +729,37 @@ const Home = () => {
           <div className="grid lg:grid-cols-12 gap-3 md:gap-4 lg:gap-6 items-start">
             {/* Left Column - Video */}
             <div className="lg:col-span-6 h-full w-full">
-              <div className="relative h-[400px] md:h-[500px] lg:h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                <iframe
-                  src="https://www.youtube.com/embed/UMqMhWc6dEs?autoplay=1&mute=1&controls=0&loop=1&playlist=UMqMhWc6dEs&playsinline=1&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&enablejsapi=1"
-                  title="Restaurant Ambiance Video"
-                  className="absolute w-full h-full object-cover"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  style={{ border: 'none', pointerEvents: 'none' }}
-                  loading="lazy"
-                />
+              <div 
+                className="relative h-[400px] md:h-[500px] lg:h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
+                style={{
+                  contain: 'content',
+                  willChange: 'transform',
+                  perspective: '1000px',
+                  backfaceVisibility: 'hidden'
+                }}
+              >
+                <div 
+                  className="absolute inset-0 w-full h-full"
+                  style={{
+                    transform: 'translate3d(0, 0, 0)',
+                    backfaceVisibility: 'hidden'
+                  }}
+                >
+                  <iframe
+                    src="https://www.youtube.com/embed/UMqMhWc6dEs?autoplay=1&mute=1&controls=0&loop=1&playlist=UMqMhWc6dEs&playsinline=1&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&enablejsapi=1&version=3&allowsInlineMediaPlayback=true"
+                    title="Restaurant Ambiance Video"
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ 
+                      border: 'none', 
+                      pointerEvents: 'none',
+                      transform: 'translate3d(0, 0, 0)',
+                      backfaceVisibility: 'hidden'
+                    }}
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
 
