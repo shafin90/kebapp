@@ -69,7 +69,7 @@ const Footer = () => {
                 <FooterLink to="/menu">Menu</FooterLink>
                 <FooterLink to="/about">About</FooterLink>
                 <FooterLink to="/contact">Contact</FooterLink>
-                <FooterLink to="/reservation" className="text-primary hover:text-primary/80">Reserve a Table</FooterLink>
+                
               </div>
             </div>
 
