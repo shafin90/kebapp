@@ -43,7 +43,8 @@ const Menu: React.FC = () => {
     { id: 'veggie', name: 'Veggie Spezialitäten' },
     { id: 'beilagen', name: 'Beilagen' },
     { id: 'desserts', name: 'Desserts' },
-    { id: 'drinks', name: 'Alkoholfreie Getränke' }
+    { id: 'drinks', name: 'Alkoholfreie Getränke' },
+    { id: 'kids', name: 'Kinder Menüs' }
   ];
 
   const menuItems: MenuItem[] = [
@@ -64,7 +65,7 @@ const Menu: React.FC = () => {
       image: "/IMG_0861-1536x1164.jpg",
       category: "bowls",
       isPopular: true,
-      tags: ["Vegetarisch"]
+      tags: []
     },
 
     // Kebab und Dürüm
@@ -92,7 +93,7 @@ const Menu: React.FC = () => {
       price: "9,90 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "kebab-durum",
-      tags: ["Vegetarisch"]
+      tags: []
     },
     {
       name: "Gemüse Dürüm",
@@ -100,7 +101,7 @@ const Menu: React.FC = () => {
       price: "9,90 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "kebab-durum",
-      tags: ["Vegetarisch"]
+      tags: []
     },
 
     // Grillspezialitäten
@@ -129,7 +130,7 @@ const Menu: React.FC = () => {
       image: "/IMG_0861-1536x1164.jpg",
       category: "veggie",
       isPopular: true,
-      tags: ["Vegan"]
+      tags: []
     },
     {
       name: "Hausgemachte Falafel Dürüm",
@@ -137,7 +138,7 @@ const Menu: React.FC = () => {
       price: "9,90 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "veggie",
-      tags: ["Vegan"]
+      tags: []
     },
     {
       name: "Halloumi Kebab",
@@ -145,7 +146,7 @@ const Menu: React.FC = () => {
       price: "9,90 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "veggie",
-      tags: ["Vegetarisch"]
+      tags: []
     },
     {
       name: "Halloumi Dürüm",
@@ -153,7 +154,7 @@ const Menu: React.FC = () => {
       price: "9,90 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "veggie",
-      tags: ["Vegetarisch"]
+      tags: []
     },
 
     // Beilagen
@@ -163,7 +164,7 @@ const Menu: React.FC = () => {
       price: "4,00 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "beilagen",
-      tags: ["Vegan"]
+      tags: []
     },
     {
       name: "Hausgemachte Pommes frites",
@@ -171,7 +172,7 @@ const Menu: React.FC = () => {
       price: "4,00 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "beilagen",
-      tags: ["Vegan"]
+      tags: []
     },
     {
       name: "Hausgemachte Falafel (1 Stück)",
@@ -179,7 +180,7 @@ const Menu: React.FC = () => {
       price: "2,50 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "beilagen",
-      tags: ["Vegan"]
+      tags: []
     },
 
     // Desserts
@@ -189,7 +190,7 @@ const Menu: React.FC = () => {
       price: "2,00 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "desserts",
-      tags: ["Vegetarisch"]
+      tags: []
     },
     {
       name: "Churros (5 Stück)",
@@ -197,7 +198,7 @@ const Menu: React.FC = () => {
       price: "4,50 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "desserts",
-      tags: ["Vegetarisch"]
+      tags: []
     },
     {
       name: "Churros mit Obst, Zimt und Zucker (5 Stück)",
@@ -205,7 +206,7 @@ const Menu: React.FC = () => {
       price: "6,50 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "desserts",
-      tags: ["Vegetarisch"]
+      tags: []
     },
     {
       name: "Churros mit Schokoladensauce (5 Stück)",
@@ -213,7 +214,7 @@ const Menu: React.FC = () => {
       price: "7,50 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "desserts",
-      tags: ["Vegetarisch"]
+      tags: []
     },
 
     // Getränke
@@ -223,7 +224,7 @@ const Menu: React.FC = () => {
       price: "2,92 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "drinks",
-      tags: ["Vegan"]
+      tags: []
     },
     {
       name: "fritz-kola® superzero",
@@ -231,7 +232,7 @@ const Menu: React.FC = () => {
       price: "2,92 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "drinks",
-      tags: ["Vegan"]
+      tags: []
     },
     {
       name: "fritz-limo® orange",
@@ -239,7 +240,7 @@ const Menu: React.FC = () => {
       price: "2,92 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "drinks",
-      tags: ["Vegan"]
+      tags: []
     },
     {
       name: "fritz-limo® zitrone",
@@ -247,7 +248,7 @@ const Menu: React.FC = () => {
       price: "2,92 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "drinks",
-      tags: ["Vegan"]
+      tags: []
     },
     {
       name: "fritz-limo® apfel-kirsch-holunder",
@@ -255,7 +256,7 @@ const Menu: React.FC = () => {
       price: "2,92 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "drinks",
-      tags: ["Vegan"]
+      tags: []
     },
     {
       name: "fritz-limo® honigmelone",
@@ -263,7 +264,7 @@ const Menu: React.FC = () => {
       price: "2,92 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "drinks",
-      tags: ["Vegan"]
+      tags: []
     },
     {
       name: "fritz-spritz® bio-apfelschorle",
@@ -271,7 +272,7 @@ const Menu: React.FC = () => {
       price: "2,92 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "drinks",
-      tags: ["Vegan"]
+      tags: []
     },
     {
       name: "MISCHMASCH® fritz-kola® mit orange",
@@ -279,7 +280,7 @@ const Menu: React.FC = () => {
       price: "2,92 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "drinks",
-      tags: ["Vegan"]
+      tags: []
     },
     {
       name: "Anjola® bio ananas-limette",
@@ -287,7 +288,7 @@ const Menu: React.FC = () => {
       price: "2,92 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "drinks",
-      tags: ["Vegan"]
+      tags: []
     },
     {
       name: "Gazi Ayran",
@@ -295,7 +296,7 @@ const Menu: React.FC = () => {
       price: "2,50 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "drinks",
-      tags: ["Vegetarisch"]
+      tags: []
     },
     {
       name: "Salgam Rübensaft",
@@ -303,7 +304,18 @@ const Menu: React.FC = () => {
       price: "4,00 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "drinks",
-      tags: ["Vegan"]
+      tags: []
+    },
+
+    // Kinder Menüs
+    {
+      name: "Kinder Menü",
+      description: "Mit hausgemacher Köfte, Pommes frites, Capri-Sun 0,2l nach Wahl und Chupa-Chups",
+      price: "6,50 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "kids",
+      isPopular: true,
+      tags: []
     }
   ];
 

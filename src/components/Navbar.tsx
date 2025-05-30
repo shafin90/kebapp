@@ -13,9 +13,19 @@ const Navbar = () => {
     }
 
     window.addEventListener('scroll', handleScroll)
-    handleScroll() // Check initial scroll position
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    handleScroll()
+
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMenuOpen])
 
   return (
     <nav 
@@ -41,14 +51,17 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`md:hidden p-2 transition-colors duration-500 ${
-              isScrolled || isMenuOpen ? 'text-text' : 'text-white'
+            className={`md:hidden rounded-full p-2.5 transition-all duration-300 ${
+              isScrolled || isMenuOpen 
+                ? 'bg-primary/10 text-primary hover:bg-primary/20' 
+                : 'bg-white/10 text-white hover:bg-white/20'
             }`}
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? (
-              <XMarkIcon className="w-6 h-6" />
+              <XMarkIcon className="w-5 h-5" />
             ) : (
-              <Bars3Icon className="w-6 h-6" />
+              <Bars3Icon className="w-5 h-5" />
             )}
           </button>
 
@@ -86,13 +99,21 @@ const Navbar = () => {
         </div>
 
         {/* Mobile menu */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-4 bg-white/95 backdrop-blur-md rounded-lg p-4 border border-gray-100 shadow-lg">
-            <div className="flex flex-col space-y-4">
+        <div 
+          className={`md:hidden fixed inset-x-0 top-[80px] bg-white transition-all duration-300 ease-in-out ${
+            isMenuOpen 
+              ? 'opacity-100 translate-y-0 shadow-lg' 
+              : 'opacity-0 -translate-y-4 pointer-events-none'
+          }`}
+        >
+          <div className="container mx-auto px-6 py-4">
+            <div className="space-y-0.5">
               <NavLink 
                 to="/" 
                 isActive={location.pathname === "/"} 
                 isScrolled={true}
+                className="block py-3.5 text-base font-medium hover:bg-gray-50 rounded-lg px-4"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Startseite
               </NavLink>
@@ -100,6 +121,8 @@ const Navbar = () => {
                 to="/menu" 
                 isActive={location.pathname === "/menu"} 
                 isScrolled={true}
+                className="block py-3.5 text-base font-medium hover:bg-gray-50 rounded-lg px-4"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Speisekarte
               </NavLink>
@@ -107,6 +130,8 @@ const Navbar = () => {
                 to="/about" 
                 isActive={location.pathname === "/about"} 
                 isScrolled={true}
+                className="block py-3.5 text-base font-medium hover:bg-gray-50 rounded-lg px-4"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Über uns
               </NavLink>
@@ -114,12 +139,14 @@ const Navbar = () => {
                 to="/contact" 
                 isActive={location.pathname === "/contact"} 
                 isScrolled={true}
+                className="block py-3.5 text-base font-medium hover:bg-gray-50 rounded-lg px-4"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Kontakt
               </NavLink>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   )
@@ -130,13 +157,15 @@ const NavLink = ({
   children, 
   isActive, 
   isScrolled,
-  className = "" 
+  className = "",
+  onClick
 }: {
   to: string
   children: React.ReactNode
   isActive: boolean
   isScrolled: boolean
   className?: string
+  onClick?: () => void
 }) => (
   <Link
     to={to}
@@ -145,6 +174,7 @@ const NavLink = ({
         ? isScrolled ? "text-primary font-medium" : "text-white font-medium"
         : isScrolled ? "text-text hover:text-primary" : "text-white/90 hover:text-white")
     }`}
+    onClick={onClick}
   >
     {children}
   </Link>
