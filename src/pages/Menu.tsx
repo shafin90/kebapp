@@ -27,6 +27,7 @@ const Menu: React.FC = () => {
   const categories = [
     { id: 'all', name: 'Alle' },
     { id: 'popular', name: 'Beliebte Gerichte' },
+    { id: 'bowls', name: 'Bowls' },
     { id: 'kebab-durum', name: 'Kebab und Dürüm' },
     { id: 'grill', name: 'Grillspezialitäten' },
     { id: 'veggie', name: 'Veggie Spezialitäten' },
@@ -36,6 +37,26 @@ const Menu: React.FC = () => {
   ];
 
   const menuItems: MenuItem[] = [
+    // Bowls
+    {
+      name: "Sebastians Chicken Gemüse Bowl",
+      description: "Alle Gerichte werden mit 2 Saucen nach Wahl zubereitet.",
+      price: "15,90 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "bowls",
+      isPopular: true,
+      tags: []
+    },
+    {
+      name: "Sebastians Gemüse Bowl",
+      description: "Alle Gerichte werden mit 2 Saucen nach Wahl zubereitet.",
+      price: "10,90 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "bowls",
+      isPopular: true,
+      tags: ["Vegetarisch"]
+    },
+
     // Kebab und Dürüm
     {
       name: "Chicken Gemüse Kebab",
