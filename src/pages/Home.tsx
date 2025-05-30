@@ -169,26 +169,41 @@ const Home = () => {
 
   const menuItems = [
     {
-      name: "Rainbow Buddha Bowl",
-      description: "Eine lebendige Schüssel mit Quinoa, gerösteten Süßkartoffeln, frischer Avocado, knusprigen Kichererbsen und Saisongemüse.",
-      price: "18,99 €",
+      name: "Chicken Gemüse Kebab",
+      description: "Saftiges Hähnchenfleisch mit frischem Gemüse, serviert im hausgemachten Fladenbrot",
+      price: "9,90 €",
       image: "/IMG_0861-1536x1164.jpg",
       isPopular: true,
-      tags: ["Vegetarisch", "Glutenfrei"]
+      tags: ["Kebab und Dürüm"]
     },
     {
-      name: "Mediterrane Platte",
-      description: "Eine köstliche Auswahl an Hummus, Falafel, Taboulé und warmem Pitabrot, die mediterrane Aromen präsentiert.",
-      price: "21,99 €",
+      name: "Chicken Gemüse Dürüm",
+      description: "Zartes Hähnchenfleisch mit knackigem Gemüse, eingerollt in hauchdünnem Fladenbrot",
+      price: "9,90 €",
       image: "/IMG_0861-1536x1164.jpg",
-      tags: ["Vegan", "Vegetarisch"]
+      isPopular: true,
+      tags: ["Kebab und Dürüm"]
     },
     {
-      name: "Trüffel-Pilz-Risotto",
-      description: "Cremiger Arborio-Reis, perfekt gekocht mit Waldpilzen, verfeinert mit schwarzem Trüffelöl und frischen Kräutern.",
-      price: "24,99 €",
+      name: "Hausgemachte Pommes Frites",
+      description: "Knusprig goldene Pommes aus frischen Kartoffeln",
+      price: "4,00 €",
       image: "/IMG_0861-1536x1164.jpg",
-      tags: ["Vegetarisch"]
+      tags: ["Beilagen"]
+    },
+    {
+      name: "Sebastians Köfte Ekmek",
+      description: "Würzige Hackfleischröllchen im knusprigen Fladenbrot serviert",
+      price: "9,90 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      tags: ["Grillspezialitäten"]
+    },
+    {
+      name: "Sebastians Köfte Teller",
+      description: "Saftige Hackfleischröllchen mit Beilagen nach Wahl",
+      price: "15,90 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      tags: ["Grillspezialitäten"]
     }
   ];
 
@@ -362,7 +377,6 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
           >
             <motion.span
               className="text-primary font-medium inline-block"
@@ -881,24 +895,56 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {menuItems.map((item, index) => (
-              <FoodCard
-                key={index}
-                {...item}
-              />
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Private Feiern",
+                description: "Geburtstage, Jubiläen oder Familienfeste - wir machen Ihre private Feier zu einem kulinarischen Erlebnis.",
+                capacity: "10-50 Personen",
+                icon: <UserGroupIcon className="w-6 h-6" />
+              },
+              {
+                title: "Firmenkunden",
+                description: "Meetings, Konferenzen oder Firmenfeiern - professionelles Catering für Ihren geschäftlichen Erfolg.",
+                capacity: "20-200 Personen",
+                icon: <GlobeAltIcon className="w-6 h-6" />
+              },
+              {
+                title: "Hochzeiten",
+                description: "Ihr schönster Tag verdient das beste Catering. Wir kümmern uns um das kulinarische Highlight.",
+                capacity: "50-300 Personen",
+                icon: <HeartIcon className="w-6 h-6" />
+              }
+            ].map((service, index) => (
+              <div 
+                key={index} 
+                className="p-8 rounded-2xl border-2 border-primary/10 hover:border-primary/20 transition-all duration-300 group"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 rounded-xl bg-primary/5 text-primary group-hover:bg-primary/10 transition-colors duration-300">
+                    {service.icon}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-xl">{service.title}</h3>
+                    <p className="text-sm text-primary">{service.capacity}</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-6">{service.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {["Menüplanung", "Service", "Ausstattung"].map((feature, i) => (
+                    <span 
+                      key={i}
+                      className="text-xs px-3 py-1 rounded-full bg-primary/5 text-primary/80"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
 
-          <div className="text-center mt-12">
-            <Link
-              to="/catering"
-              className="inline-flex items-center gap-2 text-primary font-medium hover:text-green-700 transition-colors"
-            >
-              Gesamtes Menü anzeigen
-              <ChevronRightIcon className="w-5 h-5" />
-            </Link>
-          </div>
+        
         </div>
       </section>
 
