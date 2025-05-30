@@ -34,7 +34,7 @@ const Navbar = () => {
                 isScrolled || isMenuOpen ? 'text-primary' : 'text-white'
               }`}
             >
-              Sebastian's Kebap
+              Sebastians Kebap
             </Link>
           </div>
 
@@ -59,30 +59,29 @@ const Navbar = () => {
               isActive={location.pathname === "/"} 
               isScrolled={isScrolled || isMenuOpen}
             >
-              Home
+              Startseite
             </NavLink>
             <NavLink 
               to="/menu" 
               isActive={location.pathname === "/menu"} 
               isScrolled={isScrolled || isMenuOpen}
             >
-              Menu
+              Speisekarte
             </NavLink>
             <NavLink 
               to="/about" 
               isActive={location.pathname === "/about"} 
               isScrolled={isScrolled || isMenuOpen}
             >
-              About
+              Über uns
             </NavLink>
             <NavLink 
               to="/contact" 
               isActive={location.pathname === "/contact"} 
               isScrolled={isScrolled || isMenuOpen}
             >
-              Contact
+              Kontakt
             </NavLink>
-            
           </div>
         </div>
 
@@ -95,30 +94,29 @@ const Navbar = () => {
                 isActive={location.pathname === "/"} 
                 isScrolled={true}
               >
-                Home
+                Startseite
               </NavLink>
               <NavLink 
                 to="/menu" 
                 isActive={location.pathname === "/menu"} 
                 isScrolled={true}
               >
-                Menu
+                Speisekarte
               </NavLink>
               <NavLink 
                 to="/about" 
                 isActive={location.pathname === "/about"} 
                 isScrolled={true}
               >
-                About
+                Über uns
               </NavLink>
               <NavLink 
                 to="/contact" 
                 isActive={location.pathname === "/contact"} 
                 isScrolled={true}
               >
-                Contact
+                Kontakt
               </NavLink>
-              
             </div>
           </div>
         )}

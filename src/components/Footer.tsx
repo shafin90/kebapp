@@ -34,9 +34,9 @@ const Footer = () => {
                 </div>
               </Link>
               <p className="text-text/70 leading-relaxed">
-                Discover the perfect blend of traditional kebap and fresh vegetables.
-                Our commitment to quality ingredients and authentic flavors makes every bite special.
-                🌿 Fresh • Colorful • Flavorful 🥙
+                Entdecken Sie die perfekte Mischung aus traditionellem Kebap und frischem Gemüse.
+                Unser Engagement für hochwertige Zutaten und authentische Aromen macht jeden Bissen besonders.
+                🌿 Frisch • Bunt • Geschmackvoll 🥙
               </p>
               <div className="flex gap-4">
                 {[
@@ -65,17 +65,16 @@ const Footer = () => {
             <div className="lg:col-span-2 space-y-6">
               <h4 className="text-lg text-[#22c55e] font-bold">Navigation</h4>
               <div className="space-y-4">
-                <FooterLink to="/">Home</FooterLink>
-                <FooterLink to="/menu">Menu</FooterLink>
-                <FooterLink to="/about">About</FooterLink>
-                <FooterLink to="/contact">Contact</FooterLink>
-                
+                <FooterLink to="/">Startseite</FooterLink>
+                <FooterLink to="/menu">Speisekarte</FooterLink>
+                <FooterLink to="/about">Über uns</FooterLink>
+                <FooterLink to="/contact">Kontakt</FooterLink>
               </div>
             </div>
 
             {/* Contact Info */}
             <div className="lg:col-span-3 space-y-6">
-              <h4 className="text-lg text-[#22c55e] font-bold">Visit Us</h4>
+              <h4 className="text-lg text-[#22c55e] font-bold">Besuchen Sie uns</h4>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3 text-text/70 hover:text-primary transition-colors group">
                   <div className="bg-primary/5 p-1.5 rounded-lg group-hover:bg-primary/10 transition-colors mt-1">
@@ -85,24 +84,24 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="tel:+4940123456789"
+                    href="tel:+4915226879964"
                     className="flex items-center gap-3 text-text/70 hover:text-primary transition-colors group"
                   >
                     <div className="bg-primary/5 p-1.5 rounded-lg group-hover:bg-primary/10 transition-colors">
                       <PhoneIcon className="w-4 h-4 flex-shrink-0" />
                     </div>
-                    <span>040 123 456 789</span>
+                    <span>+49 1522 6879964</span>
                   </a>
                 </li>
                 <li>
                   <a
-                    href="mailto:info@sebastians-kebap.de"
+                    href="mailto:info@sebastiansgemusekebap.de"
                     className="flex items-center gap-3 text-text/70 hover:text-primary transition-colors group"
                   >
                     <div className="bg-primary/5 p-1.5 rounded-lg group-hover:bg-primary/10 transition-colors">
                       <EnvelopeIcon className="w-4 h-4 flex-shrink-0" />
                     </div>
-                    <span>info@sebastians-kebap.de</span>
+                    <span>info@sebastiansgemusekebap.de</span>
                   </a>
                 </li>
               </ul>
@@ -110,14 +109,14 @@ const Footer = () => {
 
             {/* Opening Hours */}
             <div className="lg:col-span-3 space-y-6">
-              <h4 className="text-lg text-[#22c55e] font-bold">Opening Hours</h4>
+              <h4 className="text-lg text-[#22c55e] font-bold">Öffnungszeiten</h4>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-text/70 group">
                   <div className="bg-primary/5 p-1.5 rounded-lg group-hover:bg-primary/10 transition-colors">
                     <ClockIcon className="w-4 h-4 flex-shrink-0" />
                   </div>
                   <div>
-                    <p className="font-medium">Mon - Fri</p>
+                    <p className="font-medium">Mo - Fr</p>
                     <p>11:00 - 22:00</p>
                   </div>
                 </li>
@@ -126,7 +125,7 @@ const Footer = () => {
                     <ClockIcon className="w-4 h-4 flex-shrink-0" />
                   </div>
                   <div>
-                    <p className="font-medium">Saturday</p>
+                    <p className="font-medium">Samstag</p>
                     <p>12:00 - 22:00</p>
                   </div>
                 </li>
@@ -135,7 +134,7 @@ const Footer = () => {
                     <ClockIcon className="w-4 h-4 flex-shrink-0" />
                   </div>
                   <div>
-                    <p className="font-medium">Sunday</p>
+                    <p className="font-medium">Sonntag</p>
                     <p>13:00 - 21:00</p>
                   </div>
                 </li>
@@ -149,13 +148,13 @@ const Footer = () => {
               <div className="flex items-center gap-2 text-sm text-text/60">
                 <HeartIcon className="w-4 h-4 text-primary" />
                 <div className="text-center text-text/60 text-sm">
-                  <p>&copy; {new Date().getFullYear()} Sebastian's Kebap. Made with love in Hamburg.</p>
+                  <p>&copy; {new Date().getFullYear()} Sebastian's Kebap. Mit Liebe gemacht in Hamburg.</p>
                 </div>
               </div>
               <div className="flex gap-6 text-sm">
-                <Link to="/privacy" className="text-text/60 hover:text-primary transition-colors">Privacy Policy</Link>
-                <Link to="/terms" className="text-text/60 hover:text-primary transition-colors">Terms of Service</Link>
-                <Link to="/imprint" className="text-text/60 hover:text-primary transition-colors">Imprint</Link>
+                <Link to="/privacy" className="text-text/60 hover:text-primary transition-colors">Datenschutz</Link>
+                <Link to="/terms" className="text-text/60 hover:text-primary transition-colors">AGB</Link>
+                <Link to="/imprint" className="text-text/60 hover:text-primary transition-colors">Impressum</Link>
               </div>
             </div>
           </div>

@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import { 
   ChevronRightIcon,
   SparklesIcon,
-  BeakerIcon,
-  HeartIcon,
-  StarIcon,
   FireIcon,
-  GlobeAltIcon
+  HeartIcon,
+  ShoppingBagIcon
 } from '@heroicons/react/24/outline'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import FoodCard from '../components/FoodCard'
@@ -27,72 +25,294 @@ const Menu: React.FC = () => {
   const contentY = useTransform(scrollY, [0, 500], [0, -100]);
 
   const categories = [
-    { id: 'all', name: 'All' },
-    { id: 'starters', name: 'Starters' },
-    { id: 'mains', name: 'Main Course' },
+    { id: 'all', name: 'Alle' },
+    { id: 'popular', name: 'Beliebte Gerichte' },
+    { id: 'kebab-durum', name: 'Kebab und Dürüm' },
+    { id: 'grill', name: 'Grillspezialitäten' },
+    { id: 'veggie', name: 'Veggie Spezialitäten' },
+    { id: 'beilagen', name: 'Beilagen' },
     { id: 'desserts', name: 'Desserts' },
-    { id: 'drinks', name: 'Drinks' }
+    { id: 'drinks', name: 'Alkoholfreie Getränke' }
   ];
 
   const menuItems: MenuItem[] = [
+    // Kebab und Dürüm
     {
-      name: "Rainbow Buddha Bowl",
-      description: "A vibrant bowl of quinoa, roasted sweet potatoes, fresh avocado, crispy chickpeas, and seasonal vegetables.",
-      price: "$18.99",
+      name: "Chicken Gemüse Kebab",
+      description: "Mit Salat-Mix nach Wahl, gelber Paprika, roter Paprika, Zucchini und Karotten",
+      price: "9,90 €",
       image: "/IMG_0861-1536x1164.jpg",
+      category: "kebab-durum",
       isPopular: true,
-      category: "mains",
-      tags: ["Vegetarian", "Gluten-Free"]
+      tags: []
     },
     {
-      name: "Mediterranean Platter",
-      description: "A delightful assortment of hummus, falafel, tabbouleh, and warm pita bread.",
-      price: "$21.99",
+      name: "Chicken Gemüse Dürüm",
+      description: "Mit Salat-Mix nach Wahl, gelber Paprika, roter Paprika, Zucchini und Karotten",
+      price: "9,90 €",
       image: "/IMG_0861-1536x1164.jpg",
-      category: "starters",
-      tags: ["Vegan", "Vegetarian"]
+      category: "kebab-durum",
+      isPopular: true,
+      tags: []
     },
     {
-      name: "Truffle Mushroom Risotto",
-      description: "Creamy Arborio rice with wild mushrooms, finished with black truffle oil and fresh herbs.",
-      price: "$24.99",
+      name: "Gemüse Kebab",
+      description: "Mit Salat-Mix nach Wahl, gelber Paprika, roter Paprika, Zucchini und Karotten",
+      price: "9,90 €",
       image: "/IMG_0861-1536x1164.jpg",
-      category: "mains",
-      tags: ["Vegetarian"]
+      category: "kebab-durum",
+      tags: ["Vegetarisch"]
     },
     {
-      name: "Green Goddess Salad",
-      description: "Fresh mixed greens, avocado, cucumber, and our signature green goddess dressing.",
-      price: "$16.99",
+      name: "Gemüse Dürüm",
+      description: "Mit Salat-Mix nach Wahl, gelber Paprika, roter Paprika, Zucchini und Karotten",
+      price: "9,90 €",
       image: "/IMG_0861-1536x1164.jpg",
-      category: "starters",
-      tags: ["Vegan", "Gluten-Free"]
+      category: "kebab-durum",
+      tags: ["Vegetarisch"]
+    },
+
+    // Grillspezialitäten
+    {
+      name: "Sebastians Sucuk Ekmek",
+      description: "Alle Gerichte werden mit einem Salat-Mix und 2 Saucen nach Wahl zubereitet.",
+      price: "9,90 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "grill",
+      tags: []
     },
     {
-      name: "Chocolate Lava Cake",
-      description: "Warm chocolate cake with a molten center, served with vanilla ice cream.",
-      price: "$12.99",
+      name: "Rinderwurst mit Hausgemachten Pommes frites",
+      description: "Alle Gerichte werden mit einem Salat-Mix und 2 Saucen nach Wahl zubereitet.",
+      price: "9,50 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "grill",
+      tags: []
+    },
+
+    // Veggie Spezialitäten
+    {
+      name: "Hausgemachter Falafel Kebab",
+      description: "Alle Gerichte werden mit einem Salat-Mix und 2 Saucen nach Wahl zubereitet.",
+      price: "9,90 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "veggie",
+      isPopular: true,
+      tags: ["Vegan"]
+    },
+    {
+      name: "Hausgemachte Falafel Dürüm",
+      description: "Alle Gerichte werden mit einem Salat-Mix und 2 Saucen nach Wahl zubereitet.",
+      price: "9,90 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "veggie",
+      tags: ["Vegan"]
+    },
+    {
+      name: "Halloumi Kebab",
+      description: "Alle Gerichte werden mit einem Salat-Mix und 2 Saucen nach Wahl zubereitet.",
+      price: "9,90 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "veggie",
+      tags: ["Vegetarisch"]
+    },
+    {
+      name: "Halloumi Dürüm",
+      description: "Alle Gerichte werden mit einem Salat-Mix und 2 Saucen nach Wahl zubereitet.",
+      price: "9,90 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "veggie",
+      tags: ["Vegetarisch"]
+    },
+
+    // Beilagen
+    {
+      name: "Gegrilltes Gemüse",
+      description: "",
+      price: "4,00 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "beilagen",
+      tags: ["Vegan"]
+    },
+    {
+      name: "Hausgemachte Pommes frites",
+      description: "",
+      price: "4,00 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "beilagen",
+      tags: ["Vegan"]
+    },
+    {
+      name: "Hausgemachte Falafel (1 Stück)",
+      description: "",
+      price: "2,50 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "beilagen",
+      tags: ["Vegan"]
+    },
+
+    // Desserts
+    {
+      name: "Söbiyet",
+      description: "",
+      price: "2,00 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "desserts",
-      isPopular: true,
-      tags: ["Vegetarian"]
+      tags: ["Vegetarisch"]
     },
     {
-      name: "Fresh Mint Lemonade",
-      description: "Freshly squeezed lemons with mint leaves and natural sweetener.",
-      price: "$6.99",
+      name: "Churros (5 Stück)",
+      description: "",
+      price: "4,50 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "desserts",
+      tags: ["Vegetarisch"]
+    },
+    {
+      name: "Churros mit Obst, Zimt und Zucker (5 Stück)",
+      description: "",
+      price: "6,50 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "desserts",
+      tags: ["Vegetarisch"]
+    },
+    {
+      name: "Churros mit Schokoladensauce (5 Stück)",
+      description: "",
+      price: "7,50 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "desserts",
+      tags: ["Vegetarisch"]
+    },
+
+    // Getränke
+    {
+      name: "fritz-kola® classic light",
+      description: "0,33l",
+      price: "2,92 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "drinks",
+      tags: ["Vegan"]
+    },
+    {
+      name: "fritz-kola® superzero",
+      description: "0,33l",
+      price: "2,92 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "drinks",
+      tags: ["Vegan"]
+    },
+    {
+      name: "fritz-limo® orange",
+      description: "0,33l",
+      price: "2,92 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "drinks",
+      tags: ["Vegan"]
+    },
+    {
+      name: "fritz-limo® zitrone",
+      description: "0,33l",
+      price: "2,92 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "drinks",
+      tags: ["Vegan"]
+    },
+    {
+      name: "fritz-limo® apfel-kirsch-holunder",
+      description: "0,33l",
+      price: "2,92 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "drinks",
+      tags: ["Vegan"]
+    },
+    {
+      name: "fritz-limo® honigmelone",
+      description: "0,33l",
+      price: "2,92 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "drinks",
+      tags: ["Vegan"]
+    },
+    {
+      name: "fritz-spritz® bio-apfelschorle",
+      description: "0,33l",
+      price: "2,92 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "drinks",
+      tags: ["Vegan"]
+    },
+    {
+      name: "MISCHMASCH® fritz-kola® mit orange",
+      description: "0,33l",
+      price: "2,92 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "drinks",
+      tags: ["Vegan"]
+    },
+    {
+      name: "Anjola® bio ananas-limette",
+      description: "0,33l",
+      price: "2,92 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "drinks",
+      tags: ["Vegan"]
+    },
+    {
+      name: "Gazi Ayran",
+      description: "0,2l",
+      price: "2,50 €",
+      image: "/IMG_0861-1536x1164.jpg",
+      category: "drinks",
+      tags: ["Vegetarisch"]
+    },
+    {
+      name: "Salgam Rübensaft",
+      description: "0,2l",
+      price: "4,00 €",
       image: "/IMG_0861-1536x1164.jpg",
       category: "drinks",
       tags: ["Vegan"]
     }
-  ]
+  ];
 
   const filteredItems = activeCategory === 'all' 
     ? menuItems 
+    : activeCategory === 'popular'
+    ? menuItems.filter(item => item.isPopular)
     : menuItems.filter(item => item.category === activeCategory);
 
   return (
     <div className="relative">
+      {/* Floating Order Button */}
+      <motion.div
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="fixed bottom-8 right-8 z-50"
+      >
+        <motion.div
+          animate={{
+            y: [-4, 4, -4],
+            rotate: [-2, 2, -2]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <a
+            href="https://www.lieferando.de/en/menu/sebastians-gemusekebab#category_popular-items"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-4 py-4 rounded-full font-medium shadow-lg hover:shadow-xl hover:shadow-primary/20 transition-all duration-300"
+          >
+            <ShoppingBagIcon className="w-6 h-6" />
+          </a>
+        </motion.div>
+      </motion.div>
+
       {/* Hero Section */}
       <section className="relative min-h-screen overflow-hidden">
         {/* Fixed Background Image */}
@@ -131,7 +351,7 @@ const Menu: React.FC = () => {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.6 }}
                   >
-                    Explore
+                    Entdecken
                   </motion.span>
                   <motion.span 
                     className="block text-primary"
@@ -139,7 +359,7 @@ const Menu: React.FC = () => {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                   >
-                    Our Menu
+                    Sie unsere
                   </motion.span>
                   <motion.span 
                     className="block"
@@ -147,7 +367,7 @@ const Menu: React.FC = () => {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
                   >
-                    Selection
+                    Speisekarte
                   </motion.span>
                 </h1>
                 
@@ -157,7 +377,7 @@ const Menu: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
                 >
-                  Discover our carefully curated menu featuring fresh, seasonal ingredients and innovative plant-based dishes.
+                  Entdecken Sie unser sorgfältig zusammengestelltes Menü mit frischen, saisonalen Zutaten und innovativen pflanzlichen Gerichten.
                 </motion.p>
 
                 {/* Menu Categories */}
@@ -168,22 +388,22 @@ const Menu: React.FC = () => {
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
                   {[
-                    { value: "Starters", label: "Fresh Beginnings", icon: <SparklesIcon className="w-5 h-5" /> },
-                    { value: "Mains", label: "Chef's Specials", icon: <FireIcon className="w-5 h-5" /> },
-                    { value: "Desserts", label: "Sweet Endings", icon: <HeartIcon className="w-5 h-5" /> }
+                    { value: "Kebab und Dürüm", label: "Traditionelle Spezialitäten", icon: <SparklesIcon className="w-5 h-5" /> },
+                    { value: "Grillspezialitäten", label: "Vom Holzkohlegrill", icon: <FireIcon className="w-5 h-5" /> },
+                    { value: "Veggie Spezialitäten", label: "Pflanzliche Optionen", icon: <HeartIcon className="w-5 h-5" /> }
                   ].map((category, index) => (
                     <motion.div
                       key={index}
-                      className="backdrop-blur-sm bg-white/10 rounded-2xl p-6"
+                      className="backdrop-blur-sm bg-white/10 rounded-2xl p-6 min-w-[280px] flex-1"
                       whileHover={{ y: -4, transition: { duration: 0.2 } }}
                     >
                       <div className="flex items-center gap-3 mb-2">
                         <div className="text-primary">
                           {category.icon}
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-bold text-white">{category.value}</h3>
+                        <h3 className="text-xl md:text-2xl font-bold text-white">{category.value}</h3>
                       </div>
-                      <p className="text-sm text-white/80">{category.label}</p>
+                      <p className="text-sm text-white/80 mt-2">{category.label}</p>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -210,9 +430,9 @@ const Menu: React.FC = () => {
         <div className="container mx-auto px-6 relative">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Menu</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Unsere Speisekarte</h2>
             <p className="text-gray-600 text-lg mb-8">
-              Discover our wide selection of plant-based dishes, crafted with fresh ingredients and love.
+              Entdecken Sie unsere große Auswahl an pflanzlichen Gerichten, zubereitet mit frischen Zutaten und Liebe.
             </p>
 
             {/* Category Tabs */}

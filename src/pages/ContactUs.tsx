@@ -5,6 +5,7 @@ import {
   EnvelopeIcon,
   MapPinIcon,
   ClockIcon,
+  ShoppingBagIcon
 } from '@heroicons/react/24/outline'
 
 const ContactUs: React.FC = () => {
@@ -34,6 +35,35 @@ const ContactUs: React.FC = () => {
 
   return (
     <div className="relative">
+      {/* Floating Order Button */}
+      <motion.div
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="fixed bottom-8 right-8 z-50"
+      >
+        <motion.div
+          animate={{
+            y: [-4, 4, -4],
+            rotate: [-2, 2, -2]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <a
+            href="https://www.lieferando.de/en/menu/sebastians-gemusekebab#category_popular-items"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-4 py-4 rounded-full font-medium shadow-lg hover:shadow-xl hover:shadow-primary/20 transition-all duration-300"
+          >
+            <ShoppingBagIcon className="w-6 h-6" />
+          </a>
+        </motion.div>
+      </motion.div>
+
       {/* Hero Section */}
       <section className="relative min-h-screen overflow-hidden">
         {/* Fixed Background Image */}
@@ -72,7 +102,7 @@ const ContactUs: React.FC = () => {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.6 }}
                   >
-                    We'd Love to
+                    Wir freuen
                   </motion.span>
                   <motion.span
                     className="block text-primary"
@@ -80,16 +110,15 @@ const ContactUs: React.FC = () => {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                   >
-                    Hear From
+                    uns auf Ihre
                   </motion.span>
-
                   <motion.span
                     className="block"
                     initial={{ x: -50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.6 }}
                   >
-                    You
+                    Nachricht
                   </motion.span>
                 </h1>
 
@@ -99,7 +128,8 @@ const ContactUs: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
                 >
-                  Have questions, suggestions, or just want to say hello? We're here to help and would love to hear from you.
+                  Haben Sie Fragen, Anregungen oder möchten Sie einfach nur Hallo sagen? 
+                  Wir sind für Sie da und freuen uns darauf, von Ihnen zu hören.
                 </motion.p>
 
                 {/* Stats */}
@@ -110,9 +140,9 @@ const ContactUs: React.FC = () => {
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
                   {[
-                    { value: "24/7", label: "Support", icon: <PhoneIcon className="w-5 h-5" /> },
-                    { value: "Fast", label: "Response", icon: <EnvelopeIcon className="w-5 h-5" /> },
-                    { value: "Local", label: "Presence", icon: <MapPinIcon className="w-5 h-5" /> }
+                    { value: "24/7", label: "Erreichbar", icon: <PhoneIcon className="w-5 h-5" /> },
+                    { value: "Schnell", label: "Antwort", icon: <EnvelopeIcon className="w-5 h-5" /> },
+                    { value: "Lokal", label: "In Hamburg", icon: <MapPinIcon className="w-5 h-5" /> }
                   ].map((stat, index) => (
                     <motion.div
                       key={index}
@@ -155,9 +185,9 @@ const ContactUs: React.FC = () => {
             {/* Contact Form */}
             <div className="space-y-8">
               <div className="space-y-4">
-                <h2 className="text-4xl font-bold">Send us a Message</h2>
+                <h2 className="text-4xl font-bold">Kontaktieren Sie uns</h2>
                 <p className="text-text/70">
-                  Fill out the form below and we'll get back to you as soon as possible.
+                  Füllen Sie das untenstehende Formular aus und wir melden uns schnellstmöglich bei Ihnen.
                 </p>
               </div>
 
@@ -165,7 +195,7 @@ const ContactUs: React.FC = () => {
                 <div className="space-y-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-text/70 mb-2">
-                      Your Name
+                      Ihr Name
                     </label>
                     <input
                       type="text"
@@ -180,7 +210,7 @@ const ContactUs: React.FC = () => {
 
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-text/70 mb-2">
-                      Email Address
+                      E-Mail-Adresse
                     </label>
                     <input
                       type="email"
@@ -195,7 +225,7 @@ const ContactUs: React.FC = () => {
 
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-text/70 mb-2">
-                      Subject
+                      Betreff
                     </label>
                     <input
                       type="text"
@@ -210,7 +240,7 @@ const ContactUs: React.FC = () => {
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-text/70 mb-2">
-                      Message
+                      Ihre Nachricht
                     </label>
                     <textarea
                       id="message"
@@ -228,7 +258,7 @@ const ContactUs: React.FC = () => {
                   type="submit"
                   className="w-full bg-gradient-to-r from-primary to-primary/90 text-white py-4 rounded-xl font-medium hover:shadow-lg transition-all"
                 >
-                  Send Message
+                  Nachricht senden
                 </button>
               </form>
             </div>
@@ -236,9 +266,9 @@ const ContactUs: React.FC = () => {
             {/* Contact Information */}
             <div className="space-y-12">
               <div className="space-y-4">
-                <h2 className="text-4xl font-bold">Contact Information</h2>
+                <h2 className="text-4xl font-bold">Kontaktinformationen</h2>
                 <p className="text-text/70">
-                  Find us using the information below or send us a message using the form.
+                  Sie können uns über die untenstehenden Kontaktmöglichkeiten erreichen oder eine Nachricht über das Formular senden.
                 </p>
               </div>
 
@@ -246,27 +276,27 @@ const ContactUs: React.FC = () => {
                 {[
                   {
                     icon: <PhoneIcon className="w-6 h-6" />,
-                    title: "Phone",
-                    info: "+1 (555) 123-4567",
-                    subInfo: "Mon-Fri from 8am to 8pm"
+                    title: "Telefon",
+                    info: "+49 1522 6879964",
+                    subInfo: "Erreichbar während der Öffnungszeiten"
                   },
                   {
                     icon: <EnvelopeIcon className="w-6 h-6" />,
-                    title: "Email",
-                    info: "contact@yourrestaurant.com",
-                    subInfo: "We'll respond within 24 hours"
+                    title: "E-Mail",
+                    info: "info@sebastiansgemusekebap.de",
+                    subInfo: "Antwort innerhalb von 24 Stunden"
                   },
                   {
                     icon: <MapPinIcon className="w-6 h-6" />,
-                    title: "Location",
-                    info: "123 Restaurant Street",
-                    subInfo: "City, State 12345"
+                    title: "Adresse",
+                    info: "Hörgensweg 4",
+                    subInfo: "22523 Hamburg"
                   },
                   {
                     icon: <ClockIcon className="w-6 h-6" />,
-                    title: "Hours",
-                    info: "Mon-Sun: 11:00 - 22:00",
-                    subInfo: "Kitchen closes at 21:30"
+                    title: "Öffnungszeiten",
+                    info: "Mo-Fr: 11:00 - 21:00",
+                    subInfo: "Sa-So: 12:00 - 21:00"
                   }
                 ].map((item, index) => (
                   <div

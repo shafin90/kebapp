@@ -5,6 +5,7 @@ import {
   SparklesIcon,
   GlobeAltIcon,
   UserGroupIcon,
+  ShoppingBagIcon
 } from '@heroicons/react/24/outline'
 
 const About = () => {
@@ -13,6 +14,35 @@ const About = () => {
 
   return (
     <div className="relative">
+      {/* Floating Order Button */}
+      <motion.div
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="fixed bottom-8 right-8 z-50"
+      >
+        <motion.div
+          animate={{
+            y: [-4, 4, -4],
+            rotate: [-2, 2, -2]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <a
+            href="https://www.lieferando.de/en/menu/sebastians-gemusekebab#category_popular-items"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-4 py-4 rounded-full font-medium shadow-lg hover:shadow-xl hover:shadow-primary/20 transition-all duration-300"
+          >
+            <ShoppingBagIcon className="w-6 h-6" />
+          </a>
+        </motion.div>
+      </motion.div>
+
       {/* Hero Section */}
       <section className="relative min-h-screen overflow-hidden">
         {/* Fixed Background Image */}
@@ -51,7 +81,7 @@ const About = () => {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.6 }}
                   >
-                    Our Story
+                    Unsere
                   </motion.span>
                   <motion.span 
                     className="block text-primary"
@@ -59,7 +89,7 @@ const About = () => {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                   >
-                    Our Passion
+                    Geschichte &
                   </motion.span>
                   <motion.span 
                     className="block"
@@ -67,7 +97,7 @@ const About = () => {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
                   >
-                    Our Journey
+                    Leidenschaft
                   </motion.span>
                 </h1>
                 
@@ -77,7 +107,7 @@ const About = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
                 >
-                  Discover the story behind our commitment to exceptional vegetarian cuisine and sustainable dining experiences.
+                  Entdecken Sie die Geschichte hinter unserem Engagement für außergewöhnliche vegetarische Küche und nachhaltige Essenserlebnisse.
                 </motion.p>
 
                 {/* Stats */}
@@ -88,9 +118,9 @@ const About = () => {
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
                   {[
-                    { value: "2008", label: "Founded", icon: <SparklesIcon className="w-5 h-5" /> },
-                    { value: "100%", label: "Plant Based", icon: <HeartIcon className="w-5 h-5" /> },
-                    { value: "Local", label: "Ingredients", icon: <GlobeAltIcon className="w-5 h-5" /> }
+                    { value: "2008", label: "Gegründet", icon: <SparklesIcon className="w-5 h-5" /> },
+                    { value: "100%", label: "Pflanzlich", icon: <HeartIcon className="w-5 h-5" /> },
+                    { value: "Regional", label: "Zutaten", icon: <GlobeAltIcon className="w-5 h-5" /> }
                   ].map((stat, index) => (
                     <motion.div
                       key={index}
@@ -130,16 +160,16 @@ const About = () => {
         <div className="container px-6 mx-auto relative">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
-              <h2 className="text-4xl font-bold">Our Journey</h2>
+              <h2 className="text-4xl font-bold">Unsere Geschichte</h2>
               <div className="space-y-6 text-text/70">
                 <p>
-                  Founded in 2020, our restaurant began with a simple mission: to share the authentic flavors of Turkish street food while embracing modern culinary innovations.
+                  Gegründet im Jahr 2020, begann unser Restaurant mit einer einfachen Mission: die authentischen Aromen des türkischen Street Foods zu teilen und dabei moderne kulinarische Innovationen zu integrieren.
                 </p>
                 <p>
-                  What started as a small family venture has grown into a beloved establishment, known for our signature kebaps and commitment to quality ingredients.
+                  Was als kleines Familienunternehmen begann, hat sich zu einem beliebten Restaurant entwickelt, bekannt für unsere Signature-Kebabs und unser Engagement für hochwertige Zutaten.
                 </p>
                 <p>
-                  Today, we continue to honor traditional recipes while exploring new, exciting flavors that reflect our evolving culinary landscape.
+                  Heute ehren wir weiterhin traditionelle Rezepte und erkunden gleichzeitig neue, aufregende Geschmacksrichtungen, die unsere sich entwickelnde Küche widerspiegeln.
                 </p>
               </div>
             </div>
@@ -147,7 +177,7 @@ const About = () => {
               <div className="aspect-square rounded-2xl overflow-hidden">
                 <img 
                   src="/IMG_0861-1536x1164.jpg" 
-                  alt="Our restaurant story" 
+                  alt="Die Geschichte unseres Restaurants" 
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -173,9 +203,9 @@ const About = () => {
         
         <div className="container px-6 mx-auto relative">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-4xl font-bold mb-6">Our Values</h2>
+            <h2 className="text-4xl font-bold mb-6">Unsere Werte</h2>
             <p className="text-text/70">
-              These core principles guide everything we do, from sourcing ingredients to serving our customers.
+              Diese Grundprinzipien leiten alles, was wir tun - vom Einkauf der Zutaten bis zum Service für unsere Gäste.
             </p>
           </div>
 
@@ -183,23 +213,23 @@ const About = () => {
             {[
               {
                 icon: <HeartIcon className="w-6 h-6" />,
-                title: "Passion",
-                description: "Love for authentic flavors and culinary excellence"
+                title: "Leidenschaft",
+                description: "Liebe zu authentischen Aromen und kulinarischer Exzellenz"
               },
               {
                 icon: <SparklesIcon className="w-6 h-6" />,
-                title: "Quality",
-                description: "Premium ingredients and meticulous preparation"
+                title: "Qualität",
+                description: "Premium-Zutaten und sorgfältige Zubereitung"
               },
               {
                 icon: <GlobeAltIcon className="w-6 h-6" />,
-                title: "Sustainability",
-                description: "Eco-friendly practices and local sourcing"
+                title: "Nachhaltigkeit",
+                description: "Umweltfreundliche Praktiken und regionale Beschaffung"
               },
               {
                 icon: <UserGroupIcon className="w-6 h-6" />,
-                title: "Community",
-                description: "Creating connections through food and culture"
+                title: "Gemeinschaft",
+                description: "Verbindungen schaffen durch Essen und Kultur"
               }
             ].map((value, index) => (
               <div 
@@ -233,9 +263,9 @@ const About = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_theme(colors.primary/0.05),_transparent_70%)]"></div>
         <div className="container px-6 mx-auto relative">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-4xl font-bold mb-6">Meet Our Team</h2>
+            <h2 className="text-4xl font-bold mb-6">Unser Team</h2>
             <p className="text-text/70">
-              The passionate people behind our delicious food and warm hospitality.
+              Die leidenschaftlichen Menschen hinter unserem köstlichen Essen und der herzlichen Gastfreundschaft.
             </p>
           </div>
 
@@ -243,17 +273,17 @@ const About = () => {
             {[
               {
                 name: "Mehmet Yilmaz",
-                role: "Head Chef",
+                role: "Küchenchef",
                 image: "/IMG_0861-1536x1164.jpg"
               },
               {
                 name: "Ayşe Demir",
-                role: "Restaurant Manager",
+                role: "Restaurantleiterin",
                 image: "/IMG_0861-1536x1164.jpg"
               },
               {
                 name: "Can Öztürk",
-                role: "Sous Chef",
+                role: "Souschef",
                 image: "/IMG_0861-1536x1164.jpg"
               }
             ].map((member, index) => (
