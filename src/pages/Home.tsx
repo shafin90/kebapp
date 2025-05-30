@@ -889,7 +889,7 @@ const Home = () => {
         <div className="container px-6 mx-auto relative">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-primary font-medium">Besondere Anlässe</span>
-            <h2 className="text-4xl font-bold text-gray-900 mt-2 mb-4">Events & Catering</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mt-2 mb-4">Veranstaltungen und Catering</h2>
             <p className="text-gray-600 text-lg">
               Von intimen Zusammenkünften bis hin zu großen Feiern bieten wir maßgeschneiderte Catering-Lösungen für alle Ihre besonderen Anlässe.
             </p>
