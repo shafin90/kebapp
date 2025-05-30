@@ -4,9 +4,15 @@ import {
   SparklesIcon,
   FireIcon,
   HeartIcon,
-  ShoppingBagIcon
+  ShoppingBagIcon,
+  MagnifyingGlassIcon,
+  ChevronDownIcon,
+  FunnelIcon,
+  XMarkIcon,
+  ChevronLeftIcon,
+  CurrencyEuroIcon
 } from '@heroicons/react/24/outline'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import FoodCard from '../components/FoodCard'
 
 interface MenuItem {
@@ -21,8 +27,12 @@ interface MenuItem {
 
 const Menu: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all')
-  const { scrollY } = useScroll();
-  const contentY = useTransform(scrollY, [0, 500], [0, -100]);
+  const [searchQuery, setSearchQuery] = useState('')
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 20])
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 6
+  const { scrollY } = useScroll()
+  const contentY = useTransform(scrollY, [0, 500], [0, -100])
 
   const categories = [
     { id: 'all', name: 'Alle' },
@@ -298,10 +308,30 @@ const Menu: React.FC = () => {
   ];
 
   const filteredItems = activeCategory === 'all' 
-    ? menuItems 
+    ? menuItems.filter(item => {
+        const price = parseFloat(item.price.replace(',', '.').replace('€', '').trim())
+        return price >= priceRange[0] && price <= priceRange[1]
+      })
     : activeCategory === 'popular'
-    ? menuItems.filter(item => item.isPopular)
-    : menuItems.filter(item => item.category === activeCategory);
+    ? menuItems.filter(item => {
+        const price = parseFloat(item.price.replace(',', '.').replace('€', '').trim())
+        return item.isPopular && price >= priceRange[0] && price <= priceRange[1]
+      })
+    : menuItems.filter(item => {
+        const price = parseFloat(item.price.replace(',', '.').replace('€', '').trim())
+        return item.category === activeCategory && price >= priceRange[0] && price <= priceRange[1]
+      })
+
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const paginatedItems = filteredItems.slice(startIndex, startIndex + itemsPerPage)
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage)
+    // Scroll to menu section smoothly
+    document.getElementById('menu-section')?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
     <div className="relative">
@@ -435,7 +465,7 @@ const Menu: React.FC = () => {
       </section>
 
       {/* Menu Section */}
-      <section className="py-24 bg-white relative overflow-hidden">
+      <section id="menu-section" className="py-24 bg-white relative overflow-hidden">
         {/* Background Image with Parallax */}
         <div 
           className="absolute inset-0 w-full h-full opacity-5"
@@ -456,42 +486,134 @@ const Menu: React.FC = () => {
               Entdecken Sie unsere große Auswahl an pflanzlichen Gerichten, zubereitet mit frischen Zutaten und Liebe.
             </p>
 
-            {/* Category Tabs */}
-            <div className="flex flex-wrap justify-center gap-3">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                    activeCategory === category.id
-                      ? 'bg-green-500 text-white'
-                      : 'bg-white text-gray-600 hover:bg-green-50 hover:text-green-600'
-                  }`}
-                >
-                  {category.name}
-                </button>
-              ))}
+            {/* Filters */}
+            <div className="space-y-6">
+              {/* Category Tabs */}
+              <div className="flex flex-wrap justify-center gap-3">
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => {
+                      setActiveCategory(category.id)
+                      setCurrentPage(1)
+                    }}
+                    className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+                      activeCategory === category.id
+                        ? 'bg-primary text-white'
+                        : 'bg-white text-gray-600 hover:bg-green-50 hover:text-green-600'
+                    } border-2 border-primary/10`}
+                  >
+                    {category.name}
+                  </button>
+                ))}
+              </div>
+
+              {/* Price Range Filter */}
+              <div className="max-w-sm mx-auto bg-white p-4 rounded-xl border-2 border-primary/10">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-1 text-primary">
+                    <CurrencyEuroIcon className="w-5 h-5" />
+                    <span className="font-medium">Preisfilter</span>
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    {priceRange[0].toFixed(2)}€ - {priceRange[1].toFixed(2)}€
+                  </div>
+                </div>
+                <div className="relative pt-1">
+                  <input
+                    type="range"
+                    min="0"
+                    max="20"
+                    step="0.5"
+                    value={priceRange[1]}
+                    onChange={(e) => {
+                      const newValue = parseFloat(e.target.value)
+                      setPriceRange([priceRange[0], newValue])
+                      setCurrentPage(1)
+                    }}
+                    className="w-full h-2 bg-primary/20 rounded-lg appearance-none cursor-pointer"
+                  />
+                  <div className="flex justify-between mt-2 text-xs text-gray-500">
+                    <span>0€</span>
+                    <span>5€</span>
+                    <span>10€</span>
+                    <span>15€</span>
+                    <span>20€</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Menu Grid */}
           <motion.div 
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
             layout
           >
-            {filteredItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                layout
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <FoodCard {...item} />
-              </motion.div>
-            ))}
+            <AnimatePresence mode="wait">
+              {paginatedItems.length > 0 ? (
+                paginatedItems.map((item) => (
+                  <motion.div
+                    key={item.name}
+                    layout
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <FoodCard {...item} />
+                  </motion.div>
+                ))
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="col-span-full text-center py-12"
+                >
+                  <p className="text-gray-500 text-lg">
+                    Keine Gerichte in dieser Preisklasse gefunden.
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-4">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="p-2 rounded-full bg-white border-2 border-primary/10 text-primary hover:bg-green-50 disabled:opacity-50 disabled:hover:bg-white transition-colors"
+              >
+                <ChevronLeftIcon className="w-5 h-5" />
+              </button>
+              
+              <div className="flex items-center gap-2">
+                {[...Array(totalPages)].map((_, index) => (
+                  <button
+                    key={index + 1}
+                    onClick={() => handlePageChange(index + 1)}
+                    className={`w-10 h-10 rounded-full font-medium transition-all ${
+                      currentPage === index + 1
+                        ? 'bg-primary text-white'
+                        : 'bg-white text-gray-600 hover:bg-green-50 hover:text-green-600'
+                    } border-2 border-primary/10`}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="p-2 rounded-full bg-white border-2 border-primary/10 text-primary hover:bg-green-50 disabled:opacity-50 disabled:hover:bg-white transition-colors"
+              >
+                <ChevronRightIcon className="w-5 h-5" />
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </div>
