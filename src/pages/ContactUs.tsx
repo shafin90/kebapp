@@ -40,7 +40,7 @@ const ContactUs: React.FC = () => {
         initial={{ x: 100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="fixed bottom-8 right-8 z-50"
+        className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 z-50"
       >
         <motion.div
           animate={{
@@ -57,15 +57,15 @@ const ContactUs: React.FC = () => {
             href="https://www.lieferando.de/en/menu/sebastians-gemusekebab#category_popular-items"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-4 py-4 rounded-full font-medium shadow-lg hover:shadow-xl hover:shadow-primary/20 transition-all duration-300"
+            className="group flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-3 sm:px-4 py-3 sm:py-4 rounded-full font-medium shadow-lg hover:shadow-xl hover:shadow-primary/20 transition-all duration-300"
           >
-            <ShoppingBagIcon className="w-6 h-6" />
+            <ShoppingBagIcon className="w-5 h-5 sm:w-6 sm:h-6" />
           </a>
         </motion.div>
       </motion.div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen overflow-hidden">
+      <section className="relative min-h-[60vh] sm:min-h-screen overflow-hidden">
         {/* Fixed Background Image */}
         <div
           className="absolute inset-0 w-full h-full"
@@ -81,12 +81,12 @@ const ContactUs: React.FC = () => {
         <div className="absolute inset-0 bg-black/70" />
 
         {/* Content Container */}
-        <div className="relative z-10 min-h-screen flex items-center">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl relative pt-24 md:pt-0">
+        <div className="relative z-10 min-h-[60vh] sm:min-h-screen flex items-center">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="max-w-4xl relative pt-16 sm:pt-24 md:pt-0">
               {/* Animated Accent Line */}
               <motion.div
-                className="w-24 h-1 bg-primary mb-6 md:mb-0"
+                className="w-16 sm:w-24 h-1 bg-primary mb-4 sm:mb-6 md:mb-0"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 1, ease: "easeOut" }}
@@ -94,8 +94,8 @@ const ContactUs: React.FC = () => {
               />
 
               {/* Main Content */}
-              <div className="space-y-6 md:space-y-8">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] md:leading-tight">
+              <div className="space-y-4 sm:space-y-6 md:space-y-8">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] md:leading-tight">
                   <motion.span
                     className="block"
                     initial={{ x: -50, opacity: 0 }}
@@ -123,7 +123,7 @@ const ContactUs: React.FC = () => {
                 </h1>
 
                 <motion.p
-                  className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl leading-relaxed"
+                  className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-2xl leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
@@ -134,7 +134,7 @@ const ContactUs: React.FC = () => {
 
                 {/* Stats */}
                 <motion.div
-                  className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16"
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mt-8 sm:mt-12 lg:mt-16"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
@@ -146,20 +146,19 @@ const ContactUs: React.FC = () => {
                   ].map((stat, index) => (
                     <motion.div
                       key={index}
-                      className="backdrop-blur-sm bg-white/10 rounded-2xl p-6"
+                      className="backdrop-blur-sm bg-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6"
                       whileHover={{ y: -4, transition: { duration: 0.2 } }}
                     >
                       <div className="flex items-center gap-3 mb-2">
                         <div className="text-primary">
                           {stat.icon}
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-bold text-white">{stat.value}</h3>
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">{stat.value}</h3>
                       </div>
-                      <p className="text-sm text-white/80">{stat.label}</p>
+                      <p className="text-xs sm:text-sm text-white/80">{stat.label}</p>
                     </motion.div>
                   ))}
                 </motion.div>
-
               </div>
             </div>
           </div>
@@ -167,7 +166,7 @@ const ContactUs: React.FC = () => {
       </section>
 
       {/* Contact Form & Info Section */}
-      <section className="py-24 bg-white relative overflow-hidden">
+      <section className="py-12 sm:py-16 md:py-24 bg-white relative overflow-hidden">
         {/* Background Image with Parallax */}
         <div 
           className="absolute inset-0 w-full h-full opacity-5"
@@ -180,21 +179,21 @@ const ContactUs: React.FC = () => {
         />
         
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_theme(colors.primary/0.05),_transparent_70%)]"></div>
-        <div className="container px-6 mx-auto relative">
-          <div className="grid lg:grid-cols-2 gap-16">
+        <div className="container px-4 sm:px-6 mx-auto relative">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
             {/* Contact Form */}
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h2 className="text-4xl font-bold">Kontaktieren Sie uns</h2>
-                <p className="text-text/70">
+            <div className="space-y-6 sm:space-y-8">
+              <div className="space-y-3 sm:space-y-4">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Kontaktieren Sie uns</h2>
+                <p className="text-sm sm:text-base text-text/70">
                   Füllen Sie das untenstehende Formular aus und wir melden uns schnellstmöglich bei Ihnen.
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div className="space-y-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-text/70 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-text/70 mb-1 sm:mb-2">
                       Ihr Name
                     </label>
                     <input
@@ -203,13 +202,13 @@ const ContactUs: React.FC = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm sm:text-base"
                       required
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-text/70 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-text/70 mb-1 sm:mb-2">
                       E-Mail-Adresse
                     </label>
                     <input
@@ -218,13 +217,13 @@ const ContactUs: React.FC = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm sm:text-base"
                       required
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-text/70 mb-2">
+                    <label htmlFor="subject" className="block text-sm font-medium text-text/70 mb-1 sm:mb-2">
                       Betreff
                     </label>
                     <input
@@ -233,13 +232,13 @@ const ContactUs: React.FC = () => {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm sm:text-base"
                       required
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-text/70 mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-text/70 mb-1 sm:mb-2">
                       Ihre Nachricht
                     </label>
                     <textarea
@@ -247,8 +246,8 @@ const ContactUs: React.FC = () => {
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      rows={6}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                      rows={4}
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm sm:text-base"
                       required
                     ></textarea>
                   </div>
@@ -256,7 +255,7 @@ const ContactUs: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-primary to-primary/90 text-white py-4 rounded-xl font-medium hover:shadow-lg transition-all"
+                  className="w-full bg-gradient-to-r from-primary to-primary/90 text-white py-3 sm:py-4 rounded-lg sm:rounded-xl font-medium hover:shadow-lg transition-all text-sm sm:text-base"
                 >
                   Nachricht senden
                 </button>
@@ -264,36 +263,36 @@ const ContactUs: React.FC = () => {
             </div>
 
             {/* Contact Information */}
-            <div className="space-y-12">
-              <div className="space-y-4">
-                <h2 className="text-4xl font-bold">Kontaktinformationen</h2>
-                <p className="text-text/70">
+            <div className="space-y-8 sm:space-y-12">
+              <div className="space-y-3 sm:space-y-4">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Kontaktinformationen</h2>
+                <p className="text-sm sm:text-base text-text/70">
                   Sie können uns über die untenstehenden Kontaktmöglichkeiten erreichen oder eine Nachricht über das Formular senden.
                 </p>
               </div>
 
-              <div className="space-y-8">
+              <div className="space-y-4 sm:space-y-8">
                 {[
                   {
-                    icon: <PhoneIcon className="w-6 h-6" />,
+                    icon: <PhoneIcon className="w-5 h-5 sm:w-6 sm:h-6" />,
                     title: "Telefon",
                     info: "+49 1522 6879964",
                     subInfo: "Erreichbar während der Öffnungszeiten"
                   },
                   {
-                    icon: <EnvelopeIcon className="w-6 h-6" />,
+                    icon: <EnvelopeIcon className="w-5 h-5 sm:w-6 sm:h-6" />,
                     title: "E-Mail",
                     info: "info@sebastiansgemusekebap.de",
                     subInfo: "Antwort innerhalb von 24 Stunden"
                   },
                   {
-                    icon: <MapPinIcon className="w-6 h-6" />,
+                    icon: <MapPinIcon className="w-5 h-5 sm:w-6 sm:h-6" />,
                     title: "Adresse",
                     info: "Hörgensweg 4",
                     subInfo: "22523 Hamburg"
                   },
                   {
-                    icon: <ClockIcon className="w-6 h-6" />,
+                    icon: <ClockIcon className="w-5 h-5 sm:w-6 sm:h-6" />,
                     title: "Öffnungszeiten",
                     info: "Mo-Fr: 11:00 - 21:00",
                     subInfo: "Sa-So: 12:00 - 21:00"
@@ -301,15 +300,15 @@ const ContactUs: React.FC = () => {
                 ].map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-start gap-6 p-6 rounded-2xl bg-white border border-gray-100 hover:shadow-xl transition-all group"
+                    className="flex items-start gap-4 sm:gap-6 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white border border-gray-100 hover:shadow-xl transition-all group"
                   >
-                    <div className="bg-gradient-to-br from-primary/10 to-primary/5 w-14 h-14 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                    <div className="bg-gradient-to-br from-primary/10 to-primary/5 w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                       {item.icon}
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                      <p className="text-text/90 mb-1">{item.info}</p>
-                      <p className="text-text/60 text-sm">{item.subInfo}</p>
+                      <h3 className="text-base sm:text-lg font-bold mb-1 sm:mb-2">{item.title}</h3>
+                      <p className="text-sm sm:text-base text-text/90 mb-0.5 sm:mb-1">{item.info}</p>
+                      <p className="text-xs sm:text-sm text-text/60">{item.subInfo}</p>
                     </div>
                   </div>
                 ))}
