@@ -13,35 +13,31 @@ interface FoodCardProps {
 const FoodCard: React.FC<FoodCardProps> = ({
   name,
   price,
-  image,
-  isPopular = false
+  image
 }) => {
   return (
     <motion.div
-      className="relative aspect-[4/3] rounded-xl overflow-hidden group"
+      className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      {/* Image */}
-      <img 
-        src={image} 
-        alt={name}
-        className="w-full h-full object-cover"
-      />
+      {/* Image Container */}
+      <div className="relative aspect-[4/3] overflow-hidden">
+        <img 
+          src={image} 
+          alt={name}
+          className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
+        />
+      </div>
       
-      {/* Popular Badge */}
-      {isPopular && (
-        <div className="absolute top-3 left-3 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium z-20">
-          ✦ Popular
+      {/* Content Container */}
+      <div className="p-4">
+        <div className="space-y-2">
+          <h3 className="text-lg font-semibold text-gray-800 line-clamp-2 min-h-[3rem]">{name}</h3>
+          <div className="text-xl font-bold text-primary">{price}</div>
         </div>
-      )}
-      
-      {/* Hover Overlay */}
-      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-        <h3 className="text-lg font-semibold text-white mb-2">{name}</h3>
-        <div className="text-green-400 font-medium">{price}</div>
       </div>
     </motion.div>
   );
