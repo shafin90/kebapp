@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, HomeIcon, BookOpenIcon, UserGroupIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -27,6 +28,13 @@ const Navbar = () => {
     }
   }, [isMenuOpen])
 
+  const menuItems = [
+    { to: "/", label: "Startseite", icon: <HomeIcon className="w-5 h-5" /> },
+    { to: "/menu", label: "Speisekarte", icon: <BookOpenIcon className="w-5 h-5" /> },
+    { to: "/about", label: "Über uns", icon: <UserGroupIcon className="w-5 h-5" /> },
+    { to: "/contact", label: "Kontakt", icon: <EnvelopeIcon className="w-5 h-5" /> }
+  ]
+
   return (
     <nav 
       className={`fixed w-full top-0 z-50 transition-all duration-500 ${
@@ -35,12 +43,12 @@ const Navbar = () => {
           : 'bg-transparent border-transparent'
       }`}
     >
-      <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-20 md:h-24">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-16 sm:h-20 md:h-24">
           <div className="flex items-center">
             <Link 
               to="/" 
-              className={`text-xl md:text-2xl font-bold transition-colors duration-500 ${
+              className={`text-lg sm:text-xl md:text-2xl font-bold transition-colors duration-500 ${
                 isScrolled || isMenuOpen ? 'text-primary' : 'text-white'
               }`}
             >
@@ -51,7 +59,7 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`md:hidden rounded-full p-2.5 transition-all duration-300 ${
+            className={`md:hidden rounded-full p-2 transition-all duration-300 ${
               isScrolled || isMenuOpen 
                 ? 'bg-primary/10 text-primary hover:bg-primary/20' 
                 : 'bg-white/10 text-white hover:bg-white/20'
@@ -67,86 +75,63 @@ const Navbar = () => {
 
           {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <NavLink 
-              to="/" 
-              isActive={location.pathname === "/"} 
-              isScrolled={isScrolled || isMenuOpen}
-            >
-              Startseite
-            </NavLink>
-            <NavLink 
-              to="/menu" 
-              isActive={location.pathname === "/menu"} 
-              isScrolled={isScrolled || isMenuOpen}
-            >
-              Speisekarte
-            </NavLink>
-            <NavLink 
-              to="/about" 
-              isActive={location.pathname === "/about"} 
-              isScrolled={isScrolled || isMenuOpen}
-            >
-              Über uns
-            </NavLink>
-            <NavLink 
-              to="/contact" 
-              isActive={location.pathname === "/contact"} 
-              isScrolled={isScrolled || isMenuOpen}
-            >
-              Kontakt
-            </NavLink>
+            {menuItems.map((item) => (
+              <NavLink 
+                key={item.to}
+                to={item.to} 
+                isActive={location.pathname === item.to} 
+                isScrolled={isScrolled || isMenuOpen}
+              >
+                {item.label}
+              </NavLink>
+            ))}
           </div>
         </div>
 
         {/* Mobile menu */}
-        <div 
-          className={`md:hidden fixed inset-x-0 top-[80px] bg-white transition-all duration-300 ease-in-out ${
-            isMenuOpen 
-              ? 'opacity-100 translate-y-0 shadow-lg' 
-              : 'opacity-0 -translate-y-4 pointer-events-none'
-          }`}
-        >
-          <div className="container mx-auto px-6 py-4">
-            <div className="space-y-0.5">
-              <NavLink 
-                to="/" 
-                isActive={location.pathname === "/"} 
-                isScrolled={true}
-                className="block py-3.5 text-base font-medium hover:bg-gray-50 rounded-lg px-4"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Startseite
-              </NavLink>
-              <NavLink 
-                to="/menu" 
-                isActive={location.pathname === "/menu"} 
-                isScrolled={true}
-                className="block py-3.5 text-base font-medium hover:bg-gray-50 rounded-lg px-4"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Speisekarte
-              </NavLink>
-              <NavLink 
-                to="/about" 
-                isActive={location.pathname === "/about"} 
-                isScrolled={true}
-                className="block py-3.5 text-base font-medium hover:bg-gray-50 rounded-lg px-4"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Über uns
-              </NavLink>
-              <NavLink 
-                to="/contact" 
-                isActive={location.pathname === "/contact"} 
-                isScrolled={true}
-                className="block py-3.5 text-base font-medium hover:bg-gray-50 rounded-lg px-4"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Kontakt
-              </NavLink>
-            </div>
-          </div>
-        </div>
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden fixed inset-x-0 top-[64px] sm:top-[80px] bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-lg"
+            >
+              <div className="container mx-auto px-4 sm:px-6 py-2">
+                <div className="grid grid-cols-2 gap-2 py-2">
+                  {menuItems.map((item) => (
+                    <motion.div
+                      key={item.to}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <NavLink 
+                        to={item.to} 
+                        isActive={location.pathname === item.to} 
+                        isScrolled={true}
+                        className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 hover:bg-primary/5 transition-colors group"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <div className={`p-2 rounded-lg ${
+                          location.pathname === item.to 
+                            ? 'bg-primary text-white' 
+                            : 'bg-gray-100 text-gray-600 group-hover:bg-primary/10 group-hover:text-primary'
+                        }`}>
+                          {item.icon}
+                        </div>
+                        <span className="font-medium text-gray-700 group-hover:text-primary">
+                          {item.label}
+                        </span>
+                      </NavLink>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   )
