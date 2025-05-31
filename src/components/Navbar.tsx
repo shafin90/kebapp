@@ -96,7 +96,7 @@ const Navbar = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden fixed inset-x-0 top-[64px] sm:top-[80px] bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-lg"
+              className="md:hidden fixed inset-x-0 top-[64px] sm:top-[80px] bg-white border-b border-gray-100 shadow-md"
             >
               <div className="container mx-auto px-4 sm:px-6 py-2">
                 <div className="grid grid-cols-2 gap-2 py-2">
@@ -111,13 +111,13 @@ const Navbar = () => {
                         to={item.to} 
                         isActive={location.pathname === item.to} 
                         isScrolled={true}
-                        className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 hover:bg-primary/5 transition-colors group"
+                        className="flex items-center gap-3 p-4 rounded-xl bg-primary/5 hover:bg-primary/10 transition-all duration-300 group"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         <div className={`p-2 rounded-lg ${
                           location.pathname === item.to 
                             ? 'bg-primary text-white' 
-                            : 'bg-gray-100 text-gray-600 group-hover:bg-primary/10 group-hover:text-primary'
+                            : 'bg-primary/10 text-primary group-hover:bg-primary/20'
                         }`}>
                           {item.icon}
                         </div>
