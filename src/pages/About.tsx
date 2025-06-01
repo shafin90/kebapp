@@ -127,7 +127,7 @@ const About = () => {
                       className="backdrop-blur-sm bg-white/10 rounded-2xl p-6"
                       whileHover={{ y: -4, transition: { duration: 0.2 } }}
                     >
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex items-center gap-3 mb-0">
                         <div className="text-primary">
                           {stat.icon}
                         </div>
